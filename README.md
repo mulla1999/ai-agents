@@ -103,6 +103,13 @@ Secrets come only from the environment or a secrets manager; `.env` is never com
 
 Code moves into `libs/agents-core` only once a second agent needs it.
 
+## More projects
+
+- **[Face Identity Service](https://github.com/mulla1999/face-service)**: face verification and real-time
+  identification API (InsightFace ArcFace, FAISS, FastAPI).
+- **[Task Management System](https://github.com/mulla1999/sprih-task-management-system)**: Spring Boot
+  REST API with filtering, pagination and sorting.
+
 ## License
 
 [MIT](LICENSE). Third-party material is listed in
