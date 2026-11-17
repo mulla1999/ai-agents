@@ -1,0 +1,61 @@
+@import "@fontsource-variable/noto-sans";
+@import "@fontsource-variable/noto-sans-devanagari";
+@import "tailwindcss";
+
+@theme {
+  /* Brand: deep teal (trust, growth) with a saffron accent (warmth). */
+  --color-brand-50: #effaf7;
+  --color-brand-100: #d7f2ea;
+  --color-brand-200: #afe3d5;
+  --color-brand-300: #7dcdb9;
+  --color-brand-400: #4bb09a;
+  --color-brand-500: #2a947f;
+  --color-brand-600: #1c7867;
+  --color-brand-700: #186154;
+  --color-brand-800: #164e45;
+  --color-brand-900: #133f39;
+  --color-brand-950: #0a2622;
+
+  --color-saffron-50: #fff8eb;
+  --color-saffron-100: #feebc7;
+  --color-saffron-300: #fcc155;
+  --color-saffron-400: #fbab2b;
+  --color-saffron-500: #f58b0b;
+  --color-saffron-600: #d96706;
+
+  --color-canvas: #f8f6f1;
+
+  --font-sans: "Noto Sans Variable", "Noto Sans Devanagari Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --shadow-card: 0 1px 2px rgb(19 63 57 / 0.04), 0 4px 16px -4px rgb(19 63 57 / 0.08);
+  --shadow-lift: 0 2px 4px rgb(19 63 57 / 0.06), 0 12px 32px -8px rgb(19 63 57 / 0.18);
+
+  --animate-fade-up: fade-up 0.4s ease-out both;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+}
+
+body {
+  @apply bg-canvas text-stone-900 antialiased;
+}
+
+/* Soft dotted texture used behind hero areas. */
+.bg-dots {
+  background-image: radial-gradient(rgb(255 255 255 / 0.12) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

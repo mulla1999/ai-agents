@@ -1,0 +1,30 @@
+id: pmsby
+name: Pradhan Mantri Suraksha Bima Yojana (PMSBY)
+level: central
+ministry: Ministry of Finance
+tags: [insurance, accident-cover]
+summary: Very low-cost accident insurance, renewed every year through your bank account.
+benefits: Rs 2 lakh for accidental death or total disability and Rs 1 lakh for partial disability, for a premium of Rs 20 per year.
+eligibility:
+  - field: age
+    op: gte
+    value: 18
+    reason: Must be at least 18 years old
+  - field: age
+    op: lte
+    value: 70
+    reason: Must be 70 or younger
+  - field: has_bank_account
+    op: eq
+    value: true
+    reason: Needs a savings bank or post office account
+documents:
+  - Savings bank or post office account
+  - Aadhaar card
+  - Nominee details
+notes:
+  - A person can be covered through one bank account only.
+how_to_apply: Fill the enrolment form at your bank branch or post office, or enrol through net banking or the bank's mobile app.
+apply_url: https://www.jansuraksha.gov.in
+source_url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2259251
+verified_on: null

@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjcSF0WZytlQmtggifCv6X8RJID/PbQOW7yFCtMiF4Pk6r9f4KF+ElqSyvAtetTxqLWa7oJGgCHO4niixFaSqWKFoWnamO+21/n8nkBReuglYySNujoDc9Nki+yrer5RbFmHW0+nIQzr6i3fuQZPSghndII8EOeqRS9dGqxIli1xguG8UNseRmFHTV1vWp59fYEBOxc6NUVDIM3jdiYwh3mhDIBIr8e6oX8j8xW5ysZvEGMcTGoH7TpcoEyzWszoCb8mTRKWWnE2MWpgFqX96Aq0KVl4oQtv3fPUCljpkTcYuLCM3sW2KbM/56k7UBpafIF5XoXomwGe1PMguj3nxwwIDAQAB",
+  "name": "HireFinch Autofill",
+  "version": "1.3.2",
+  "description": "Fills an employer's job application form from your HireFinch application, and submits it when every field is certain.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "optional_host_permissions": [
+    "https://*/*",
+    "http://127.0.0.1/*",
+    "http://localhost/*"
+  ],
+  "externally_connectable": {
+    "matches": [
+      "https://*.trycloudflare.com/*",
+      "http://localhost/*",
+      "http://127.0.0.1/*"
+    ]
+  },
+  "action": {
+    "default_title": "HireFinch Autofill",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/16.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "options_page": "options.html",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  }
+}

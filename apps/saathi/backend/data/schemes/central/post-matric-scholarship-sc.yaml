@@ -1,0 +1,33 @@
+id: post-matric-scholarship-sc
+name: Post-Matric Scholarship for Scheduled Caste Students
+level: central
+ministry: Ministry of Social Justice and Empowerment
+tags: [scholarship, education, sc]
+summary: Pays fees and a maintenance allowance for SC students studying in class 11 and above, including college.
+benefits: Compulsory non-refundable fees paid to the institution plus a yearly academic allowance for the student. Amounts depend on the course.
+eligibility:
+  - field: social_category
+    op: eq
+    value: sc
+    reason: For Scheduled Caste students
+  - field: is_studying_post_matric
+    op: eq
+    value: true
+    reason: Must be studying in class 11 or above (post-matriculation)
+  - field: annual_family_income
+    op: lte
+    value: 250000
+    reason: Family income must be Rs 2.5 lakh per year or less
+documents:
+  - Caste certificate (SC)
+  - Family income certificate
+  - Previous year's marksheet
+  - Fee receipt and admission proof / bonafide certificate from the institution
+  - Aadhaar card
+  - Bank account in the student's name (seeded with Aadhaar)
+notes:
+  - The government has proposed raising the family income limit to Rs 4.5 lakh from 2026-27; this was not confirmed as of October 2026. Check the current limit on the scholarship portal.
+how_to_apply: Apply online on the National Scholarship Portal or your state's scholarship portal during the application window, then get the application verified by your institution.
+apply_url: https://scholarships.gov.in
+source_url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2209488
+verified_on: null

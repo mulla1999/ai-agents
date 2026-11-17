@@ -1,0 +1,39 @@
+:root {
+  color-scheme: light;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --brand: #4f46e5;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font: 13px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: #fff; }
+.popup { width: 340px; padding: 12px 14px; }
+.popup header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.popup header .link { margin-left: auto; }
+.popup footer { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 8px; font-size: 11px; }
+.page { background: #f8fafc; padding: 32px 16px; }
+.card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 20px; margin: 0 auto; }
+.wide { max-width: 560px; }
+h1 { font-size: 18px; margin: 0 0 6px; }
+h2 { font-size: 14px; margin: 20px 0 6px; }
+label { display: block; margin: 12px 0; font-weight: 500; }
+label.check { display: flex; gap: 8px; font-weight: 400; align-items: flex-start; }
+input[type="text"], input[type="url"], input[type="password"], select {
+  display: block; width: 100%; margin-top: 4px; padding: 8px 10px; font: inherit;
+  border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink);
+}
+input:focus, select:focus { outline: 3px solid rgb(79 70 229 / 0.15); border-color: var(--brand); }
+button { display: block; width: 100%; margin-top: 10px; padding: 9px 12px; font: inherit; font-weight: 600; border-radius: 10px;
+  border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; }
+button.primary { background: linear-gradient(#6366f1, #4f46e5); color: #fff; border-color: transparent; }
+button:disabled { opacity: 0.6; cursor: default; }
+.link { color: var(--brand); text-decoration: none; font-size: 12px; }
+.muted { color: var(--muted); }
+.small { font-size: 11px; }
+.ok { color: #047857; font-weight: 600; }
+.warn { color: #b45309; font-weight: 600; margin-bottom: 2px; }
+.status { color: #b91c1c; }
+.status.ok { color: #047857; }
+ul { margin: 4px 0; padding-left: 18px; }
+.offer { margin: 8px 0 16px; padding: 12px 14px; border: 1px solid #c7d2fe; border-radius: 12px; background: #eef2ff; }
+.offer p { margin: 0 0 4px; }

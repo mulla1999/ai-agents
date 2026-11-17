@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>HireFinch Autofill settings</title>
+    <link rel="stylesheet" href="ui.css" />
+  </head>
+  <body class="page">
+    <main class="card wide">
+      <h1>HireFinch Autofill</h1>
+      <section id="offer" class="offer" hidden>
+        <p><b>Connect to <span id="offerServer"></span>?</b></p>
+        <p class="muted small">Only continue if this is the HireFinch address you just clicked “Connect extension” on.</p>
+        <button id="accept" class="primary" type="button">Connect</button>
+        <button id="reject" type="button">Not me, ignore</button>
+        <p id="offerStatus" class="status" role="status"></p>
+      </section>
+      <p class="muted">Connect the extension to your HireFinch: click <b>Connect extension</b> under <b>Account → Browser extension</b>, or fill this in by hand with a key created there.</p>
+      <form id="form">
+        <label>HireFinch address
+          <input id="server" type="url" required placeholder="https://jobs.yourdomain.com" />
+        </label>
+        <label>Extension key
+          <input id="token" type="password" required autocomplete="off" placeholder="jae_…" />
+        </label>
+        <label class="check">
+          <input id="embedded" type="checkbox" />
+          Allow Auto-apply on Greenhouse, Lever and Ashby (also fills their forms embedded on career sites)
+        </label>
+        <label class="check">
+          <input id="autoSubmit" type="checkbox" checked />
+          Submit automatically when every required field is filled, the resume is attached and no CAPTCHA is showing
+          (after a 5-second countdown you can cancel)
+        </label>
+        <button class="primary" type="submit">Save and test</button>
+        <p id="status" class="status" role="status"></p>
+      </form>
+      <h2>What it does</h2>
+      <ul class="muted">
+        <li>Runs only when you click it in the toolbar, or on a form you opened with <b>Auto-apply</b> in HireFinch.</li>
+        <li>Fills empty fields it is sure about and attaches the resume tailored for that job.</li>
+        <li>Submits only when it is certain, and only for an application you started (Auto-apply in HireFinch, or Fill this form here). Otherwise it leaves the form for you.</li>
+        <li>Records the application only when the employer's confirmation page appears; HireFinch then emails you.</li>
+        <li>Never touches CAPTCHAs, and never answers gender, diversity, disability or legal questions.</li>
+        <li>Does not run on LinkedIn, Naukri, Indeed and other boards that forbid automation.</li>
+      </ul>
+    </main>
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+# NOT LOADED. Stand-Up India ended on 31 March 2025 (15th Finance Commission period) and is
+# being redrafted (DFS, https://financialservices.gov.in/stand-india-scheme-supi, updated 05.02.2026;
+# All India Radio, 16 Mar 2026). Kept as a starting point for when the revamped scheme is notified.
+# standupmitra.in had an expired TLS certificate on 7 Oct 2026; DFS also lists https://www.jansamarth.in
+
+id: stand-up-india
+name: Stand-Up India
+level: central
+ministry: Department of Financial Services, Ministry of Finance
+tags: [loan, business, women, sc, st, msme]
+summary: Bank loans for SC/ST and women entrepreneurs starting a new business in manufacturing, services, trading or agri-allied activities.
+benefits: Bank loans between Rs 10 lakh and Rs 1 crore for a new (greenfield) enterprise, covering both setup cost and working capital.
+eligibility:
+  - field: age
+    op: gte
+    value: 18
+    reason: Must be at least 18 years old
+  - field: plans_new_business
+    op: eq
+    value: true
+    reason: Only for starting a new (first-time, greenfield) enterprise
+  - any:
+      - field: social_category
+        op: in
+        value: [sc, st]
+        reason: Applicant is SC or ST
+      - field: gender
+        op: eq
+        value: female
+        reason: Applicant is a woman
+    reason: Applicant must be SC, ST or a woman
+documents:
+  - Aadhaar card and PAN card
+  - Caste certificate (for SC/ST applicants)
+  - Project report / business plan
+  - Address proof for the business premises
+  - Bank statements
+how_to_apply: Apply on the Stand-Up Mitra portal or directly at a scheduled commercial bank branch. The bank appraises the business plan before sanctioning the loan.
+apply_url: https://www.standupmitra.in
+source_url: https://www.standupmitra.in
+verified_on: null

@@ -1,0 +1,6 @@
+# Editable install of every package in the workspace, for local development.
+# Add a line here for each new agent.
+-e libs/agents-core[all,dev]
+-e apps/saathi/backend[dev]
+-e apps/hirefinch/backend[dev]
+ruff==0.14.4

@@ -1,0 +1,32 @@
+id: pmjjby
+name: Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)
+level: central
+ministry: Ministry of Finance
+tags: [insurance, life-cover]
+summary: Low-cost life insurance, renewed every year through your bank account.
+benefits: Life cover of Rs 2 lakh for death from any cause, for a premium of Rs 436 per year auto-debited from the bank account.
+eligibility:
+  - field: age
+    op: gte
+    value: 18
+    reason: Must be at least 18 years old
+  - field: age
+    op: lte
+    value: 50
+    reason: Must join by age 50
+  - field: has_bank_account
+    op: eq
+    value: true
+    reason: Needs a savings bank or post office account
+documents:
+  - Savings bank or post office account
+  - Aadhaar card
+  - Nominee details
+notes:
+  - Cover runs from 1 June to 31 May. People joining later in the year pay a lower pro-rata premium (Rs 342, 228 or 114).
+  - Claims for death from illness are not paid in the first 30 days after joining.
+  - A person can be covered through one bank account only.
+how_to_apply: Fill the enrolment and consent-for-auto-debit form at your bank branch or post office, or enrol through net banking or the bank's mobile app.
+apply_url: https://www.jansuraksha.gov.in
+source_url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2259251
+verified_on: null

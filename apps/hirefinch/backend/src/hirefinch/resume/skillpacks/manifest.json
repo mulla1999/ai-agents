@@ -1,0 +1,12 @@
+{
+  "source": "https://github.com/paramchoudhary/resumeskills",
+  "commit": "74ae19e7c62b0516d1c298328e5544976c12da5d",
+  "license": "MIT",
+  "files": {
+    "interview-prep-generator.md": "1c543ab0eb226b0e404fcbd4495e7322ae129c5cb940b248ae58656fd2e240d6",
+    "resume-ats-optimizer.md": "03ad07d45afa209a41f8a0acdfc4286bc61ededd8371ced5242b5caf97d86702",
+    "resume-bullet-writer.md": "49ea6a533a72112cc4935c40924830d13979b86321e593892a45244fef0a14fb",
+    "resume-section-builder.md": "63e9972a7b1b4a184f7f4e7a992f17c3590a0da19a4389631bdbbeb3b94dd68b",
+    "tech-resume-optimizer.md": "38cbc83d7d143ec3432be19e8179c5992b55b20765c478f575b0200ed357339a"
+  }
+}

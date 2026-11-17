@@ -1,0 +1,59 @@
+# HireFinch: PostgreSQL + FastAPI backend + nginx/React frontend.
+# Run from the workspace root so the root .env is used:  make hirefinch-up
+name: hirefinch
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hirefinch
+      POSTGRES_USER: hirefinch
+      POSTGRES_PASSWORD: ${HIREFINCH_DB_PASSWORD:?set HIREFINCH_DB_PASSWORD in .env}
+    volumes:
+      - hirefinch-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hirefinch -d hirefinch"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    # No ports published: only the backend reaches the database.
+
+  backend:
+    build:
+      context: ../..
+      dockerfile: apps/hirefinch/backend/Dockerfile
+    restart: unless-stopped
+    env_file:
+      - path: ${HIREFINCH_ENV_FILE:-../../.env}
+        required: false
+    environment:
+      HIREFINCH_DATABASE_URL: postgresql+asyncpg://hirefinch:${HIREFINCH_DB_PASSWORD}@db:5432/hirefinch
+      HIREFINCH_ENVIRONMENT: ${HIREFINCH_ENVIRONMENT:-development}
+      # Plain-HTTP localhost needs non-Secure cookies; production (HTTPS) must set this to true.
+      HIREFINCH_COOKIE_SECURE: ${HIREFINCH_COOKIE_SECURE:-false}
+      HIREFINCH_DATA_DIR: /var/lib/hirefinch/data
+      HIREFINCH_ARTIFACTS_DIR: /var/lib/hirefinch/artifacts
+    volumes:
+      - hirefinch-files:/var/lib/hirefinch
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/readyz')"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${HIREFINCH_HTTP_PORT:-8090}:8080"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  hirefinch-pgdata:
+  hirefinch-files:  # master resumes, generated resumes, records: back this up with the database

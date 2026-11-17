@@ -1,0 +1,11 @@
+# Public entry point: automatic HTTPS (Let's Encrypt) for HIREFINCH_DOMAIN, then the app.
+# Caddy discards X-Forwarded-For from clients and sets the real client IP, which the sign-in rate
+# limits rely on.
+{$HIREFINCH_DOMAIN} {
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		-Server
+	}
+	reverse_proxy frontend:8080
+}

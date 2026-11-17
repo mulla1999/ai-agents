@@ -1,0 +1,19 @@
+# Copy to config/automation_policy.yaml and load with:
+#   hirefinch load-config --policy apps/hirefinch/config/automation_policy.yaml
+# The CLI refuses automatic modes on purpose: switch to automatic in the Automation page, where you
+# type a confirmation phrase and the change is audited.
+
+mode: supervised
+shortlist_min_score: 70
+tailor_min_score: 70
+auto_apply_min_score: 85
+auto_apply_routes: [email]
+daily_application_limit: 5
+weekly_application_limit: 20
+auto_send_outreach: false
+outreach_daily_limit: 3
+use_llm_for_tailoring: false
+discovery_interval_minutes: 360
+digest_hour_local: 20
+timezone: Asia/Kolkata
+max_bullets_older_roles: 4

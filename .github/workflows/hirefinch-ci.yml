@@ -1,0 +1,59 @@
+# HireFinch CI: backend tests (SQLite and PostgreSQL migrations) and the web app's type-check, build
+# and tests. It never deploys: deployment stays a deliberate `make hirefinch-deploy` after review.
+name: hirefinch-ci
+
+on:
+  push:
+    paths: ["apps/hirefinch/**", "libs/**", ".github/workflows/hirefinch-ci.yml", "requirements-dev.txt"]
+  pull_request:
+    paths: ["apps/hirefinch/**", "libs/**", ".github/workflows/hirefinch-ci.yml", "requirements-dev.txt"]
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: hirefinch
+          POSTGRES_USER: hirefinch
+          POSTGRES_PASSWORD: ci-only-not-a-secret
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U hirefinch" --health-interval 5s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: make install
+      - name: Lint
+        run: make lint
+      - name: Tests (mocked sources and email; nothing is sent)
+        run: make test
+      - name: Migrations apply cleanly on PostgreSQL and match the models
+        working-directory: apps/hirefinch/backend
+        env:
+          HIREFINCH_DATABASE_URL: postgresql+asyncpg://hirefinch:ci-only-not-a-secret@localhost:5432/hirefinch
+        run: |
+          ../../../.venv/bin/alembic upgrade head
+          ../../../.venv/bin/alembic check
+
+  frontend:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: apps/hirefinch/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/hirefinch/frontend/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+      - run: npx vitest run

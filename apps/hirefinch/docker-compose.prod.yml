@@ -1,0 +1,49 @@
+# Production overlay: HTTPS via Caddy, production settings enforced.
+#   docker compose --env-file .env -f apps/hirefinch/docker-compose.yml -f apps/hirefinch/docker-compose.prod.yml up -d --build
+# Required in .env: HIREFINCH_DOMAIN, HIREFINCH_DB_PASSWORD, HIREFINCH_SECRET_KEY, HIREFINCH_ENCRYPTION_KEYS,
+# HIREFINCH_SUPERADMIN_EMAIL. The backend refuses to start if any production requirement is missing.
+services:
+  backend:
+    environment:
+      HIREFINCH_ENVIRONMENT: production
+      HIREFINCH_PUBLIC_URL: https://${HIREFINCH_DOMAIN:?set HIREFINCH_DOMAIN in .env}
+      HIREFINCH_COOKIE_SECURE: "true"
+      HIREFINCH_ALLOW_PRIVATE_HOSTS: "false"
+      # Sign-in rate limits shared by every backend instance.
+      HIREFINCH_REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--save", "", "--appendonly", "no", "--maxmemory", "64mb", "--maxmemory-policy", "allkeys-lru"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    # No ports published: only the backend reaches it. It holds only short-lived rate-limit counters.
+
+  frontend:
+    ports: !reset []  # only Caddy is reachable from outside
+
+  caddy:
+    image: caddy:2.8-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      HIREFINCH_DOMAIN: ${HIREFINCH_DOMAIN}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - hirefinch-caddy-data:/data
+      - hirefinch-caddy-config:/config
+    depends_on:
+      - frontend
+
+volumes:
+  hirefinch-caddy-data:
+  hirefinch-caddy-config:

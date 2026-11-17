@@ -1,0 +1,25 @@
+# Copy to config/job_preferences.yaml (gitignored) and load with:
+#   hirefinch load-config --preferences apps/hirefinch/config/job_preferences.yaml
+
+target_roles:
+  - Full Stack Engineer
+  - Software Engineer
+  - Backend Engineer
+  - Java Developer
+  - AI Engineer
+  - AI Agent Engineer
+  - GenAI Engineer
+  - Applied AI Engineer
+  - Platform Engineer
+min_compensation_lpa: 30            # published pay below this disqualifies a job
+target_compensation_lpa: [30, 40]
+fx_rates_to_inr: {}                 # e.g. {USD: 84.0}; without a rate, foreign pay counts as "not stated"
+preferred_locations: [Bengaluru, Mumbai, Pune, Thane, Remote]
+work_modes: [remote, hybrid, onsite]
+onsite_only_in_preferred_locations: true
+target_companies: []
+excluded_companies: []
+excluded_keywords: []               # e.g. ["unpaid", "commission only"]
+max_experience_gap_years: 2.0       # required years beyond yours by more than this disqualifies
+weights: {technical: 30, experience: 25, role: 15, domain: 10, location: 10, compensation: 10}
+thresholds: {high: 85, good: 70, review: 55}

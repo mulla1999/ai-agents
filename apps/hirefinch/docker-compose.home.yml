@@ -1,0 +1,89 @@
+# HireFinch shared from this PC: the API (SQLite in apps/hirefinch/data), the built web app, and a tunnel.
+# Every service restarts on its own, also after a reboot (Docker starts at boot).
+#
+# All services share one private network namespace (the `net` service), so they reach each other on
+# 127.0.0.1 and bind nothing on this PC: no port here can clash with other software (an earlier version
+# used host networking, and Tailscale's :443 then blocked a web server already on this PC). The tunnel
+# is the only way in.
+#
+#   make hirefinch-home-up        start or update (tunnel: Tailscale Funnel if its key is set, else Cloudflare)
+#   make hirefinch-home-down      stop
+#   make hirefinch-home-logs      follow the logs
+#
+# Secrets live in apps/hirefinch/data/home.env (mode 600, written by deploy/home-env.sh), never in this file.
+name: hirefinch-home
+
+x-local: &local
+  restart: unless-stopped
+  network_mode: "service:net"
+  depends_on: [net]
+  user: "${HOME_UID:-1000}:${HOME_GID:-1000}"
+
+services:
+  # Holds the shared network namespace; does nothing else, so it never needs restarting.
+  net:
+    image: node:22-alpine
+    restart: unless-stopped
+    user: "${HOME_UID:-1000}:${HOME_GID:-1000}"
+    command: ["sleep", "infinity"]
+    init: true
+
+  api:
+    <<: *local
+    build:
+      context: ../..
+      dockerfile: apps/hirefinch/backend/Dockerfile
+    env_file: data/home.env
+    environment:
+      HIREFINCH_ENVIRONMENT: production
+      HIREFINCH_COOKIE_SECURE: "true"
+      HIREFINCH_ALLOW_PRIVATE_HOSTS: "false"
+      HIREFINCH_DATA_DIR: /var/lib/hirefinch/data
+      HIREFINCH_ARTIFACTS_DIR: /var/lib/hirefinch/artifacts
+      HOME: /tmp
+    volumes:
+      - ./data:/var/lib/hirefinch/data
+      - ./artifacts:/var/lib/hirefinch/artifacts
+    # Reached only through the web app's /api proxy, inside the shared namespace.
+    entrypoint: ["sh", "-c", "alembic upgrade head && exec uvicorn --factory hirefinch.app:create_app --host 127.0.0.1 --port 8000 --proxy-headers --forwarded-allow-ips=127.0.0.1 --no-server-header"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz')"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+  web:
+    <<: *local
+    image: node:22-alpine
+    working_dir: /app
+    environment:
+      HOME: /tmp
+    volumes:
+      - ./frontend:/app
+    command: ["npx", "vite", "preview", "--host", "127.0.0.1", "--port", "4173", "--strictPort"]
+
+  # Fixed address (free): Tailscale Funnel, https://hirefinch.<your-tailnet>.ts.net
+  tailscale:
+    <<: *local
+    image: tailscale/tailscale:v1.90.6
+    profiles: ["tailscale"]
+    user: "0:0"  # the image manages its own state directory
+    env_file: data/home.env  # TS_AUTHKEY
+    # Userspace networking: needs no device or extra privileges, and Funnel traffic reaches it inside the
+    # shared namespace (kernel mode there accepted connections on the tunnel but never got Funnel's).
+    environment:
+      TS_HOSTNAME: hirefinch
+      TS_USERSPACE: "true"
+      TS_STATE_DIR: /var/lib/tailscale
+      TS_SERVE_CONFIG: /config/serve.json
+    volumes:
+      - ./data/tailscale:/var/lib/tailscale
+      - ./deploy/tailscale-serve.json:/config/serve.json:ro
+
+  # Fallback: Cloudflare quick tunnel. Free, but its address changes whenever it restarts.
+  cloudflare:
+    <<: *local
+    image: cloudflare/cloudflared:2025.10.1
+    profiles: ["cloudflare"]
+    user: "65532:65532"
+    command: ["tunnel", "--no-autoupdate", "--url", "http://127.0.0.1:4173"]

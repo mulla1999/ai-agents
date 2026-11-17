@@ -1,0 +1,55 @@
+# Saathi: PostgreSQL + FastAPI backend + nginx/React frontend.
+# Run from the workspace root so the root .env is used:  make saathi-up
+name: saathi
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: saathi
+      POSTGRES_USER: saathi
+      POSTGRES_PASSWORD: ${SAATHI_DB_PASSWORD:?set SAATHI_DB_PASSWORD in .env}
+    volumes:
+      - saathi-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U saathi -d saathi"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    # No ports published: only the backend can reach the database.
+
+  backend:
+    build:
+      context: ../..
+      dockerfile: apps/saathi/backend/Dockerfile
+    restart: unless-stopped
+    env_file:
+      - path: ${SAATHI_ENV_FILE:-../../.env}
+        required: false
+    environment:
+      SAATHI_DATABASE_URL: postgresql+asyncpg://saathi:${SAATHI_DB_PASSWORD}@db:5432/saathi
+      SAATHI_ENVIRONMENT: ${SAATHI_ENVIRONMENT:-development}
+      SAATHI_PUBLIC_URL: ${SAATHI_PUBLIC_URL:-http://localhost:8080}
+      # Plain-HTTP localhost needs non-Secure cookies; production (HTTPS) must set this to true.
+      SAATHI_COOKIE_SECURE: ${SAATHI_COOKIE_SECURE:-false}
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/healthz')"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${SAATHI_HTTP_PORT:-8080}:8080"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  saathi-pgdata:

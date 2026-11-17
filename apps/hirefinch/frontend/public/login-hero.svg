@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 440" role="img" aria-labelledby="t d">
+  <title id="t">HireFinch workflow</title>
+  <desc id="d">A matched job card, a tailored and validated resume, and an approval step.</desc>
+  <defs>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f5f6ff"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22c55e"/>
+      <stop offset="1" stop-color="#14b8a6"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#1e1b4b" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <!-- soft background shapes -->
+  <circle cx="420" cy="70" r="70" fill="#ffffff" opacity="0.08"/>
+  <path d="M40 210 C 140 150, 220 300, 330 230 S 480 170, 500 240" fill="none" stroke="#ffffff" stroke-opacity="0.25"
+        stroke-width="2" stroke-dasharray="6 8"/>
+
+  <!-- resume document (back) -->
+  <g filter="url(#shadow)" transform="translate(250 40) rotate(4)">
+    <rect width="220" height="270" rx="16" fill="url(#card)"/>
+    <rect x="22" y="24" width="110" height="12" rx="6" fill="#312e81"/>
+    <rect x="22" y="44" width="150" height="7" rx="3.5" fill="#c7d2fe"/>
+    <rect x="22" y="72" width="70" height="8" rx="4" fill="url(#accent)"/>
+    <rect x="22" y="90" width="176" height="6" rx="3" fill="#e0e7ff"/>
+    <rect x="22" y="102" width="160" height="6" rx="3" fill="#e0e7ff"/>
+    <rect x="22" y="114" width="170" height="6" rx="3" fill="#e0e7ff"/>
+    <rect x="22" y="142" width="90" height="8" rx="4" fill="url(#accent)"/>
+    <circle cx="27" cy="163" r="3" fill="#6366f1"/><rect x="36" y="160" width="150" height="6" rx="3" fill="#e0e7ff"/>
+    <circle cx="27" cy="177" r="3" fill="#6366f1"/><rect x="36" y="174" width="134" height="6" rx="3" fill="#e0e7ff"/>
+    <circle cx="27" cy="191" r="3" fill="#6366f1"/><rect x="36" y="188" width="158" height="6" rx="3" fill="#e0e7ff"/>
+    <circle cx="27" cy="205" r="3" fill="#6366f1"/><rect x="36" y="202" width="120" height="6" rx="3" fill="#e0e7ff"/>
+    <!-- validated stamp -->
+    <g transform="translate(120 222)">
+      <rect width="86" height="30" rx="15" fill="#dcfce7"/>
+      <circle cx="16" cy="15" r="8" fill="url(#ring)"/>
+      <path d="M12 15.5l2.6 2.6 5-5.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="30" y="19.5" font-family="system-ui, -apple-system, Segoe UI, Arial, sans-serif" font-size="11" font-weight="600" fill="#15803d">Validated</text>
+    </g>
+  </g>
+
+  <!-- job match card (front) -->
+  <g filter="url(#shadow)" transform="translate(24 120)">
+    <rect width="280" height="150" rx="18" fill="url(#card)"/>
+    <rect x="20" y="20" width="40" height="40" rx="11" fill="url(#accent)"/>
+    <path d="M31 36h18v14a2 2 0 0 1-2 2H33a2 2 0 0 1-2-2zM35 36v-3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3" fill="none" stroke="#fff" stroke-width="2.2"/>
+    <text x="72" y="36" font-family="system-ui, -apple-system, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#1e1b4b">AI Agent Engineer</text>
+    <text x="72" y="54" font-family="system-ui, -apple-system, Segoe UI, Arial, sans-serif" font-size="11" fill="#64748b">Bengaluru · Hybrid</text>
+    <!-- score ring -->
+    <g transform="translate(240 40)">
+      <circle r="22" fill="none" stroke="#e0e7ff" stroke-width="6"/>
+      <circle r="22" fill="none" stroke="url(#ring)" stroke-width="6" stroke-linecap="round"
+              stroke-dasharray="129 138" transform="rotate(-90)"/>
+      <text y="4.5" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#166534">94</text>
+    </g>
+    <g font-family="system-ui, -apple-system, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="600">
+      <rect x="20" y="82" width="52" height="22" rx="11" fill="#eef2ff"/><text x="46" y="97" text-anchor="middle" fill="#4338ca">Java</text>
+      <rect x="78" y="82" width="70" height="22" rx="11" fill="#eef2ff"/><text x="113" y="97" text-anchor="middle" fill="#4338ca">Google ADK</text>
+      <rect x="154" y="82" width="44" height="22" rx="11" fill="#eef2ff"/><text x="176" y="97" text-anchor="middle" fill="#4338ca">RAG</text>
+    </g>
+    <rect x="20" y="118" width="240" height="6" rx="3" fill="#e2e8f0"/>
+    <rect x="20" y="118" width="214" height="6" rx="3" fill="url(#accent)"/>
+  </g>
+
+  <!-- approval chip -->
+  <g filter="url(#shadow)" transform="translate(120 318)">
+    <rect width="230" height="58" rx="16" fill="#ffffff"/>
+    <circle cx="30" cy="29" r="15" fill="#fef3c7"/>
+    <path d="M30 21v9l5 3" fill="none" stroke="#d97706" stroke-width="2.4" stroke-linecap="round"/>
+    <text x="54" y="25" font-family="system-ui, -apple-system, Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#1e1b4b">Ready for your approval</text>
+    <text x="54" y="42" font-family="system-ui, -apple-system, Segoe UI, Arial, sans-serif" font-size="10.5" fill="#64748b">Nothing is sent until you say so</text>
+  </g>
+
+  <!-- sparkles -->
+  <g fill="#ffffff">
+    <path d="M478 300l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" opacity="0.85"/>
+    <path d="M30 96l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" opacity="0.7"/>
+    <path d="M222 22l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5z" opacity="0.6"/>
+  </g>
+</svg>

@@ -1,0 +1,35 @@
+id: ignwps
+name: Indira Gandhi National Widow Pension Scheme (IGNWPS)
+level: central
+ministry: Ministry of Rural Development (National Social Assistance Programme)
+tags: [pension, women, widow, bpl]
+summary: Monthly pension for widows from Below Poverty Line households.
+benefits: Central share of Rs 300 per month for ages 40 to 79 and Rs 500 per month from age 80. Most states add their own top-up, so the amount received is usually higher.
+eligibility:
+  - field: gender
+    op: eq
+    value: female
+    reason: For women only
+  - field: is_widow
+    op: eq
+    value: true
+    reason: Applicant must be a widow
+  - field: age
+    op: gte
+    value: 40
+    reason: Must be at least 40 years old
+  - field: is_bpl
+    op: eq
+    value: true
+    reason: Household must be on the Below Poverty Line list
+documents:
+  - Husband's death certificate
+  - Age proof
+  - BPL card or BPL list entry
+  - Aadhaar card
+  - Bank or post office account passbook
+  - Passport-size photograph
+how_to_apply: Apply at the gram panchayat or block office (rural) or the municipal office (urban), or through your state's social welfare / pension portal or a CSC.
+apply_url: https://nsap.dord.gov.in
+source_url: https://nsap.dord.gov.in/circular.do?method=aboutus
+verified_on: null

@@ -1,0 +1,26 @@
+id: ignoaps
+name: Indira Gandhi National Old Age Pension Scheme (IGNOAPS)
+level: central
+ministry: Ministry of Rural Development (National Social Assistance Programme)
+tags: [pension, senior-citizen, bpl]
+summary: Monthly pension for elderly people from Below Poverty Line households.
+benefits: Central share of Rs 200 per month for ages 60 to 79 and Rs 500 per month from age 80. Most states add their own top-up, so the amount received is usually higher.
+eligibility:
+  - field: age
+    op: gte
+    value: 60
+    reason: Must be 60 years or older
+  - field: is_bpl
+    op: eq
+    value: true
+    reason: Household must be on the Below Poverty Line list
+documents:
+  - Age proof (birth certificate, school certificate, or voter ID)
+  - BPL card or BPL list entry
+  - Aadhaar card
+  - Bank or post office account passbook
+  - Passport-size photograph
+how_to_apply: Apply at the gram panchayat or block office (rural) or the municipal office (urban), or through your state's social welfare / pension portal or a CSC.
+apply_url: https://nsap.dord.gov.in
+source_url: https://nsap.dord.gov.in/circular.do?method=aboutus
+verified_on: null

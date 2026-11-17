@@ -1,0 +1,4 @@
+node_modules
+dist
+# Built by deploy/build-extension.sh (make hirefinch-extension)
+public/hirefinch-extension.zip

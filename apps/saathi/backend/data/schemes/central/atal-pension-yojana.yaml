@@ -1,0 +1,35 @@
+id: atal-pension-yojana
+name: Atal Pension Yojana (APY)
+level: central
+ministry: Ministry of Finance (administered by PFRDA)
+tags: [pension, unorganised-sector]
+summary: A guaranteed monthly pension from age 60 for people who contribute a small amount every month.
+benefits: Guaranteed pension of Rs 1,000 to Rs 5,000 per month from age 60, depending on the amount contributed. The pension continues to the spouse, and the saved amount goes to the nominee.
+eligibility:
+  - field: age
+    op: gte
+    value: 18
+    reason: Must be at least 18 years old to join
+  - field: age
+    op: lte
+    value: 40
+    reason: Must join before turning 41
+  - field: has_bank_account
+    op: eq
+    value: true
+    reason: Needs a savings bank or post office account
+  - field: is_income_tax_payer
+    op: eq
+    value: false
+    reason: Income tax payers cannot join (since 1 October 2022)
+documents:
+  - Savings bank or post office account
+  - Aadhaar card
+  - Mobile number
+notes:
+  - The contribution depends on the age at joining and the pension chosen, and is auto-debited monthly, quarterly or half-yearly until age 60.
+  - If someone who joined on or after 1 October 2022 is later found to be an income tax payer, the account is closed and the savings returned.
+how_to_apply: Fill the APY form at the bank or post office where you have your savings account, or through your bank's net banking or mobile app.
+apply_url: https://www.pfrda.org.in
+source_url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2259251
+verified_on: null

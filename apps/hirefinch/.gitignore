@@ -1,0 +1,8 @@
+# Private data: database, master resumes, local mailbox, generated resumes and records.
+data/
+artifacts/**
+!artifacts/*/
+!artifacts/**/.gitkeep
+# Your real configuration (the *.example.yaml files are the templates).
+config/*.yaml
+!config/*.example.yaml

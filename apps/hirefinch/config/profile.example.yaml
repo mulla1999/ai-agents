@@ -1,0 +1,30 @@
+# Copy to config/profile.yaml (gitignored) and load with:
+#   hirefinch load-config --profile apps/hirefinch/config/profile.yaml
+# Or edit everything in the UI (Profile & Preferences). Your resume is the source of truth for
+# employment, skills and dates; this file holds only facts a resume does not.
+# Leave a value empty when you do not want the agent to answer it: it will ask you instead.
+
+full_name: null              # defaults to the name on your resume
+contact_email: null          # e.g. you@example.com
+phone: null
+location: null               # e.g. "Thane, Maharashtra"
+linkedin_url: null
+portfolio_url: null
+notification_email: null     # where application notifications and the daily summary go
+
+notice_period_days: null     # e.g. 30
+current_ctc_lpa: null        # sensitive; only used if a form asks and you set it
+expected_ctc_lpa: null       # applications asking for it pause until this is set
+authorized_to_work_in: []    # e.g. ["India"]
+requires_sponsorship: null   # true / false
+willing_to_relocate: null    # true / false
+count_internships_as_experience: false
+
+# Skills you have that the resume does not mention, each with where it can be verified.
+verified_extra_skills: []
+#  - name: Terraform
+#    evidence: "Provisioned GCP infrastructure for project X (2025)"
+
+# Answers you have confirmed for recurring questions. The key is matched against the question text.
+custom_answers: {}
+#  "why are you looking for a change": "..."
