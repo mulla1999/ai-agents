@@ -11,12 +11,12 @@ eligibility:
     value: 70
     reason: Must be 70 years or older
 documents:
-  - Aadhaar card (age is taken from Aadhaar)
-  - Mobile number for OTP
+  - Aadhaar card
 notes:
   - The cover is per family and shared by all members aged 70 or older. Families already under PM-JAY get this as an extra top-up for their members aged 70+.
   - People covered by CGHS, ECHS or CAPF health schemes can choose either their current scheme or this one.
+  - People with private health insurance or ESIS can still get this card.
 how_to_apply: Enrol through the Ayushman app or the beneficiary portal with Aadhaar e-KYC, or at an empanelled hospital or CSC, to get the Ayushman Vay Vandana card.
 apply_url: https://beneficiary.nha.gov.in
-source_url: https://pmjay.gov.in
-verified_on: null
+source_url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2053883
+verified_on: 2026-11-20

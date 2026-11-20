@@ -1,19 +1,15 @@
 id: igndps
-name: Indira Gandhi National Disability Pension Scheme (IGNDPS)
+name: Pradhan Mantri Divyangjan Pension Yojana (formerly IGNDPS)
 level: central
 ministry: Ministry of Rural Development (National Social Assistance Programme)
 tags: [pension, disability, bpl]
 summary: Monthly pension for people with severe disabilities from Below Poverty Line households.
-benefits: Central share of Rs 300 per month. Most states add their own top-up, so the amount received is usually higher.
+benefits: Central share of Rs 300 per month, and Rs 500 per month from age 80. Most states add their own top-up, so the amount received is usually higher.
 eligibility:
   - field: age
     op: gte
     value: 18
     reason: Must be 18 years or older
-  - field: age
-    op: lte
-    value: 79
-    reason: From age 80 the old age pension (IGNOAPS) applies instead
   - field: disability_percent
     op: gte
     value: 80
@@ -28,7 +24,11 @@ documents:
   - Age proof
   - Aadhaar card
   - Bank or post office account passbook
+notes:
+  - "Approved by the Union Cabinet on 14 October 2026: disability of 40% or more, no minimum age, and Rs 375 per month (Rs 625 from age 80). These apply once the Ministry of Rural Development issues revised guidelines (due by about January 2027); until then the current rules above apply."
+  - People with dwarfism are also eligible.
+  - If an eligible person's name is missing from the BPL list, officials should still assess the application instead of turning it away (NSAP guidelines).
 how_to_apply: Apply at the gram panchayat or block office (rural) or the municipal office (urban), or through your state's social welfare / pension portal or a CSC.
 apply_url: https://nsap.dord.gov.in
-source_url: https://nsap.dord.gov.in/circular.do?method=aboutus
-verified_on: null
+source_url: https://nsap.dord.gov.in/Guidelines/nsap_guidelines_oct2014.pdf
+verified_on: 2026-11-20

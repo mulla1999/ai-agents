@@ -4,7 +4,7 @@ level: central
 ministry: Ministry of Women and Child Development (Mission Shakti)
 tags: [women, maternity, health]
 summary: Cash help for pregnant women and new mothers, to make up for lost wages and support rest and nutrition.
-benefits: Rs 5,000 for the first child, paid in two instalments, and Rs 6,000 for a second child if it is a girl, paid directly to the bank account.
+benefits: Rs 5,000 for the first child in two instalments (Rs 3,000 after registering the pregnancy and an antenatal check-up, and Rs 2,000 after the birth is registered and the baby has had its first round of vaccines by 14 weeks), and Rs 6,000 in one instalment if the second child is a girl, paid directly to the bank or post office account.
 eligibility:
   - field: gender
     op: eq
@@ -14,6 +14,14 @@ eligibility:
     op: eq
     value: true
     reason: Must be pregnant or breastfeeding a baby
+  - field: age
+    op: gte
+    value: 18
+    reason: Mother must be at least 18 years 7 months old at childbirth
+  - field: age
+    op: lte
+    value: 55
+    reason: Mother must be 55 or younger at childbirth
   - field: is_government_employee
     op: eq
     value: false
@@ -31,11 +39,16 @@ documents:
   - Bank or post office account passbook (Aadhaar-linked)
   - Proof of the qualifying group (caste certificate, ration card, disability certificate, income certificate, e-Shram card, MGNREGA job card, ...)
   - Child's birth registration (for the later instalment)
+  - Mobile number
 notes:
   - Other qualifying groups include e-Shram card holders, MGNREGA job card holders, PM-KISAN women farmers, Ayushman Bharat (PM-JAY) beneficiaries, and pregnant or breastfeeding Anganwadi workers, helpers and ASHAs.
   - The second-child benefit is only for a girl child.
   - Register at the Anganwadi or health centre early in the pregnancy; the first instalment needs registration and an antenatal check-up.
+  - Women already getting a similar maternity benefit under any law are not covered.
+  - You can register up to 270 days after the birth. After a miscarriage or stillbirth, a later pregnancy counts as new.
+  - Only women in regular central or state government or PSU jobs are excluded; retired employees and pensioners are not (the rule here cannot tell them apart).
+  - Women also get the Janani Suraksha Yojana payment after an institutional delivery.
 how_to_apply: Register through the Anganwadi worker or ASHA, at the nearest health centre, or on the PMMVY portal.
 apply_url: https://pmmvy.wcd.gov.in
-source_url: https://wcd.gov.in
-verified_on: null
+source_url: https://wcd.gov.in/offerings/pradhan-mantri-matru-vandana-yojana
+verified_on: 2026-11-20

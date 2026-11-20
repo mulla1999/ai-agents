@@ -3,7 +3,7 @@ name: Pradhan Mantri Ujjwala Yojana (PMUY)
 level: central
 ministry: Ministry of Petroleum and Natural Gas
 tags: [women, lpg, household]
-summary: A free LPG gas connection in a woman's name for poor households that have no LPG connection.
+summary: A free LPG gas connection in a woman's name for poor households that have no LPG connection, given on a signed declaration of the household's poverty.
 benefits: Deposit-free LPG connection, with the first refill and a stove free under Ujjwala 2.0, and a targeted subsidy on refills.
 eligibility:
   - field: gender
@@ -18,22 +18,19 @@ eligibility:
     op: eq
     value: false
     reason: The household must not already have an LPG connection
-  - any:
-      - {field: social_category, op: in, value: [sc, st], reason: SC or ST}
-      - {field: ration_card, op: in, value: [aay, phh], reason: AAY or Priority Household ration card}
-      - {field: is_bpl, op: eq, value: true, reason: BPL household}
-    reason: Must be from a poor household (SC/ST, AAY or priority ration card, or BPL)
 documents:
+  - KYC application form with a recent photograph of the applicant
   - Aadhaar card of the woman applicant
-  - Ration card (or a self-declaration of family members, for migrants)
-  - Aadhaar of all adult family members on the ration card
-  - Bank account details
-  - Passport-size photograph
+  - Ration card or other state document showing family members (or a self-declaration, for migrants)
+  - Aadhaar of all adult family members on that document
+  - Proof of address, if it differs from the address on Aadhaar
+  - Bank account details (passbook or cancelled cheque)
+  - Signed deprivation declaration (standard form)
 notes:
-  - Only one connection per household.
-  - Other covered groups include PMAY-Gramin beneficiaries, forest dwellers, most backward classes, tea and ex-tea garden tribes, island residents, and any poor household that signs the 14-point declaration.
-  - The refill subsidy amount and the number of subsidised refills are set by the government each year; check with the LPG distributor.
-how_to_apply: Apply online on the PMUY portal or at the nearest LPG distributor (Indane, Bharat Gas or HP Gas) with the documents listed.
-apply_url: https://www.pmuy.gov.in
-source_url: https://www.pmuy.gov.in
-verified_on: null
+  - Only one connection per household, in the name of an adult woman of the family.
+  - "The woman must be from a poor household, shown by signing a deprivation declaration. Listed groups include SC and ST households, PMAY-Gramin beneficiaries, Antyodaya (AAY) card holders, most backward classes, tea and ex-tea garden tribes, forest dwellers, island and river-island residents, and SECC-listed households; any other poor household can apply through the declaration."
+  - "Refill subsidy in 2026-27: Rs 300 per 14.2 kg cylinder for up to 4 refills a year (it was 9 in 2025-26). Further refills can be bought at the normal price. The government reviews this each year."
+how_to_apply: Apply online on the PMUY portal (free) or through a CSC (Rs 20 fee), or at any LPG distributor of Indane, Bharat Gas or HP Gas with the documents listed.
+apply_url: https://www.pmuy.gov.in/ujjwala2.html
+source_url: https://www.pmuy.gov.in/ujjwala2.html
+verified_on: 2026-11-20

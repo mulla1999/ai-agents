@@ -8,7 +8,7 @@ benefits: Assured pension of Rs 3,000 per month from age 60. The worker pays Rs 
 eligibility:
   - field: occupation
     op: in
-    value: [unorganised_worker, agricultural_labourer, artisan, street_vendor, construction_worker, domestic_worker, fisher, self_employed]
+    value: [unorganised_worker, agricultural_labourer, farmer, artisan, street_vendor, construction_worker, domestic_worker, fisher, self_employed]
     reason: For unorganised-sector workers
   - field: age
     op: gte
@@ -22,7 +22,7 @@ eligibility:
     op: eq
     value: false
     reason: Members of EPF, ESIC or NPS cannot join
-  - field: is_income_tax_payer
+  - field: has_paid_income_tax
     op: eq
     value: false
     reason: Income tax payers cannot join
@@ -32,12 +32,14 @@ eligibility:
     reason: Needs a savings bank account for the monthly auto-debit
 documents:
   - Aadhaar card
-  - Savings bank account or Jan Dhan account (with IFSC)
-  - Mobile number
+  - Savings bank account or Jan Dhan account passbook (with IFSC)
+  - Self-declaration form and consent for monthly auto-debit (filled at enrolment)
 notes:
-  - The worker's own monthly income must be Rs 15,000 or less.
+  - The worker's own monthly income must be Rs 15,000 or less. Proof of income or age is not needed; a self-declaration is used.
+  - Only the worker's own income-tax status counts, not other family members'.
+  - Farmers who join this scheme cannot also join the farmers' pension scheme (PM-KMY).
   - If the pensioner dies, the spouse gets half the pension as family pension.
-how_to_apply: Enrol at a Common Service Centre (CSC) with Aadhaar and bank details, or self-enrol on the Maandhan portal. The first contribution is paid in cash at the CSC.
+how_to_apply: Enrol at a Common Service Centre (CSC) with Aadhaar and bank details, where the first contribution is paid in cash, or self-enrol on the Maandhan portal or through the e-Shram portal after registering on e-Shram.
 apply_url: https://maandhan.in
-source_url: https://maandhan.in
-verified_on: null
+source_url: "https://maandhan.in/show_content.php?lang=1&level=1&ls_id=79&lid=63&page=74"
+verified_on: 2026-11-20

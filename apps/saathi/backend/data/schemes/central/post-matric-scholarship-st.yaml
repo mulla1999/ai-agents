@@ -4,7 +4,7 @@ level: central
 ministry: Ministry of Tribal Affairs
 tags: [scholarship, education, st]
 summary: Pays fees and a maintenance allowance for ST students studying in class 11 and above, including college.
-benefits: Compulsory non-refundable fees paid to the institution plus a stipend for the student. Amounts depend on the course.
+benefits: Compulsory fees paid to the institution (up to the limit fixed by the state) plus a maintenance allowance of Rs 230 to Rs 1,200 a month, depending on the course.
 eligibility:
   - field: social_category
     op: eq
@@ -25,12 +25,15 @@ documents:
   - Fee receipt and admission proof / bonafide certificate from the institution
   - Aadhaar card
   - Bank account in the student's name (seeded with Aadhaar)
+  - Domicile certificate
+  - Passport-size photograph
 notes:
   - Not available to students already receiving another scholarship.
   - Apply through the state of domicile.
   - The income limit does not apply to orphans supported by a guardian.
   - The student's bank account must be linked to both Aadhaar and mobile number.
+  - Students at the notified Top Class institutes get the separate Top Class scholarship instead of this one.
 how_to_apply: Apply online on the National Scholarship Portal or your state's scholarship portal during the application window, then get the application verified by your institution.
 apply_url: https://scholarships.gov.in
-source_url: https://scholarships.gov.in
-verified_on: null
+source_url: https://scholarships.gov.in/public/schemeGuidelines/Post-matric-guidelines-ST.pdf
+verified_on: 2026-11-20

@@ -4,8 +4,9 @@ An open-source assistant that helps people in India find government welfare sche
 for, in their own language, prepare the documents, and track their applications. It works on the
 web and over WhatsApp.
 
-> **Status: early MVP.** The seed scheme data consists of **unverified drafts**. An admin must
-> check each scheme against its official source and mark it verified before real users rely on it.
+> **Status: early MVP.** 20 of the 22 seed schemes were verified against official sources on
+> 2026-11-20 (see [docs/scheme-verification-2026-11.md](docs/scheme-verification-2026-11.md)); PM
+> Vishwakarma and the UP widow pension are still drafts. Re-verify on the dates listed there.
 
 | Who | Uses Saathi to |
 |---|---|
@@ -123,7 +124,8 @@ statistics but not eligibility rules.
 
 ## Before a public launch
 
-- Verify every scheme (Admin → Schemes), then set `SAATHI_INCLUDE_DRAFT_SCHEMES=false`.
+- Confirm the two remaining draft schemes (Admin → Schemes), then set `SAATHI_INCLUDE_DRAFT_SCHEMES=false`.
+  On a database seeded before November 2026, run `saathi sync-schemes` (dry run) and then `--apply`.
 - `SAATHI_ENVIRONMENT=production`, HTTPS in front of nginx, `SAATHI_COOKIE_SECURE=true`.
 - Real SMS provider with DLT registration; PostgreSQL backups.
 - DPDP Act review: privacy notice, consent text, retention periods, grievance officer contact.

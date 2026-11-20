@@ -30,6 +30,7 @@ export interface FamilyMember {
   is_pregnant_or_lactating?: boolean;
   disability_percent?: number;
   is_government_employee?: boolean;
+  has_paid_income_tax?: boolean;
 }
 
 export type ProfileValue = string | number | boolean;

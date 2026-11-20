@@ -4,7 +4,7 @@ from saathi.db import AuditLog, Citizen, Role
 
 FARMER = {
     "age": 32, "gender": "male", "occupation": "farmer", "has_bank_account": True,
-    "owns_cultivable_land": True, "is_income_tax_payer": False, "is_government_employee": False,
+    "owns_cultivable_land": True, "is_income_tax_payer": False, "has_paid_income_tax": False, "is_government_employee": False,
     "plans_new_business": False, "is_studying_post_matric": False, "is_bpl": False,
 }  # fmt: skip
 

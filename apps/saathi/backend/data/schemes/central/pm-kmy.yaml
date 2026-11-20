@@ -1,6 +1,7 @@
 id: pm-kmy
 name: Pradhan Mantri Kisan Maan-dhan Yojana (PM-KMY)
 level: central
+applies_to: household
 ministry: Ministry of Agriculture and Farmers Welfare
 tags: [pension, farmer]
 summary: A voluntary pension scheme for small and marginal farmers; the government matches the farmer's contribution.
@@ -9,7 +10,7 @@ eligibility:
   - field: owns_cultivable_land
     op: eq
     value: true
-    reason: Must own cultivable land
+    reason: Must own cultivable land in their own name
   - field: land_holding_hectares
     op: lte
     value: 2
@@ -26,23 +27,21 @@ eligibility:
     op: eq
     value: false
     reason: Members of EPF, ESIC or NPS cannot join
-  - field: is_income_tax_payer
+  - field: has_paid_income_tax
     op: eq
     value: false
-    reason: Income tax payers are excluded
-  - field: is_government_employee
-    op: eq
-    value: false
-    reason: Government employees are excluded
+    reason: People who paid income tax are excluded
 documents:
   - Aadhaar card
-  - Land record (khatauni / ROR / patta)
-  - Savings bank account (with IFSC)
+  - Savings bank account with IFSC (passbook, cheque or bank statement)
+  - Mobile number for OTP
 notes:
-  - Landholding is taken from the state land records.
-  - Institutional landholders, constitutional post holders, and practising doctors, engineers, lawyers, chartered accountants and architects are excluded.
+  - The land must be in the farmer's own name and appear in the state land records as on 1 August 2019; the 2-hectare limit is for the farmer's own land.
+  - Not for people already in PM-SYM or the traders' pension scheme (PM-LVM / NPS-Traders).
+  - Serving or retired government, PSU and local-body employees are excluded, except Multi-Tasking Staff, Class IV and Group D employees.
+  - Also excluded are institutional landholders, current and former constitutional post holders, ministers, MPs, MLAs and MLCs, mayors and district panchayat chairpersons, people who paid income tax in the last assessment year, and practising doctors, engineers, lawyers, chartered accountants and architects.
   - PM-KISAN beneficiaries can choose to pay the contribution from their PM-KISAN instalments.
-how_to_apply: Enrol at a Common Service Centre (CSC) with Aadhaar, land record and bank details, or self-enrol on the Maandhan portal.
-apply_url: https://maandhan.in
-source_url: https://pmkmy.gov.in
-verified_on: null
+how_to_apply: Enrol free at a Common Service Centre (CSC) with Aadhaar, bank details and your mobile phone, or through the State Nodal Officer for PM-KISAN in your district.
+apply_url: https://pmkmy.gov.in/scheme/pmkmy
+source_url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2309204
+verified_on: 2026-11-20

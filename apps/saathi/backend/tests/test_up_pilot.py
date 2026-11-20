@@ -23,10 +23,11 @@ def status(scheme_id: str, **facts) -> Status:
     [
         ({"residence": "rural", "annual_family_income": 40_000}, Status.ELIGIBLE),
         ({"residence": "urban", "annual_family_income": 50_000}, Status.ELIGIBLE),  # over the village limit only
-        ({"residence": "rural", "annual_family_income": 50_000}, Status.NOT_ELIGIBLE),
-        ({"residence": "urban", "annual_family_income": 60_000}, Status.NOT_ELIGIBLE),
-        ({"annual_family_income": 40_000}, Status.NEEDS_INFO),  # under both limits, but which one applies?
-        ({"annual_family_income": 90_000}, Status.NOT_ELIGIBLE),  # over both limits: no need to ask
+        ({"residence": "rural", "annual_family_income": 50_000, "is_bpl": False}, Status.NOT_ELIGIBLE),
+        ({"residence": "urban", "annual_family_income": 60_000, "is_bpl": False}, Status.NOT_ELIGIBLE),
+        ({"residence": "urban", "annual_family_income": 60_000, "is_bpl": True}, Status.ELIGIBLE),  # BPL route
+        ({"annual_family_income": 40_000, "is_bpl": False}, Status.NEEDS_INFO),  # which limit applies?
+        ({"annual_family_income": 90_000, "is_bpl": False}, Status.NOT_ELIGIBLE),  # over both: no need to ask
         ({"residence": "rural"}, Status.NEEDS_INFO),
     ],
 )
@@ -36,7 +37,7 @@ def test_old_age_pension_income_limit_depends_on_village_or_town(facts, expected
 
 def test_undecided_all_group_asks_for_the_missing_fields():
     match = evaluate(SCHEMES["up-old-age-pension"], UserProfile(state="uttar_pradesh", age=65, annual_family_income=40_000))
-    assert match.missing_fields == {"residence"}
+    assert match.missing_fields == {"residence", "is_bpl"}
 
 
 def test_up_schemes_only_match_up_residents():

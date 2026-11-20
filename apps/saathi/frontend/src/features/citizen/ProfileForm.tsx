@@ -21,6 +21,7 @@ const MEMBER_FIELDS: ProfileField[] = [
   { name: "is_widow", label: "Is a widow", question: "", type: "bool", options: [] },
   { name: "is_pregnant_or_lactating", label: "Pregnant or breastfeeding", question: "", type: "bool", options: [] },
   { name: "is_government_employee", label: "Government employee or pensioner", question: "", type: "bool", options: [] },
+  { name: "has_paid_income_tax", label: "Has ever paid income tax", question: "", type: "bool", options: [] },
   { name: "disability_percent", label: "Disability percentage", question: "", type: "int", options: [] },
 ];
 
@@ -37,7 +38,7 @@ const GROUPS: { id: string; icon: LucideIcon; fields: string[] }[] = [
     id: "work",
     icon: Briefcase,
     fields: [
-      "occupation", "annual_family_income", "is_income_tax_payer", "is_government_employee", "has_epf_esic_or_nps",
+      "occupation", "annual_family_income", "is_income_tax_payer", "has_paid_income_tax", "is_government_employee", "has_epf_esic_or_nps",
       "owns_cultivable_land", "land_holding_hectares", "plans_new_business",
     ],
   },

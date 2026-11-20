@@ -85,7 +85,7 @@ FULL_FARMER = {
     "language": "English",
     "updates": {
         "state": "bihar", "age": 32, "gender": "male", "occupation": "farmer", "has_bank_account": True,
-        "owns_cultivable_land": True, "is_income_tax_payer": False, "is_government_employee": False,
+        "owns_cultivable_land": True, "is_income_tax_payer": False, "has_paid_income_tax": False, "is_government_employee": False,
         "plans_new_business": False, "is_studying_post_matric": False, "is_bpl": False, "is_widow": False,
         "has_disability": False, "is_pregnant_or_lactating": False, "residence": "rural", "ration_card": "none",
         "has_pucca_house": True, "has_lpg_connection": True, "land_holding_hectares": 1.0,

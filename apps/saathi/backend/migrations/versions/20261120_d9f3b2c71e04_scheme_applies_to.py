@@ -18,7 +18,7 @@ down_revision: str | None = "c4e8a1f20b6d"
 branch_labels: str | Sequence[str] | None = None
 depends_on: str | Sequence[str] | None = None
 
-HOUSEHOLD_SCHEMES = ("pm-kisan", "pmay-g")
+HOUSEHOLD_SCHEMES = ("pm-kisan", "pmay-g", "pm-kmy", "pm-vishwakarma")
 
 
 def upgrade() -> None:

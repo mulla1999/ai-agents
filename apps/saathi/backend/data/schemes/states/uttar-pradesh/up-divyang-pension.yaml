@@ -1,5 +1,5 @@
 id: up-divyang-pension
-name: Divyang Pension (Divyangjan Bharan-Poshan Anudan, Uttar Pradesh)
+name: Divyang Pension (Nirashrit Divyangjan Bharan-Poshan Anudan, Uttar Pradesh)
 level: state
 state: uttar_pradesh
 ministry: Divyangjan Sashaktikaran Department, Government of Uttar Pradesh
@@ -26,15 +26,16 @@ eligibility:
         reason: Town or city family with income up to Rs 56,460 a year
     reason: Family income must be up to Rs 46,080 a year (village) or Rs 56,460 a year (town or city)
 documents:
-  - Disability certificate or UDID card from the Chief Medical Officer showing the percentage
+  - Disability certificate (40% or more) from the competent medical authority, or UDID card
   - Income certificate from the tehsil
   - Age proof
   - Residence proof of Uttar Pradesh
   - Bank account passbook (Aadhaar-linked)
 notes:
-  - The central disability pension (IGNDPS, for 80% or more disability and BPL families) share is part of this pension for those who qualify for it; a person gets one disability pension, not both.
+  - Must be living in Uttar Pradesh.
+  - People getting free care in government homes or institutions are not eligible.
   - People already getting another government pension are not eligible.
 how_to_apply: Apply online on the UP social pension portal (SSPY), or through a CSC or the district Divyangjan Sashaktikaran office.
-apply_url: https://sspy-up.gov.in
-source_url: https://sspy-up.gov.in
-verified_on: null
+apply_url: https://sspy-up.gov.in/oap/public_new/UserRegistrationForm.aspx?Scheme=HandicapPension
+source_url: https://uphwd.gov.in/en/article/viklang-pension
+verified_on: 2026-11-20

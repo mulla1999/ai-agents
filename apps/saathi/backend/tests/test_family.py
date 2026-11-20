@@ -20,7 +20,7 @@ def eligible_for(matches, scheme_id):
 def household(**extra) -> UserProfile:
     return UserProfile(
         state="bihar", age=35, gender="male", occupation="farmer", residence="rural", social_category="sc",
-        annual_family_income=90_000, is_bpl=True, has_bank_account=True, is_income_tax_payer=False,
+        annual_family_income=90_000, is_bpl=True, has_bank_account=True, is_income_tax_payer=False, has_paid_income_tax=False,
         is_government_employee=False, owns_cultivable_land=True, land_holding_hectares=1.2,
         has_epf_esic_or_nps=False, has_pucca_house=False, has_lpg_connection=False, ration_card="phh", **extra,
     )  # fmt: skip

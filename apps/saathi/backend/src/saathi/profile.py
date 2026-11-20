@@ -98,6 +98,7 @@ class FamilyMember(BaseModel):
     is_pregnant_or_lactating: bool | None = None
     disability_percent: int | None = Field(None, ge=0, le=100)
     is_government_employee: bool | None = None
+    has_paid_income_tax: bool | None = None
 
     def label(self) -> str:
         return f"{self.relation.value}, age {self.age}" if self.age is not None else self.relation.value
@@ -134,6 +135,11 @@ class UserProfile(BaseModel):
     )
     is_income_tax_payer: bool | None = _field(
         "Anyone in the family paid income tax last year", "Did you or anyone in your family pay income tax last year?"
+    )
+    # Personal, unlike is_income_tax_payer (anyone in the family): APY, PM-SYM and PM-KMY exclude
+    # only the applicant, so a taxpayer's husband or wife can still join.
+    has_paid_income_tax: bool | None = _field(
+        "Has personally ever paid income tax", "Have you yourself ever paid income tax?"
     )
     is_government_employee: bool | None = _field(
         "Is a serving or retired government employee or pensioner",

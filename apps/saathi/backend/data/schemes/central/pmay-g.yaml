@@ -27,11 +27,10 @@ documents:
   - Aadhaar card
   - Bank or post office account passbook (Aadhaar-linked)
   - MGNREGA job card
-  - Swachh Bharat Mission (SBM) number, if any
 notes:
-  - Beneficiaries are chosen from the Awaas+ survey and SECC lists and verified by the gram sabha; the family must be on the list.
-  - Also excluded are households with a motorised two/three/four-wheeler or fishing boat, mechanised farm equipment, a Kisan Credit Card limit of Rs 50,000 or more, a member earning more than Rs 15,000 a month, a registered enterprise, or a large irrigated landholding. Check the current exclusion list at the block office.
-how_to_apply: Ask the gram panchayat or block development office whether your family is on the PMAY-G list, or check the list on the PMAY-G portal. Registration is done by the block office after verification.
+  - Beneficiaries are chosen from the Awaas+ survey and SECC lists (the Permanent Wait List) and verified by the gram sabha; the family must be on the list.
+  - "Automatically excluded (list revised in 2024): households with a motorised three- or four-wheeler; mechanised three- or four-wheeler farm equipment; a Kisan Credit Card limit of Rs 50,000 or more; any member who is a government employee; a non-farm enterprise registered with the government; any member earning more than Rs 15,000 a month; anyone paying income tax or professional tax; 2.5 acres or more of irrigated land; or 5 acres or more of unirrigated land. Houses with a pucca roof or pucca walls, or more than two rooms, are also left out. Owning a two-wheeler, fishing boat, fridge or landline no longer excludes a family."
+how_to_apply: Ask the gram panchayat or block development office whether your family is on the PMAY-G Permanent Wait List, or check your eligibility and status on the PMAY-G portal. The Awaas+ 2024 survey has closed, so new names are added only through the block office.
 apply_url: https://pmayg.dord.gov.in
-source_url: https://pmayg.dord.gov.in
-verified_on: null
+source_url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2080091
+verified_on: 2026-11-20

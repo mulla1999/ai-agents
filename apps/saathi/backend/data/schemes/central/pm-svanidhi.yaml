@@ -1,24 +1,25 @@
 id: pm-svanidhi
 name: PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)
 level: central
-ministry: Ministry of Housing and Urban Affairs
+ministry: Ministry of Housing and Urban Affairs (with the Department of Financial Services)
 tags: [loan, street-vendor, urban]
 summary: Small working-capital loans without collateral for street vendors, with interest subsidy and digital payment cashback.
-benefits: Collateral-free working-capital loans in up to three rounds, each larger after the last is repaid, with a 7% interest subsidy on timely repayment and cashback for digital payments.
+benefits: Collateral-free working-capital loans in three rounds, each available after the previous one is repaid - up to Rs 15,000 (repaid over 12 months), then up to Rs 25,000 (18 months), then up to Rs 50,000 (36 months) - with a 7% a year interest subsidy, cashback of up to Rs 1,600 for digital payments, and a UPI-linked RuPay credit card after the second loan is repaid.
 eligibility:
   - field: occupation
     op: eq
     value: street_vendor
     reason: For street vendors
 documents:
-  - Aadhaar card
-  - Certificate of Vending / identity card, or a Letter of Recommendation from the urban local body or town vending committee
-  - Bank account details
+  - Aadhaar card (Voter ID for applicants in Assam and Meghalaya without Aadhaar)
+  - Certificate of Vending / identity card, or a Letter of Recommendation issued through the PM SVANidhi portal by the urban local body, town vending committee or (in census towns and peri-urban areas) the block office
+  - Bank account passbook or statement
+  - A UPI ID linked to the bank account
   - Mobile number linked to Aadhaar
 notes:
-  - For vendors in urban and peri-urban areas who were vending in the area; vendors not on the survey list can get a Letter of Recommendation from the urban local body.
-  - Loan amounts for each round have been revised over time; check the current amounts on the PM SVANidhi portal.
-how_to_apply: Apply on the PM SVANidhi portal, through a CSC, or at a bank branch, microfinance institution or urban local body office.
+  - For street vendors in cities and towns, including census towns and peri-urban areas. Vendors without a vending certificate or ID card can apply for a Letter of Recommendation along with the loan.
+  - New loans can be given until 31 March 2030.
+how_to_apply: Apply on the PM SVANidhi portal or mobile app, at the urban local body or block office, or through a CSC. The application then goes to the bank or lender you choose.
 apply_url: https://pmsvanidhi.mohua.gov.in
-source_url: https://pmsvanidhi.mohua.gov.in
-verified_on: null
+source_url: https://pmsvanidhi.mohua.gov.in/Default/ViewFile/?id=Scheme+Guidelines.pdf&path=MiscFiles
+verified_on: 2026-11-20
