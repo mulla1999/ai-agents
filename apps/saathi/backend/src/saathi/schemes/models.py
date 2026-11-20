@@ -47,6 +47,9 @@ class Scheme(BaseModel):
     name: str
     level: Literal["central", "state"]
     state: str | None = None
+    # "person": checked for the person and for each family member (pensions, scholarships, ...).
+    # "household": one benefit per family, checked only for the person (PM-KISAN, housing, ...).
+    applies_to: Literal["person", "household"] = "person"
     ministry: str
     tags: list[str] = []
     summary: str

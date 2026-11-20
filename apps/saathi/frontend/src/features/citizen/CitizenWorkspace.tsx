@@ -50,7 +50,7 @@ function WorkspaceHeader({ citizen }: { citizen: Citizen }) {
   const { t } = useTranslation();
   const fields = useProfileFields();
   const total = fields.data?.length ?? 0;
-  const known = Object.keys(citizen.profile).length;
+  const known = Object.keys(citizen.profile).filter((name) => name !== "family_members").length;
   const percent = total ? Math.round((known / total) * 100) : 0;
 
   return (

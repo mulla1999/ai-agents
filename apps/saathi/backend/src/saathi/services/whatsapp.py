@@ -10,18 +10,22 @@ from __future__ import annotations
 import logging
 import re
 import uuid
+from datetime import timedelta
 
 from agents_core.channels.whatsapp import TEXT_ONLY_REPLY, IncomingMessage, WhatsAppClient
 from agents_core.speech import SpeechError, SpeechProvider, language_code, to_wav_16k
-from sqlalchemy import select
+from sqlalchemy import delete, select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from ..agent import Agent
 from ..auth.otp import normalize_phone
 from ..auth.users import upsert_phone_user
 from ..auth.whatsapp_login import confirm_login, login_code
-from ..db import Citizen, utcnow
-from ..errors import BadRequest
+from ..config import Settings
+from ..db import Citizen, WhatsAppInbound, utcnow
+from ..errors import BadRequest, TooManyRequests
+from .usage import check_chat_quota
 
 log = logging.getLogger(__name__)
 
@@ -58,11 +62,35 @@ NOT_HEARD = (
     "Sorry, I could not hear that clearly. Please send the voice note again, or type your message.\n"
     "माफ़ कीजिए, मैं ठीक से सुन नहीं पाया। कृपया दोबारा बोलकर भेजें या लिखकर भेजें।"
 )
+CONSENT_DECLINED = (
+    "No problem. Nothing has been saved about you. Send a message any time if you change your mind.\n"
+    "कोई बात नहीं। आपकी कोई जानकारी सेव नहीं की गई। मन बदले तो कभी भी संदेश भेजें।"
+)
+RATE_LIMITED = (
+    "You have sent a lot of messages, or Saathi is very busy. Please try again after some time.\n"
+    "बहुत सारे संदेश आ गए हैं या साथी अभी बहुत व्यस्त है। कृपया कुछ देर बाद फिर कोशिश करें।"
+)
+CONSENT_YES, CONSENT_NO = "consent_yes", "consent_no"
+CONSENT_BUTTONS = ((CONSENT_YES, "I agree / सहमत"), (CONSENT_NO, "No / नहीं"))
+DEDUP_RETENTION = timedelta(days=7)
+
 _YES = re.compile(r"^\s*(yes|y|ok|okay|agree|haan|haa|ha|han|ji|हाँ|हां|हा|जी|ठीक है)\s*[.!]*\s*$", re.IGNORECASE)
 
 
 def is_consent_reply(text: str | None) -> bool:
     return bool(text and _YES.match(text))
+
+
+async def claim_message(sessionmaker: async_sessionmaker[AsyncSession], message_id: str) -> bool:
+    """Record a WhatsApp message id; False if any worker already took it (Meta retries deliveries)."""
+    now = utcnow()
+    try:
+        async with sessionmaker() as db, db.begin():
+            await db.execute(delete(WhatsAppInbound).where(WhatsAppInbound.received_at < now - DEDUP_RETENTION))
+            db.add(WhatsAppInbound(message_id=message_id[:128], received_at=now))
+    except IntegrityError:
+        return False
+    return True
 
 
 class WhatsAppCitizenHandler:
@@ -76,6 +104,7 @@ class WhatsAppCitizenHandler:
         client: WhatsAppClient | None = None,
         default_language: str = "hi",
         voice_replies: bool = True,
+        settings: Settings | None = None,
     ) -> None:
         self._sessionmaker = sessionmaker
         self._agent = agent
@@ -84,6 +113,7 @@ class WhatsAppCitizenHandler:
         self._client = client
         self._default_language = default_language
         self._voice_replies = voice_replies
+        self._settings = settings  # chat quotas apply when set
 
     async def __call__(self, message: IncomingMessage) -> str | None:
         try:
@@ -103,13 +133,14 @@ class WhatsAppCitizenHandler:
                 await db.commit()
                 return DISABLED
             if citizen.consent_at is None:
-                if is_consent_reply(message.text):
-                    citizen.consent_version = self._consent_version
-                    citizen.consent_at = utcnow()
+                return await self._consent_step(db, citizen, message)
+            if self._settings is not None:
+                try:
+                    # Checked before transcription too: speech costs money as well.
+                    await check_chat_quota(db, citizen.id, self._settings)
+                except TooManyRequests:
                     await db.commit()
-                    return WELCOME
-                await db.commit()
-                return CONSENT_NOTICE
+                    return RATE_LIMITED
             citizen_id = citizen.id
             language = language_code(citizen.language, self._default_language)
             await db.commit()
@@ -126,6 +157,27 @@ class WhatsAppCitizenHandler:
         if self._voice_replies:
             await self._speak(message.sender, reply, citizen_id)
         return reply  # the text is always sent too, so it can be re-read later
+
+    async def _consent_step(self, db: AsyncSession, citizen: Citizen, message: IncomingMessage) -> str | None:
+        """Consent counts only as an answer to a notice the person was actually shown."""
+        if message.reply_id == CONSENT_NO:
+            await db.commit()
+            return CONSENT_DECLINED
+        agreed = message.reply_id == CONSENT_YES or (message.reply_id is None and is_consent_reply(message.text))
+        if agreed and citizen.consent_prompted_at is not None:
+            citizen.consent_version = self._consent_version
+            citizen.consent_at = utcnow()
+            await db.commit()
+            return WELCOME
+        citizen.consent_prompted_at = utcnow()
+        await db.commit()
+        if self._client is not None:
+            try:
+                await self._client.send_buttons(message.sender, CONSENT_NOTICE, CONSENT_BUTTONS)
+                return None
+            except Exception:  # older clients or an API error: the plain-text notice still works
+                log.warning("could not send consent buttons; sending the text notice")
+        return CONSENT_NOTICE
 
     async def _transcribe(self, media_id: str, language: str) -> str:
         assert self._speech is not None and self._client is not None

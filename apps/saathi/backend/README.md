@@ -63,6 +63,7 @@ new installs:
 id: atal-pension-yojana
 name: Atal Pension Yojana (APY)
 level: central            # or: state  (then also set state: bihar)
+applies_to: person        # or: household (one benefit per family, e.g. PM-KISAN, PMAY-G)
 eligibility:              # every rule must hold
   - field: age
     op: gte               # eq ne in not_in gte gt lte lt
@@ -79,6 +80,11 @@ how_to_apply: ...
 source_url: https://...   # the official page you checked
 verified_on: null         # a date here seeds the scheme as verified
 ```
+
+`person` schemes are also checked for each family member in the profile (`family_members`: relation,
+age and a few personal facts, never names). A member shares the household facts (`HOUSEHOLD_FIELDS`
+in `profile.py`: state, income, category, ration card, ...) and has their own personal ones. Members
+appear as "eligible" or "may qualify", never "not eligible", and never drive the chat's questions.
 
 Rule fields must be fields of `UserProfile` (`src/saathi/profile.py`). To support a new fact, add a
 field there with a `question`; the web profile form picks it up automatically.

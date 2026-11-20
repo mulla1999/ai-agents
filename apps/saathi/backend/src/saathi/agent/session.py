@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import asyncio
 import time
+from collections.abc import AsyncIterator
+from contextlib import AbstractAsyncContextManager, asynccontextmanager
 from dataclasses import dataclass, field
 from typing import Protocol
 
@@ -55,6 +57,34 @@ class SessionStore(Protocol):
     async def save(self, session: Session) -> None: ...
     async def delete(self, user_id: str) -> None: ...
 
+    def lock(self, user_id: str) -> AbstractAsyncContextManager[None]:
+        """Held for a whole turn, so two quick messages cannot overwrite each other's updates."""
+        ...
+
+
+class LocalLocks:
+    """Per-key locks within one process. Entries are dropped when nobody holds or waits for them."""
+
+    def __init__(self) -> None:
+        self._locks: dict[str, tuple[asyncio.Lock, int]] = {}
+
+    @asynccontextmanager
+    async def hold(self, key: str) -> AsyncIterator[None]:
+        lock, users = self._locks.get(key, (asyncio.Lock(), 0))
+        self._locks[key] = (lock, users + 1)
+        try:
+            async with lock:
+                yield
+        finally:
+            lock, users = self._locks[key]
+            if users == 1:
+                del self._locks[key]
+            else:
+                self._locks[key] = (lock, users - 1)
+
+    def __len__(self) -> int:
+        return len(self._locks)
+
 
 class InMemorySessionStore:
     """Process-local store; sessions expire after ``ttl_seconds`` without activity.
@@ -66,6 +96,10 @@ class InMemorySessionStore:
         self._ttl = ttl_seconds
         self._sessions: dict[str, Session] = {}
         self._lock = asyncio.Lock()
+        self._turn_locks = LocalLocks()
+
+    def lock(self, user_id: str) -> AbstractAsyncContextManager[None]:
+        return self._turn_locks.hold(user_id)
 
     async def get(self, user_id: str) -> Session:
         async with self._lock:

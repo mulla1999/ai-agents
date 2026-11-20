@@ -46,6 +46,8 @@ async def update_scheme(scheme_id: str, body: Scheme, request: Request, user: Ad
     if body.id != scheme_id:
         raise BadRequest("the scheme id cannot be changed")
     record = await scheme_service.get_record(db, scheme_id)
+    if "applies_to" not in body.model_fields_set:  # older clients: keep the stored setting
+        body = body.model_copy(update={"applies_to": record.applies_to})
     await scheme_service.update_scheme(db, record, body, user)
     audit(db, user, "scheme.update", "scheme", record.id, {"version": record.version})
     await db.commit()

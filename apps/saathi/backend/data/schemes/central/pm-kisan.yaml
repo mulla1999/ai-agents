@@ -1,6 +1,7 @@
 id: pm-kisan
 name: PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)
 level: central
+applies_to: household
 ministry: Ministry of Agriculture and Farmers Welfare
 tags: [farmer, income-support]
 summary: Income support paid directly into the bank accounts of farmer families who own cultivable land.

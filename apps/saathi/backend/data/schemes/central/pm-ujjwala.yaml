@@ -1,0 +1,39 @@
+id: pm-ujjwala
+name: Pradhan Mantri Ujjwala Yojana (PMUY)
+level: central
+ministry: Ministry of Petroleum and Natural Gas
+tags: [women, lpg, household]
+summary: A free LPG gas connection in a woman's name for poor households that have no LPG connection.
+benefits: Deposit-free LPG connection, with the first refill and a stove free under Ujjwala 2.0, and a targeted subsidy on refills.
+eligibility:
+  - field: gender
+    op: eq
+    value: female
+    reason: The connection is given in a woman's name
+  - field: age
+    op: gte
+    value: 18
+    reason: Must be at least 18 years old
+  - field: has_lpg_connection
+    op: eq
+    value: false
+    reason: The household must not already have an LPG connection
+  - any:
+      - {field: social_category, op: in, value: [sc, st], reason: SC or ST}
+      - {field: ration_card, op: in, value: [aay, phh], reason: AAY or Priority Household ration card}
+      - {field: is_bpl, op: eq, value: true, reason: BPL household}
+    reason: Must be from a poor household (SC/ST, AAY or priority ration card, or BPL)
+documents:
+  - Aadhaar card of the woman applicant
+  - Ration card (or a self-declaration of family members, for migrants)
+  - Aadhaar of all adult family members on the ration card
+  - Bank account details
+  - Passport-size photograph
+notes:
+  - Only one connection per household.
+  - Other covered groups include PMAY-Gramin beneficiaries, forest dwellers, most backward classes, tea and ex-tea garden tribes, island residents, and any poor household that signs the 14-point declaration.
+  - The refill subsidy amount and the number of subsidised refills are set by the government each year; check with the LPG distributor.
+how_to_apply: Apply online on the PMUY portal or at the nearest LPG distributor (Indane, Bharat Gas or HP Gas) with the documents listed.
+apply_url: https://www.pmuy.gov.in
+source_url: https://www.pmuy.gov.in
+verified_on: null

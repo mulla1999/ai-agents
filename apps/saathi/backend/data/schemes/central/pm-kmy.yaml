@@ -1,0 +1,48 @@
+id: pm-kmy
+name: Pradhan Mantri Kisan Maan-dhan Yojana (PM-KMY)
+level: central
+ministry: Ministry of Agriculture and Farmers Welfare
+tags: [pension, farmer]
+summary: A voluntary pension scheme for small and marginal farmers; the government matches the farmer's contribution.
+benefits: Assured pension of Rs 3,000 per month from age 60. The farmer pays Rs 55 to Rs 200 a month depending on age at joining, and the government pays the same amount.
+eligibility:
+  - field: owns_cultivable_land
+    op: eq
+    value: true
+    reason: Must own cultivable land
+  - field: land_holding_hectares
+    op: lte
+    value: 2
+    reason: Land must be 2 hectares (about 5 acres) or less
+  - field: age
+    op: gte
+    value: 18
+    reason: Must be at least 18 years old to join
+  - field: age
+    op: lte
+    value: 40
+    reason: Must join before turning 41
+  - field: has_epf_esic_or_nps
+    op: eq
+    value: false
+    reason: Members of EPF, ESIC or NPS cannot join
+  - field: is_income_tax_payer
+    op: eq
+    value: false
+    reason: Income tax payers are excluded
+  - field: is_government_employee
+    op: eq
+    value: false
+    reason: Government employees are excluded
+documents:
+  - Aadhaar card
+  - Land record (khatauni / ROR / patta)
+  - Savings bank account (with IFSC)
+notes:
+  - Landholding is taken from the state land records.
+  - Institutional landholders, constitutional post holders, and practising doctors, engineers, lawyers, chartered accountants and architects are excluded.
+  - PM-KISAN beneficiaries can choose to pay the contribution from their PM-KISAN instalments.
+how_to_apply: Enrol at a Common Service Centre (CSC) with Aadhaar, land record and bank details, or self-enrol on the Maandhan portal.
+apply_url: https://maandhan.in
+source_url: https://pmkmy.gov.in
+verified_on: null

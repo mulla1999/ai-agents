@@ -1,0 +1,29 @@
+id: sukanya-samriddhi
+name: Sukanya Samriddhi Yojana (SSY)
+level: central
+ministry: Ministry of Finance (small savings, through India Post and banks)
+tags: [girl-child, savings, education]
+summary: A high-interest, government-backed savings account for a girl child, opened by a parent or guardian.
+benefits: Deposits from Rs 250 up to Rs 1.5 lakh a year earn interest set by the government every quarter, and can be used for the girl's higher education or marriage.
+eligibility:
+  - field: gender
+    op: eq
+    value: female
+    reason: For girl children only
+  - field: age
+    op: lt
+    value: 10
+    reason: Account must be opened before the girl turns 10
+documents:
+  - Girl child's birth certificate
+  - Parent or guardian's Aadhaar card and PAN (or Form 60)
+  - Parent or guardian's address proof
+  - Passport-size photographs
+notes:
+  - At most two accounts per family (a third is allowed only for twins or triplets).
+  - Deposits are made for 15 years; the account matures 21 years after opening. Part of the money can be withdrawn after the girl turns 18 or passes class 10, for her education.
+  - The interest rate changes every quarter; check the current rate at the post office or bank.
+how_to_apply: Open the account at any post office or authorised bank branch with the documents listed.
+apply_url: https://www.indiapost.gov.in
+source_url: https://www.nsiindia.gov.in
+verified_on: null

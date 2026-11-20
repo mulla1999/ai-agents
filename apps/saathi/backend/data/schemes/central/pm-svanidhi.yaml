@@ -1,0 +1,24 @@
+id: pm-svanidhi
+name: PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)
+level: central
+ministry: Ministry of Housing and Urban Affairs
+tags: [loan, street-vendor, urban]
+summary: Small working-capital loans without collateral for street vendors, with interest subsidy and digital payment cashback.
+benefits: Collateral-free working-capital loans in up to three rounds, each larger after the last is repaid, with a 7% interest subsidy on timely repayment and cashback for digital payments.
+eligibility:
+  - field: occupation
+    op: eq
+    value: street_vendor
+    reason: For street vendors
+documents:
+  - Aadhaar card
+  - Certificate of Vending / identity card, or a Letter of Recommendation from the urban local body or town vending committee
+  - Bank account details
+  - Mobile number linked to Aadhaar
+notes:
+  - For vendors in urban and peri-urban areas who were vending in the area; vendors not on the survey list can get a Letter of Recommendation from the urban local body.
+  - Loan amounts for each round have been revised over time; check the current amounts on the PM SVANidhi portal.
+how_to_apply: Apply on the PM SVANidhi portal, through a CSC, or at a bank branch, microfinance institution or urban local body office.
+apply_url: https://pmsvanidhi.mohua.gov.in
+source_url: https://pmsvanidhi.mohua.gov.in
+verified_on: null

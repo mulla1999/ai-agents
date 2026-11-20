@@ -163,6 +163,9 @@ class Citizen(Base):
     address_line: Mapped[str | None] = mapped_column(String(255))
     consent_version: Mapped[str | None] = mapped_column(String(32))
     consent_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # When the consent notice was last shown over WhatsApp. A "yes" only counts as consent after the
+    # person has actually seen the notice.
+    consent_prompted_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     created_at: Mapped[datetime] = _created()
     updated_at: Mapped[datetime] = _updated()
 
@@ -193,7 +196,10 @@ class Conversation(Base):
 
 class ChatMessage(Base):
     __tablename__ = "messages"
-    __table_args__ = (Index("ix_messages_conversation_created", "conversation_id", "created_at"),)
+    __table_args__ = (
+        Index("ix_messages_conversation_created", "conversation_id", "created_at"),
+        Index("ix_messages_role_created", "role", "created_at"),  # global daily chat cap
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     conversation_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("conversations.id", ondelete="CASCADE"))
@@ -204,6 +210,29 @@ class ChatMessage(Base):
     conversation: Mapped[Conversation] = relationship(back_populates="messages")
 
 
+class ChatLock(Base):
+    """A short lease that serialises chat turns per citizen across every worker and channel.
+
+    Web and WhatsApp share one profile, so two turns running at once would overwrite each other's
+    updates. The lease expires on its own if a worker dies mid-turn.
+    """
+
+    __tablename__ = "chat_locks"
+
+    key: Mapped[str] = mapped_column(String(80), primary_key=True)
+    token: Mapped[str] = mapped_column(String(32))
+    expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+
+class WhatsAppInbound(Base):
+    """Ids of WhatsApp messages already accepted, so Meta's retries are answered once by any worker."""
+
+    __tablename__ = "whatsapp_inbound"
+
+    message_id: Mapped[str] = mapped_column(String(128), primary_key=True)
+    received_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, index=True)
+
+
 class SchemeRecord(Base):
     __tablename__ = "schemes"
 
@@ -211,6 +240,7 @@ class SchemeRecord(Base):
     name: Mapped[str] = mapped_column(String(255))
     level: Mapped[str] = mapped_column(String(16))
     state: Mapped[str | None] = mapped_column(String(64))
+    applies_to: Mapped[str] = mapped_column(String(16), default="person", server_default="person")
     ministry: Mapped[str] = mapped_column(String(255))
     tags: Mapped[list[Any]] = mapped_column(default=list)
     summary: Mapped[str] = mapped_column(Text)

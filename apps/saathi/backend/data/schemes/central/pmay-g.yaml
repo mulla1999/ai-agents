@@ -1,0 +1,37 @@
+id: pmay-g
+name: Pradhan Mantri Awaas Yojana - Gramin (PMAY-G)
+level: central
+applies_to: household
+ministry: Ministry of Rural Development
+tags: [housing, rural]
+summary: Money to build a pucca house for rural families who are homeless or live in a kutcha or dilapidated house.
+benefits: Rs 1.20 lakh in the plains, or Rs 1.30 lakh in hilly states, north-eastern states and difficult areas, paid in instalments as construction progresses, plus help through MGNREGA wages and toilet support.
+eligibility:
+  - field: residence
+    op: eq
+    value: rural
+    reason: For families in rural areas
+  - field: has_pucca_house
+    op: eq
+    value: false
+    reason: Must be homeless or live in a kutcha or dilapidated house
+  - field: is_government_employee
+    op: eq
+    value: false
+    reason: Households with a government employee are excluded
+  - field: is_income_tax_payer
+    op: eq
+    value: false
+    reason: Households paying income tax are excluded
+documents:
+  - Aadhaar card
+  - Bank or post office account passbook (Aadhaar-linked)
+  - MGNREGA job card
+  - Swachh Bharat Mission (SBM) number, if any
+notes:
+  - Beneficiaries are chosen from the Awaas+ survey and SECC lists and verified by the gram sabha; the family must be on the list.
+  - Also excluded are households with a motorised two/three/four-wheeler or fishing boat, mechanised farm equipment, a Kisan Credit Card limit of Rs 50,000 or more, a member earning more than Rs 15,000 a month, a registered enterprise, or a large irrigated landholding. Check the current exclusion list at the block office.
+how_to_apply: Ask the gram panchayat or block development office whether your family is on the PMAY-G list, or check the list on the PMAY-G portal. Registration is done by the block office after verification.
+apply_url: https://pmayg.dord.gov.in
+source_url: https://pmayg.dord.gov.in
+verified_on: null

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 import uuid
+from contextlib import AbstractAsyncContextManager
 from datetime import timedelta
 from typing import Any
 
@@ -15,7 +16,8 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from ..agent.session import MAX_HISTORY_MESSAGES, Session
 from ..db import Channel, ChatMessage, Citizen, Conversation, utcnow
 from ..errors import NotFound
-from ..profile import PROFILE_FIELDS, UserProfile, age_on
+from ..profile import PROFILE_FIELDS, FamilyMember, UserProfile, age_on
+from .locks import DbLeaseLock
 
 log = logging.getLogger(__name__)
 
@@ -32,17 +34,30 @@ def profile_from_json(data: dict[str, Any] | None) -> UserProfile:
                     setattr(profile, name, value)
                 except ValidationError:
                     log.info("dropped invalid stored value for profile field %s", name)
+        for raw in (data or {}).get("family_members") or []:
+            try:
+                profile.family_members = [*profile.family_members, FamilyMember.model_validate(raw)]
+            except ValidationError:
+                log.info("dropped an invalid stored family member")
         return profile
 
 
 def profile_to_json(profile: UserProfile) -> dict[str, Any]:
-    return profile.model_dump(mode="json", exclude_none=True)
+    data = profile.model_dump(mode="json", exclude_none=True)
+    if not data.get("family_members"):
+        data.pop("family_members", None)
+    return data
 
 
 class DbSessionStore:
     def __init__(self, sessionmaker: async_sessionmaker[AsyncSession], channel: Channel = Channel.WEB) -> None:
         self._sessionmaker = sessionmaker
         self._channel = channel
+        self._lease = DbLeaseLock(sessionmaker)
+
+    def lock(self, user_id: str) -> AbstractAsyncContextManager[None]:
+        # Keyed by citizen, not channel: web and WhatsApp turns write the same profile.
+        return self._lease.hold(f"chat:{user_id}")
 
     async def get(self, user_id: str) -> Session:
         async with self._sessionmaker() as db:

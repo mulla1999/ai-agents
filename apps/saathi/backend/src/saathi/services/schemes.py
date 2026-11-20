@@ -19,7 +19,7 @@ from ..schemes import Scheme, load_schemes
 log = logging.getLogger(__name__)
 
 _SCHEME_COLUMNS = (
-    "name", "level", "state", "ministry", "tags", "summary", "benefits", "eligibility",
+    "name", "level", "state", "applies_to", "ministry", "tags", "summary", "benefits", "eligibility",
     "documents", "notes", "how_to_apply", "apply_url", "source_url",
 )  # fmt: skip
 

@@ -6,9 +6,7 @@ either ask the most useful next question or present/explain results -> LLM phras
 
 from __future__ import annotations
 
-import asyncio
 import logging
-from collections import defaultdict
 from collections.abc import Sequence
 from typing import Any, Literal, get_args
 
@@ -17,9 +15,10 @@ from agents_core.privacy import redact_pii
 from pydantic import BaseModel, ValidationError, field_validator
 
 from ..config import Settings
-from ..profile import PROFILE_FIELDS, UserProfile
+from ..profile import PROFILE_FIELDS, FamilyMember, UserProfile, merge_family
 from ..schemes import Scheme, SchemeSource, StaticSchemeSource, evaluate_all, load_schemes, next_field_to_ask
 from . import prompts
+from .guard import unsupported_facts
 from .session import InMemorySessionStore, Session, SessionStore
 
 log = logging.getLogger(__name__)
@@ -58,16 +57,15 @@ class Agent:
         self._schemes = StaticSchemeSource(schemes) if isinstance(schemes, Sequence) else schemes
         self._store = store
         self._max_questions = max_questions
-        self._locks: defaultdict[str, asyncio.Lock] = defaultdict(asyncio.Lock)
 
     async def handle(self, user_id: str, text: str) -> str:
-        # One turn at a time per user, so two quick messages cannot overwrite each other's updates.
-        async with self._locks[user_id]:
-            try:
+        # One turn at a time per user (across workers and channels when the store is the database).
+        try:
+            async with self._store.lock(user_id):
                 return await self._handle(user_id, text)
-            except Exception:
-                log.exception("failed to handle a message (provider=%s)", self._llm.name)
-                return FALLBACK_REPLY
+        except Exception:
+            log.exception("failed to handle a message (provider=%s)", self._llm.name)
+            return FALLBACK_REPLY
 
     async def profile(self, user_id: str) -> UserProfile:
         return (await self._store.get(user_id)).profile
@@ -82,7 +80,7 @@ class Agent:
         self._apply(session, extraction)
 
         if extraction.intent == "delete_data":
-            reply = await self._respond(session, text, prompts.DELETE_TASK)
+            reply = await self._respond(session, text, prompts.DELETE_TASK, prompts.DELETE_FALLBACK)
             await self._store.delete(user_id)
             return reply
 
@@ -93,20 +91,22 @@ class Agent:
 
         if next_field:
             task = prompts.ask_task(next_field, first_turn=first_turn)
+            fallback = prompts.question_fallback(next_field)
             session.questions_asked += 1
         else:
             task = prompts.answer_task(matches, results_already_shown=session.results_shown)
+            fallback = prompts.answer_fallback(matches)
             session.results_shown = True
         session.last_asked_field = next_field
 
-        reply = await self._respond(session, text, task)
+        reply = await self._respond(session, text, task, fallback)
         session.add_turn(text, reply)
         await self._store.save(session)
         return reply
 
     async def _extract(self, session: Session, text: str) -> Extraction:
         messages = [
-            Message("system", prompts.extraction_system(session.last_asked_field)),
+            Message("system", prompts.extraction_system(session.last_asked_field, session.profile.family_members)),
             *session.history[-4:],
             Message("user", text),
         ]
@@ -118,6 +118,15 @@ class Agent:
 
     @staticmethod
     def _apply(session: Session, extraction: Extraction) -> None:
+        members = extraction.updates.get("family_members")
+        if isinstance(members, list):
+            valid = []
+            for raw in members:
+                try:
+                    valid.append(FamilyMember.model_validate(raw))
+                except ValidationError:
+                    log.info("ignored an invalid family member from the extraction")
+            session.profile.family_members = merge_family(session.profile.family_members, valid)
         for name, value in extraction.updates.items():
             if name not in PROFILE_FIELDS or value is None:
                 continue
@@ -129,14 +138,32 @@ class Agent:
             if name in PROFILE_FIELDS and getattr(session.profile, name) is None:
                 session.declined_fields.add(name)
 
-    async def _respond(self, session: Session, text: str, task: str) -> str:
-        messages = [
-            Message("system", f"{prompts.persona(session.language)}\n{task}"),
-            *session.history,
-            Message("user", text),
-        ]
-        reply = (await self._llm.complete(messages)).strip()
-        return reply or FALLBACK_REPLY
+    async def _respond(self, session: Session, text: str, task: str, fallback: str) -> str:
+        """Phrase the reply, then check every amount, long number and link in it against the facts.
+
+        One retry with the problems pointed out; if the model still adds facts, send ``fallback``,
+        which is built only from the scheme data.
+        """
+        system = f"{prompts.persona(session.language)}\n{task}"
+        allowed = "\n".join(
+            [
+                task,
+                text,
+                *(m.content for m in session.history if m.role == "user"),
+                session.profile.model_dump_json(exclude_none=True),
+            ]
+        )
+        for attempt in range(2):
+            messages = [Message("system", system), *session.history, Message("user", text)]
+            reply = (await self._llm.complete(messages)).strip()
+            if not reply:
+                return FALLBACK_REPLY
+            problems = unsupported_facts(reply, allowed)
+            if not problems:
+                return reply
+            log.warning("reply had %d unsupported fact(s) (attempt %d)", len(problems), attempt + 1)
+            system = f"{system}\n\n{prompts.correction(problems)}"
+        return fallback
 
 
 def build_agent(

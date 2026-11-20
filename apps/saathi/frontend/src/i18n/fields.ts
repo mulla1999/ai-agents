@@ -7,19 +7,24 @@ const fieldLabels: Record<string, Record<string, string>> = {
     is_income_tax_payer: "परिवार में किसी ने पिछले साल आयकर भरा", is_government_employee: "सरकारी कर्मचारी या पेंशनभोगी",
     owns_cultivable_land: "परिवार के नाम खेती की ज़मीन है", is_bpl: "BPL सूची में परिवार", is_studying_post_matric: "कक्षा 11 या उससे ऊपर पढ़ रहे हैं",
     plans_new_business: "नया व्यवसाय शुरू करना चाहते हैं", is_widow: "विधवा", has_disability: "दिव्यांगता",
+    disability_percent: "दिव्यांगता प्रतिशत (प्रमाणपत्र के अनुसार)", is_pregnant_or_lactating: "गर्भवती हैं या स्तनपान करा रही हैं",
+    ration_card: "राशन कार्ड का प्रकार", has_pucca_house: "परिवार का अपना पक्का घर है", has_lpg_connection: "घर में LPG गैस कनेक्शन है",
+    land_holding_hectares: "परिवार की खेती की ज़मीन (हेक्टेयर; 1 हेक्टेयर ≈ 2.5 एकड़)", has_epf_esic_or_nps: "काम से EPF/PF, ESIC या NPS है",
   },
 };
 
 const optionLabels: Record<string, Record<string, string>> = {
   en: {
     obc: "OBC", sc: "SC", st: "ST", agricultural_labourer: "Agricultural labourer", unorganised_worker: "Unorganised worker",
-    self_employed: "Self-employed",
+    self_employed: "Self-employed", aay: "Antyodaya (AAY)", phh: "Priority Household (PHH)", non_priority: "Other ration card",
   },
   hi: {
     male: "पुरुष", female: "महिला", transgender: "ट्रांसजेंडर", general: "सामान्य", obc: "OBC", sc: "SC", st: "ST",
     farmer: "किसान", agricultural_labourer: "खेतिहर मज़दूर", artisan: "कारीगर", unorganised_worker: "असंगठित मज़दूर",
     salaried: "नौकरी", self_employed: "स्व-रोज़गार", student: "विद्यार्थी", homemaker: "गृहिणी", unemployed: "बेरोज़गार",
-    retired: "सेवानिवृत्त", other: "अन्य", rural: "गाँव", urban: "शहर",
+    retired: "सेवानिवृत्त", other: "अन्य", rural: "गाँव", urban: "शहर", street_vendor: "रेहड़ी-पटरी विक्रेता",
+    construction_worker: "निर्माण मज़दूर", domestic_worker: "घरेलू कामगार", fisher: "मछुआरा", aay: "अंत्योदय (AAY)",
+    phh: "प्राथमिकता परिवार (PHH)", non_priority: "अन्य राशन कार्ड", none: "कोई नहीं",
   },
 };
 

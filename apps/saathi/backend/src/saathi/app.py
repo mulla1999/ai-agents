@@ -25,7 +25,7 @@ from .db import Channel, create_engine, create_sessionmaker
 from .errors import ServiceError
 from .services.conversations import DbSessionStore
 from .services.schemes import DbSchemeSource
-from .services.whatsapp import WhatsAppCitizenHandler
+from .services.whatsapp import WhatsAppCitizenHandler, claim_message
 
 log = logging.getLogger(__name__)
 
@@ -133,6 +133,7 @@ def create_app(
         client=wa_client,
         default_language=speech_settings.speech_default_language,
         voice_replies=speech_settings.speech_voice_replies,
+        settings=settings,
     )
     if settings.whatsapp_configured and wa_client is not None:
         app.include_router(
@@ -141,6 +142,7 @@ def create_app(
                 app_secret=settings.whatsapp_app_secret.get_secret_value(),
                 on_message=app.state.whatsapp_handler,
                 client=wa_client,
+                is_new_message=lambda message_id: claim_message(sessionmaker, message_id),
             )
         )
     else:

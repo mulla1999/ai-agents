@@ -1,0 +1,43 @@
+id: pm-sym
+name: Pradhan Mantri Shram Yogi Maan-dhan (PM-SYM)
+level: central
+ministry: Ministry of Labour and Employment
+tags: [pension, unorganised-sector]
+summary: A voluntary pension scheme for unorganised workers; the government matches every rupee the worker contributes.
+benefits: Assured pension of Rs 3,000 per month from age 60. The worker pays Rs 55 to Rs 200 a month depending on age at joining, and the government pays the same amount.
+eligibility:
+  - field: occupation
+    op: in
+    value: [unorganised_worker, agricultural_labourer, artisan, street_vendor, construction_worker, domestic_worker, fisher, self_employed]
+    reason: For unorganised-sector workers
+  - field: age
+    op: gte
+    value: 18
+    reason: Must be at least 18 years old to join
+  - field: age
+    op: lte
+    value: 40
+    reason: Must join before turning 41
+  - field: has_epf_esic_or_nps
+    op: eq
+    value: false
+    reason: Members of EPF, ESIC or NPS cannot join
+  - field: is_income_tax_payer
+    op: eq
+    value: false
+    reason: Income tax payers cannot join
+  - field: has_bank_account
+    op: eq
+    value: true
+    reason: Needs a savings bank account for the monthly auto-debit
+documents:
+  - Aadhaar card
+  - Savings bank account or Jan Dhan account (with IFSC)
+  - Mobile number
+notes:
+  - The worker's own monthly income must be Rs 15,000 or less.
+  - If the pensioner dies, the spouse gets half the pension as family pension.
+how_to_apply: Enrol at a Common Service Centre (CSC) with Aadhaar and bank details, or self-enrol on the Maandhan portal. The first contribution is paid in cash at the CSC.
+apply_url: https://maandhan.in
+source_url: https://maandhan.in
+verified_on: null

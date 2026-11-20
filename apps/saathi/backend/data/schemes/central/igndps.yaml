@@ -1,0 +1,34 @@
+id: igndps
+name: Indira Gandhi National Disability Pension Scheme (IGNDPS)
+level: central
+ministry: Ministry of Rural Development (National Social Assistance Programme)
+tags: [pension, disability, bpl]
+summary: Monthly pension for people with severe disabilities from Below Poverty Line households.
+benefits: Central share of Rs 300 per month. Most states add their own top-up, so the amount received is usually higher.
+eligibility:
+  - field: age
+    op: gte
+    value: 18
+    reason: Must be 18 years or older
+  - field: age
+    op: lte
+    value: 79
+    reason: From age 80 the old age pension (IGNOAPS) applies instead
+  - field: disability_percent
+    op: gte
+    value: 80
+    reason: Disability must be 80% or more (severe or multiple disability)
+  - field: is_bpl
+    op: eq
+    value: true
+    reason: Household must be on the Below Poverty Line list
+documents:
+  - Disability certificate or UDID card showing the percentage
+  - BPL card or BPL list entry
+  - Age proof
+  - Aadhaar card
+  - Bank or post office account passbook
+how_to_apply: Apply at the gram panchayat or block office (rural) or the municipal office (urban), or through your state's social welfare / pension portal or a CSC.
+apply_url: https://nsap.dord.gov.in
+source_url: https://nsap.dord.gov.in/circular.do?method=aboutus
+verified_on: null
