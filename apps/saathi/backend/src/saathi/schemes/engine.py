@@ -53,6 +53,13 @@ def _evaluate_rule(rule: Rule, profile: UserProfile) -> tuple[bool | None, froze
         if all(ok is False for ok, _ in results):
             return False, frozenset()
         return None, frozenset().union(*(missing for ok, missing in results if ok is None))
+    if rule.all is not None:
+        results = [_evaluate_rule(sub, profile) for sub in rule.all]
+        if any(ok is False for ok, _ in results):
+            return False, frozenset()
+        if all(ok is True for ok, _ in results):
+            return True, frozenset()
+        return None, frozenset().union(*(missing for ok, missing in results if ok is None))
 
     actual = getattr(profile, rule.field)
     if actual is None:

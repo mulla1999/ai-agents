@@ -13,7 +13,9 @@ Op = Literal["eq", "ne", "in", "not_in", "gte", "gt", "lte", "lt"]
 
 
 class Rule(BaseModel):
-    """Either a comparison on one profile field, or an ``any`` group where one sub-rule must hold."""
+    """A comparison on one profile field, an ``any`` group (one sub-rule must hold), or an ``all``
+    group (every sub-rule must hold; useful inside ``any``, e.g. "rural and income up to X, or urban
+    and income up to Y")."""
 
     model_config = ConfigDict(extra="forbid")
 
@@ -22,14 +24,18 @@ class Rule(BaseModel):
     op: Op | None = None
     value: Any = None
     any: list[Rule] | None = None
+    all: list[Rule] | None = None
 
     @model_validator(mode="after")
     def _check_shape(self) -> Rule:
-        if self.any is not None:
+        groups = [name for name in ("any", "all") if getattr(self, name) is not None]
+        if len(groups) > 1:
+            raise ValueError("a rule has one of 'any', 'all' or 'field'/'op'")
+        if groups:
             if self.field or self.op:
-                raise ValueError("a rule has either 'any' or 'field'/'op', not both")
-            if not self.any:
-                raise ValueError("'any' needs at least one rule")
+                raise ValueError(f"a rule has either '{groups[0]}' or 'field'/'op', not both")
+            if not getattr(self, groups[0]):
+                raise ValueError(f"'{groups[0]}' needs at least one rule")
             return self
         if not self.field or not self.op:
             raise ValueError("a rule needs 'field' and 'op'")

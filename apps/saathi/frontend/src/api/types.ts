@@ -102,6 +102,7 @@ export interface Rule {
   op?: string | null;
   value?: unknown;
   any?: Rule[] | null;
+  all?: Rule[] | null;
 }
 
 export type SchemeStatus = "draft" | "verified" | "archived";

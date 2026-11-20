@@ -73,6 +73,12 @@ eligibility:              # every rule must hold
       - {field: social_category, op: in, value: [sc, st], reason: SC or ST}
       - {field: gender, op: eq, value: female, reason: Woman}
     reason: Must be SC, ST or a woman
+  - any:                  # 'all' groups combine conditions, e.g. income limits by area
+      - all: [{field: residence, op: eq, value: rural, reason: Village}, {field: annual_family_income, op: lte, value: 46080, reason: "Up to Rs 46,080"}]
+        reason: Village family with low income
+      - all: [{field: residence, op: eq, value: urban, reason: Town}, {field: annual_family_income, op: lte, value: 56460, reason: "Up to Rs 56,460"}]
+        reason: Town family with low income
+    reason: Income within the limit for the area
 documents: [...]
 notes:                    # conditions the rules cannot check; shown to people and to the agent
   - One member per family.
@@ -85,6 +91,10 @@ verified_on: null         # a date here seeds the scheme as verified
 age and a few personal facts, never names). A member shares the household facts (`HOUSEHOLD_FIELDS`
 in `profile.py`: state, income, category, ration card, ...) and has their own personal ones. Members
 appear as "eligible" or "may qualify", never "not eligible", and never drive the chat's questions.
+
+State schemes live in `data/schemes/states/<state>/`. The pilot state is Uttar Pradesh (old age,
+widow and divyang pensions, Kanya Sumangala); all are unverified drafts like the central ones.
+Quote any YAML value that contains a comma inside `{...}` (e.g. `reason: "Up to Rs 46,080"`).
 
 Rule fields must be fields of `UserProfile` (`src/saathi/profile.py`). To support a new fact, add a
 field there with a `question`; the web profile form picks it up automatically.

@@ -1,0 +1,40 @@
+id: up-widow-pension
+name: Nirashrit Mahila Pension Yojana (Widow Pension, Uttar Pradesh)
+level: state
+state: uttar_pradesh
+ministry: Women and Child Development Department, Government of Uttar Pradesh
+tags: [pension, women, widow]
+summary: Monthly pension for widows in Uttar Pradesh from low-income families.
+benefits: Rs 1,000 per month, paid every three months directly into the bank account.
+eligibility:
+  - field: gender
+    op: eq
+    value: female
+    reason: For women only
+  - field: is_widow
+    op: eq
+    value: true
+    reason: Must be a widow
+  - field: age
+    op: gte
+    value: 18
+    reason: Must be at least 18 years old
+  - field: annual_family_income
+    op: lte
+    value: 200000
+    reason: Family income must be up to Rs 2 lakh a year
+documents:
+  - Husband's death certificate
+  - Income certificate from the tehsil
+  - Age proof
+  - Residence proof of Uttar Pradesh
+  - Bank account passbook (Aadhaar-linked)
+  - Passport-size photograph
+notes:
+  - Not available after remarriage.
+  - The central widow pension (IGNWPS) share is part of this pension for those who qualify for it; a person gets one widow pension, not both.
+  - People already getting another government pension are not eligible.
+how_to_apply: Apply online on the UP social pension portal (SSPY), or through a CSC or the district probation office.
+apply_url: https://sspy-up.gov.in
+source_url: https://sspy-up.gov.in
+verified_on: null

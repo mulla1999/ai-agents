@@ -1,0 +1,36 @@
+id: up-old-age-pension
+name: Vridhavastha Pension Yojana (Old Age Pension, Uttar Pradesh)
+level: state
+state: uttar_pradesh
+ministry: Social Welfare Department, Government of Uttar Pradesh
+tags: [pension, senior-citizen]
+summary: Monthly pension for elderly people in Uttar Pradesh from low-income families.
+benefits: Rs 1,000 per month, paid every three months directly into the bank account.
+eligibility:
+  - field: age
+    op: gte
+    value: 60
+    reason: Must be 60 years or older
+  - any:
+      - all:
+          - {field: residence, op: eq, value: rural, reason: Lives in a village}
+          - {field: annual_family_income, op: lte, value: 46080, reason: "Family income up to Rs 46,080 a year"}
+        reason: Village family with income up to Rs 46,080 a year
+      - all:
+          - {field: residence, op: eq, value: urban, reason: Lives in a town or city}
+          - {field: annual_family_income, op: lte, value: 56460, reason: "Family income up to Rs 56,460 a year"}
+        reason: Town or city family with income up to Rs 56,460 a year
+    reason: Family income must be up to Rs 46,080 a year (village) or Rs 56,460 a year (town or city)
+documents:
+  - Age proof (Aadhaar, birth certificate, school certificate or voter ID)
+  - Income certificate from the tehsil
+  - Residence proof of Uttar Pradesh
+  - Bank account passbook (Aadhaar-linked)
+  - Passport-size photograph
+notes:
+  - The central old age pension (IGNOAPS) share is part of this pension in Uttar Pradesh; a person gets one old age pension, not both.
+  - People already getting another government pension are not eligible.
+how_to_apply: Apply online on the UP social pension portal (SSPY), or through a CSC, the block office (village) or the district social welfare office (town).
+apply_url: https://sspy-up.gov.in
+source_url: https://sspy-up.gov.in
+verified_on: null

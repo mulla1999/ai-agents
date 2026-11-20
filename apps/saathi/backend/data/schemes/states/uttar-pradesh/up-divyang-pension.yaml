@@ -1,0 +1,40 @@
+id: up-divyang-pension
+name: Divyang Pension (Divyangjan Bharan-Poshan Anudan, Uttar Pradesh)
+level: state
+state: uttar_pradesh
+ministry: Divyangjan Sashaktikaran Department, Government of Uttar Pradesh
+tags: [pension, disability]
+summary: Monthly maintenance grant for people with disabilities in Uttar Pradesh from low-income families.
+benefits: Rs 1,000 per month, paid directly into the bank account.
+eligibility:
+  - field: age
+    op: gte
+    value: 18
+    reason: Must be at least 18 years old
+  - field: disability_percent
+    op: gte
+    value: 40
+    reason: Disability must be 40% or more
+  - any:
+      - all:
+          - {field: residence, op: eq, value: rural, reason: Lives in a village}
+          - {field: annual_family_income, op: lte, value: 46080, reason: "Family income up to Rs 46,080 a year"}
+        reason: Village family with income up to Rs 46,080 a year
+      - all:
+          - {field: residence, op: eq, value: urban, reason: Lives in a town or city}
+          - {field: annual_family_income, op: lte, value: 56460, reason: "Family income up to Rs 56,460 a year"}
+        reason: Town or city family with income up to Rs 56,460 a year
+    reason: Family income must be up to Rs 46,080 a year (village) or Rs 56,460 a year (town or city)
+documents:
+  - Disability certificate or UDID card from the Chief Medical Officer showing the percentage
+  - Income certificate from the tehsil
+  - Age proof
+  - Residence proof of Uttar Pradesh
+  - Bank account passbook (Aadhaar-linked)
+notes:
+  - The central disability pension (IGNDPS, for 80% or more disability and BPL families) share is part of this pension for those who qualify for it; a person gets one disability pension, not both.
+  - People already getting another government pension are not eligible.
+how_to_apply: Apply online on the UP social pension portal (SSPY), or through a CSC or the district Divyangjan Sashaktikaran office.
+apply_url: https://sspy-up.gov.in
+source_url: https://sspy-up.gov.in
+verified_on: null
