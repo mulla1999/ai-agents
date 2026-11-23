@@ -1,6 +1,7 @@
 # AI Agents
 
-[![HireFinch CI](https://github.com/mulla1999/ai-agents/actions/workflows/hirefinch-ci.yml/badge.svg)](https://github.com/mulla1999/ai-agents/actions/workflows/hirefinch-ci.yml)
+[![HireFinch CI](https://github.com/amirmulla1999/ai-agents/actions/workflows/hirefinch-ci.yml/badge.svg)](https://github.com/amirmulla1999/ai-agents/actions/workflows/hirefinch-ci.yml)
+[![Saathi CI](https://github.com/amirmulla1999/ai-agents/actions/workflows/saathi-ci.yml/badge.svg)](https://github.com/amirmulla1999/ai-agents/actions/workflows/saathi-ci.yml)
 ![Python 3.12](https://img.shields.io/badge/python-3.12-blue)
 ![React 19](https://img.shields.io/badge/react-19-61dafb)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
@@ -105,9 +106,9 @@ Code moves into `libs/agents-core` only once a second agent needs it.
 
 ## More projects
 
-- **[Face Identity Service](https://github.com/mulla1999/face-service)**: face verification and real-time
+- **[Face Identity Service](https://github.com/amirmulla1999/face-service)**: face verification and real-time
   identification API (InsightFace ArcFace, FAISS, FastAPI).
-- **[Task Management System](https://github.com/mulla1999/sprih-task-management-system)**: Spring Boot
+- **[Task Management System](https://github.com/amirmulla1999/sprih-task-management-system)**: Spring Boot
   REST API with filtering, pagination and sorting.
 
 ## License
