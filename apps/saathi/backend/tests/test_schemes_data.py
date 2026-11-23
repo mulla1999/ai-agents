@@ -28,7 +28,9 @@ def test_young_farmer_matches_expected_schemes():
         is_bpl=False,
     )
     eligible = {m.scheme.id for m in evaluate_all(schemes, profile) if m.status is Status.ELIGIBLE}
-    assert eligible == {"pm-kisan", "atal-pension-yojana", "pmjjby", "pmsby"}
+    assert eligible == {
+        "pm-kisan", "atal-pension-yojana", "pmjjby", "pmsby", "pmfby", "kisan-credit-card", "pm-kusum", "e-shram",
+    }
 
 
 def test_widow_pension_has_no_upper_age_limit():
@@ -38,9 +40,22 @@ def test_widow_pension_has_no_upper_age_limit():
     assert match.status is Status.ELIGIBLE
 
 
-def test_ended_schemes_are_not_seeded():
-    ids = {s.id for s in load_schemes(Settings().schemes_dir)}
-    assert "stand-up-india" not in ids
+def test_continued_stand_up_india_is_a_draft_until_new_guidelines():
+    # Ended 31 March 2025; the Cabinet continued it to 2031 on 11 Nov 2026, but guidelines are pending.
+    schemes = {s.id: s for s in load_schemes(Settings().schemes_dir)}
+    assert schemes["stand-up-india"].verified_on is None
+
+
+def test_adults_are_not_asked_about_school():
+    from saathi.schemes import next_field_to_ask
+
+    schemes = load_schemes(Settings().schemes_dir)
+    adult = evaluate_all(schemes, UserProfile(age=32, social_category="sc", annual_family_income=50_000))
+    assert all(m.status is Status.NOT_ELIGIBLE for m in adult if m.scheme.id.startswith("pre-matric"))
+    assert next_field_to_ask(adult) != "current_class"
+    child = evaluate_all(schemes, UserProfile(age=14, social_category="sc", annual_family_income=50_000))
+    [pre_matric] = [m for m in child if m.scheme.id == "pre-matric-scholarship-sc"]
+    assert pre_matric.missing_fields == {"current_class"}
 
 
 # --- corrections from the November 2026 verification against official sources -------------------
@@ -90,4 +105,7 @@ def test_pmmvy_mother_age_limits():
 
 def test_only_unconfirmed_schemes_remain_drafts():
     drafts = {s.id for s in load_schemes(Settings().schemes_dir) if s.verified_on is None}
-    assert drafts == {"pm-vishwakarma", "up-widow-pension"}
+    assert drafts == {
+        "pm-vishwakarma", "up-widow-pension", "kisan-credit-card", "nmmss", "pm-internship", "pm-jay", "pm-yasasvi",
+        "pmegp", "pre-matric-scholarship-sc", "pre-matric-scholarship-st", "stand-up-india",
+    }

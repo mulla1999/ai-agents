@@ -46,6 +46,18 @@ class Rule(BaseModel):
         return self
 
 
+class Evidence(BaseModel):
+    """Where a fact in the record comes from. Kept in the YAML files for review and audit; it is not
+    copied into the database or shown to users."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    claim: str  # e.g. "Age 18 to 40", "Rs 3,000 a month from age 60"
+    url: str  # an official page or document
+    quote: str | None = None  # short exact text from the source
+    checked_on: date
+
+
 class Scheme(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -70,6 +82,7 @@ class Scheme(BaseModel):
     source_url: str
     # None means the record is a draft that nobody has yet checked against the official source.
     verified_on: date | None = None
+    evidence: list[Evidence] = []
 
     @model_validator(mode="after")
     def _check_state(self) -> Scheme:

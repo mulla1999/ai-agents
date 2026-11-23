@@ -99,6 +99,8 @@ class FamilyMember(BaseModel):
     disability_percent: int | None = Field(None, ge=0, le=100)
     is_government_employee: bool | None = None
     has_paid_income_tax: bool | None = None
+    current_class: int | None = Field(None, ge=0, le=12)  # 0 = not in school
+    is_pregnant: bool | None = None
 
     def label(self) -> str:
         return f"{self.relation.value}, age {self.age}" if self.age is not None else self.relation.value
@@ -192,6 +194,23 @@ class UserProfile(BaseModel):
         "Is a member of EPF, ESIC or NPS (a formal pension or insurance scheme through work)",
         "Do you have EPF/PF, ESIC or NPS through your work?",
     )
+    current_class: int | None = Field(
+        None,
+        ge=0,
+        le=12,
+        description="School class the person is studying in now (1 to 12), or 0 if not in school",
+        json_schema_extra={"question": "Are you in school now? If yes, which class?"},
+    )
+    is_pregnant: bool | None = _field("Is pregnant now", "Are you pregnant now?")
+    owns_house: bool | None = _field("Family owns the house it lives in", "Does your family own the house you live in?")
+    has_electricity_connection: bool | None = _field(
+        "Home has its own electricity connection from the power company",
+        "Does your home have its own electricity connection (meter) from the power company?",
+    )
+    main_earner_died: bool | None = _field(
+        "The family's main earner has died (in the last few years)",
+        "Has the main earning member of your family died in the last few years?",
+    )
     # Not a rule field: each member is checked against the schemes as a person of their own.
     family_members: list[FamilyMember] = Field(default_factory=list, max_length=MAX_FAMILY_MEMBERS)
 
@@ -220,8 +239,22 @@ class UserProfile(BaseModel):
 HOUSEHOLD_FIELDS: tuple[str, ...] = (
     "state", "district", "annual_family_income", "social_category", "residence", "is_income_tax_payer",
     "owns_cultivable_land", "land_holding_hectares", "is_bpl", "ration_card", "has_pucca_house",
-    "has_lpg_connection",
+    "has_lpg_connection", "owns_house", "has_electricity_connection", "main_earner_died",
 )  # fmt: skip
+
+
+ADULT_NOT_IN_SCHOOL_AGE = 21
+
+
+def with_inferred_facts(profile: UserProfile) -> UserProfile:
+    """Fill facts that follow from others, so people are not asked irrelevant questions.
+
+    Someone 21 or older who has not said they are in school is taken to be out of school (class 0), so
+    a farmer of 32 is not asked which class he is in and school scholarships are ruled out for him.
+    """
+    if profile.current_class is None and profile.age is not None and profile.age >= ADULT_NOT_IN_SCHOOL_AGE:
+        return profile.model_copy(update={"current_class": 0})
+    return profile
 
 
 def member_profile(profile: UserProfile, member: FamilyMember) -> UserProfile:
@@ -234,7 +267,7 @@ def member_profile(profile: UserProfile, member: FamilyMember) -> UserProfile:
     data["gender"] = gender
     if member.disability_percent is not None:
         data["has_disability"] = member.disability_percent > 0
-    return UserProfile.model_validate(data)
+    return with_inferred_facts(UserProfile.model_validate(data))
 
 
 def merge_family(existing: list[FamilyMember], incoming: list[FamilyMember]) -> list[FamilyMember]:

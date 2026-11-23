@@ -1,0 +1,85 @@
+id: pm-jay
+name: Ayushman Bharat Pradhan Mantri Jan Arogya Yojana (AB PM-JAY)
+level: central
+applies_to: household
+ministry: Ministry of Health and Family Welfare (National Health Authority)
+tags: [health, insurance, hospital, household]
+summary: Free cashless hospital treatment for poor and vulnerable families listed under the scheme, at government and empanelled private hospitals anywhere in India.
+benefits: Health cover of up to Rs 5 lakh per family per year for secondary and tertiary hospital care, cashless and paperless at empanelled hospitals. There is no limit on family size or age, and illnesses you already had are covered from day one.
+eligibility:
+  - any:
+      - all:
+          - {field: residence, op: eq, value: rural, reason: Lives in a village}
+          - {field: social_category, op: in, value: [sc, st], reason: SC or ST household}
+        reason: Rural SC or ST household (SECC 2011 deprivation criterion D5)
+      - all:
+          - {field: residence, op: eq, value: rural, reason: Lives in a village}
+          - {field: owns_cultivable_land, op: eq, value: false, reason: Family owns no farm land}
+          - {field: occupation, op: in, value: [agricultural_labourer, construction_worker], reason: Earns mainly from manual casual labour}
+        reason: Rural landless household living mainly on manual casual labour (SECC 2011 deprivation criterion D7)
+      - all:
+          - {field: residence, op: eq, value: urban, reason: Lives in a town or city}
+          - {field: occupation, op: in, value: [domestic_worker, street_vendor, construction_worker, artisan], reason: Works in one of the listed urban occupations}
+        reason: Urban worker in a listed occupation (domestic worker, street vendor, construction worker, home-based artisan or tailor, and others)
+    reason: Family must be in one of the poor and vulnerable groups the scheme covers (rural deprivation or urban occupation groups from the SECC 2011 census)
+documents:
+  - Aadhaar card (for e-KYC to get the Ayushman card)
+  - Ration card or other family ID used by your state to find you in the beneficiary list
+notes:
+  - "Entitlement is list-based: only families already in the scheme's beneficiary database (SECC 2011 data, plus families added by states from their own databases) are covered. There is no open application. Meeting the conditions above means you may be listed; check your name on the beneficiary portal or the Ayushman app before relying on it."
+  - "Other rural groups in the SECC 2011 list also qualify: households with only one kucha room, no adult aged 16 to 59, female-headed households with no adult man aged 16 to 59, households with a disabled member and no able-bodied adult, and automatically included households (without shelter, destitute or living on alms, manual scavengers, primitive tribal groups, legally released bonded labour). These cannot be checked here."
+  - "Other urban occupations also qualify: rag pickers, beggars, coolies and head-load workers, sweepers and sanitation workers, transport workers (drivers, conductors, rickshaw pullers), shop workers and helpers, electricians and mechanics, washermen and chowkidars, plumbers, masons, painters, welders and security guards."
+  - Families of ASHA workers, Anganwadi workers and Anganwadi helpers are also covered.
+  - Everyone aged 70 or older is covered whatever their income under the separate Ayushman Vay Vandana extension (see that scheme); this record does not repeat it.
+  - Health cover for gig and platform workers registered on e-Shram was announced in the 2025-26 Budget; check on the e-Shram portal whether it applies to you yet.
+  - Many states have widened coverage with their own money or merged PM-JAY with a state health scheme, so more families may be covered in your state than the rules here show.
+  - Since June 2026 the scheme runs in all 36 states and union territories, including West Bengal. Treatment can be taken at empanelled hospitals in any state.
+how_to_apply: Check whether your family is listed on the beneficiary portal or the Ayushman app (or call 14555), then get your Ayushman card with Aadhaar e-KYC through the app, a CSC, or the Ayushman Mitra at an empanelled hospital. Treatment is cashless at the hospital.
+apply_url: https://beneficiary.nha.gov.in
+source_url: https://nha.gov.in/PM-JAY
+verified_on: null
+evidence:
+  - claim: Rs 5 lakh per family per year for secondary and tertiary hospital care
+    url: https://sansad.in/getFile/lsapps/loksabhaquestions/annex/188/AS290_mDyURC.pdf
+    quote: "Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana (AB-PMJAY) provides health coverage of Rs. 5 lakhs per family per year for secondary and tertiary care hospitalization."
+    checked_on: 2026-11-23
+  - claim: No cap on family size or age; pre-existing conditions covered
+    url: https://ma.gujarat.gov.in/ABPMJAY.html
+    quote: "There is no cap on family size and age as well as restriction on pre-existing conditions."
+    checked_on: 2026-11-23
+  - claim: Cashless and paperless; usable across the country
+    url: https://ma.gujarat.gov.in/ABPMJAY.html
+    quote: "PMJAY beneficiaries will be able to move across borders and access services across the country"
+    checked_on: 2026-11-23
+  - claim: Entitlement-based, no enrolment; families identified from SECC 2011
+    url: https://ma.gujarat.gov.in/ABPMJAY.html
+    quote: "The scheme is entitlement based. No formal enrolment process is required."
+    checked_on: 2026-11-23
+  - claim: Rural SC/ST households qualify (deprivation criterion D5)
+    url: https://ma.gujarat.gov.in/ABPMJAY.html
+    quote: "SC/ST households (D5)"
+    checked_on: 2026-11-23
+  - claim: Rural landless manual casual labour households qualify (deprivation criterion D7)
+    url: https://ma.gujarat.gov.in/ABPMJAY.html
+    quote: "Landless households deriving major part of their income from manual casual labour (D7)"
+    checked_on: 2026-11-23
+  - claim: Urban occupational categories include domestic workers, street vendors, construction workers and home-based artisans/tailors
+    url: https://ma.gujarat.gov.in/ABPMJAY.html
+    quote: '"Domestic worker"; "Street vendor/ Cobbler/hawker / Other service provider working on streets"; "Construction worker/ Plumber/ Mason/ Labour/ Painter/ Welder/ Security guard/"; "Home-based worker/ Artisan/ Handicrafts worker / Tailor"'
+    checked_on: 2026-11-23
+  - claim: Other rural deprivation criteria and automatic inclusion groups (in notes)
+    url: https://ma.gujarat.gov.in/ABPMJAY.html
+    quote: '"Only one room with kucha walls and kucha roof (D1)"; "Female headed households with no adult male member between age 16 to 59 (D3)"; "Legally released bonded labour"'
+    checked_on: 2026-11-23
+  - claim: About 12.37 crore families covered; ASHA, Anganwadi workers and helpers included; 70+ extension (Ayushman Vay Vandana) from 29 October 2024
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/jun/doc2025617571401.pdf
+    quote: '"the scheme covers approximately 12.37 crore families"; "this scheme also targets the frontline heroes of India''s public health system, ASHA workers, Anganwadi Workers (AWWs), and Anganwadi Helpers (AWHs)"'
+    checked_on: 2026-11-23
+  - claim: Health cover for platform workers announced in Budget 2025-26 via e-Shram
+    url: https://sansad.in/getFile/lsapps/loksabhaquestions/annex/188/AS6_FOG5JC.pdf
+    quote: "extension of health care benefits under Ayushman Bharat-Pradhan Mantri Jan Arogya Yojana (AB-PMJAY)"
+    checked_on: 2026-11-23
+  - claim: West Bengal joined in June 2026, making all 36 States/UTs (government broadcaster, not a PIB/NHA document)
+    url: https://newsonair.gov.in/west-bengal-set-to-become-36th-state-ut-to-implement-ayushman-bharat-yojana/
+    quote: "West Bengal has become the 36th State and Union Territory in the country to implement Ayushman Bharat Pradhan Mantri Jan Arogya Yojana."
+    checked_on: 2026-11-23

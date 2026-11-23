@@ -1,0 +1,55 @@
+id: nfsa-free-ration
+name: Free foodgrains under the National Food Security Act (PM Garib Kalyan Anna Yojana)
+level: central
+applies_to: household
+ministry: Ministry of Consumer Affairs, Food and Public Distribution (Department of Food and Public Distribution)
+tags: [food, ration, household, bpl]
+summary: Free monthly rice, wheat or coarse grains from the ration shop for families with an Antyodaya (AAY) or Priority Household (PHH) ration card.
+benefits: Antyodaya (AAY) families get 35 kg of foodgrains per family per month and Priority Households (PHH) get 5 kg per person per month, free of cost from 1 January 2024 for five years (to the end of 2028) under PM Garib Kalyan Anna Yojana.
+eligibility:
+  - field: ration_card
+    op: in
+    value: [aay, phh]
+    reason: Family must hold an Antyodaya (AAY) or Priority Household (PHH) ration card under the National Food Security Act
+documents:
+  - AAY or PHH ration card
+  - Aadhaar of family members, for biometric authentication on the ration shop's e-PoS machine
+notes:
+  - "Families without an NFSA ration card can apply for one to the state food and civil supplies department; each state decides who is a priority household within its fixed quota (up to 75% of the rural and 50% of the urban population), so the rule here cannot tell whether a family without a card would get one."
+  - "One Nation One Ration Card: the same ration card works at any ration shop in India, so migrant workers can take their grain where they live now."
+  - In Chandigarh, Puducherry and some areas of Dadra and Nagar Haveli and Daman and Diu the benefit is paid as cash into the bank account instead of grain.
+  - "A draft National Food Security (Amendment) Bill, 2026 proposes changing the AAY entitlement to 7 kg per person per month, with a maximum of 35 kg per family. It is only a draft (public comments closed on 13 July 2026); the 35 kg per family rule still applies."
+  - Pregnant women, breastfeeding mothers and children up to 14 also have separate meal and maternity entitlements under the Act (through Anganwadi and school meal schemes).
+how_to_apply: If you have an AAY or PHH ration card, collect your grain at your fair price (ration) shop with Aadhaar authentication. To get a new card, apply to your state's food and civil supplies department, through its ration card portal or a CSC.
+apply_url: https://nfsa.gov.in/portal/Ration_Card_State_Portals_AA
+source_url: https://dfpd.gov.in/WriteReadData/AnnualRecordUploadDocuments/b9c640b8-5889-4ffd-a62d-5b56c5d4f029_Food%20AR%202024-25%20English%20small%20size.pdf
+verified_on: 2026-11-23
+evidence:
+  - claim: AAY 35 kg per family per month and PHH 5 kg per person per month (also the rule for who gets grain, by card type)
+    url: https://dfpd.gov.in/WriteReadData/Notices/87b4c79f-0200-4a16-b6c4-1b841d8cb1bb_Inviting%20comments%20on%20NFS%20(Amendment)%20Bill,%202026.pdf
+    quote: "Antyodaya Anna Yojana (AAY) households constitute the poorest of the poor and are legally entitled to receive 35 kg of foodgrains per family per month, the Priority Households are entitled to 5 kg of foodgrains per person per month."
+    checked_on: 2026-11-23
+  - claim: Free of cost for five years from 1 January 2024 for AAY and PHH beneficiaries
+    url: https://dfpd.gov.in/WriteReadData/AnnualRecordUploadDocuments/b9c640b8-5889-4ffd-a62d-5b56c5d4f029_Food%20AR%202024-25%20English%20small%20size.pdf
+    quote: "The period for distribution of free of cost foodgrains has been extended for further five years w.e.f 1st January, 2024 with an estimated financial outlay of ₹11.80 lakh crore totally to be borne by Central Government."
+    checked_on: 2026-11-23
+  - claim: Coverage up to 75% rural and 50% urban population
+    url: https://nfsa.gov.in/portal/Coverage_Entitlements_NFSA_AA
+    quote: "NFSA covers upto 75% of the rural population and 50% of the urban population"
+    checked_on: 2026-11-23
+  - claim: Cash transfer instead of grain in Chandigarh, Puducherry and parts of DNH and DD
+    url: https://dfpd.gov.in/WriteReadData/AnnualRecordUploadDocuments/b9c640b8-5889-4ffd-a62d-5b56c5d4f029_Food%20AR%202024-25%20English%20small%20size.pdf
+    quote: "In the Union Territories of Chandigarh, Puducherry and some areas of Dadra & Nagar Haveli and Daman & Diu, the Act is implemented in DBT (Cash Transfer) mode"
+    checked_on: 2026-11-23
+  - claim: One Nation One Ration Card portability with Aadhaar authentication
+    url: https://dfpd.gov.in/WriteReadData/AnnualRecordUploadDocuments/b9c640b8-5889-4ffd-a62d-5b56c5d4f029_Food%20AR%202024-25%20English%20small%20size.pdf
+    quote: "The migratory beneficiaries/ households are now able to lift their entitled foodgrains from any FPS of their choice anywhere in the country using their existing/same ration cards."
+    checked_on: 2026-11-23
+  - claim: Draft amendment proposes 7 kg per person for AAY, capped at 35 kg per household; comments until 13.07.2026
+    url: https://dfpd.gov.in/WriteReadData/Notices/87b4c79f-0200-4a16-b6c4-1b841d8cb1bb_Inviting%20comments%20on%20NFS%20(Amendment)%20Bill,%202026.pdf
+    quote: "households covered under Antyodaya Anna Yojana shall be entitled to a maximum of 35 kilograms of foodgrains per household per month"
+    checked_on: 2026-11-23
+  - claim: Meals and maternity benefit for pregnant women and children up to 14 under the Act
+    url: https://dfpd.gov.in/WriteReadData/AnnualRecordUploadDocuments/b9c640b8-5889-4ffd-a62d-5b56c5d4f029_Food%20AR%202024-25%20English%20small%20size.pdf
+    quote: "The Act also contains provisions for nutritional support to pregnant women & lactating mothers and children upto fourteen years of age."
+    checked_on: 2026-11-23

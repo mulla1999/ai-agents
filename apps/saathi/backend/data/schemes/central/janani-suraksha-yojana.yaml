@@ -1,0 +1,99 @@
+id: janani-suraksha-yojana
+name: Janani Suraksha Yojana (JSY)
+level: central
+ministry: Ministry of Health and Family Welfare (National Health Mission)
+tags: [women, maternity, health]
+summary: A cash payment to pregnant women who give birth in a government or accredited private hospital, to encourage safe delivery in a health facility.
+benefits: "Cash to the mother after an institutional delivery: in Low Performing States Rs 1,400 in rural areas and Rs 1,000 in urban areas; in other states Rs 700 in rural areas and Rs 600 in urban areas. BPL women who choose to deliver at home get Rs 500 in all states."
+eligibility:
+  - field: gender
+    op: eq
+    value: female
+    reason: For women only
+  - field: is_pregnant
+    op: eq
+    value: true
+    reason: Paid for giving birth, so the woman must be pregnant
+  - any:
+      - field: state
+        op: in
+        value:
+          - uttar_pradesh
+          - uttarakhand
+          - bihar
+          - jharkhand
+          - madhya_pradesh
+          - chhattisgarh
+          - assam
+          - rajasthan
+          - odisha
+          - jammu_and_kashmir
+        reason: Lives in a Low Performing State, where all pregnant women delivering in a government health centre are covered
+      - field: social_category
+        op: in
+        value:
+          - sc
+          - st
+        reason: SC or ST woman
+      - field: is_bpl
+        op: eq
+        value: true
+        reason: BPL household
+    reason: In a Low Performing State every woman is covered; in other states only BPL, SC or ST women
+documents:
+  - Mother and Child Protection (MCP) card or JSY card from the ASHA or ANM
+  - BPL card or SC/ST certificate (needed outside the Low Performing States, and in all states for delivery in an accredited private hospital or at home)
+  - Bank account details for the payment
+  - Aadhaar card
+notes:
+  - There is no age limit and no limit on the number of children (these conditions were removed in May 2013).
+  - For delivery in an accredited private hospital, only BPL, SC or ST women are covered, in every state.
+  - The home-delivery payment of Rs 500 is only for BPL women.
+  - The payment is linked to the delivery. A woman who is only breastfeeding a baby born earlier is not covered by this rule, although the rule here cannot tell the two apart.
+  - Ladakh was part of Jammu and Kashmir when the Low Performing States list was made; check with the local health centre whether it is treated as a Low Performing State.
+  - Delivery in a public health facility is also free and cashless (including caesarean, drugs, tests, diet and transport) under Janani Shishu Suraksha Karyakram. Women can also get PMMVY maternity benefit.
+how_to_apply: Register the pregnancy with the ASHA, ANM or nearest government health centre and get the MCP/JSY card. Deliver in a government or accredited private hospital; the payment is made to the mother after the delivery.
+apply_url: null
+source_url: https://nhm.gov.in/index1.php?lang=1&level=3&lid=309&sublinkid=841
+verified_on: 2026-11-23
+evidence:
+  - claim: The ten Low Performing States
+    url: https://nhm.gov.in/index1.php?lang=1&level=3&lid=309&sublinkid=841
+    quote: "namely, the states of Uttar Pradesh, Uttarakhand, Bihar, Jharkhand, Madhya Pradesh, Chhattisgarh, Assam, Rajasthan, Orissa, and Jammu and Kashmir."
+    checked_on: 2026-11-23
+  - claim: In Low Performing States all pregnant women delivering in government health centres are eligible
+    url: https://nhm.gov.in/index1.php?lang=1&level=3&lid=309&sublinkid=841
+    quote: "All pregnant women delivering in government health centres"
+    checked_on: 2026-11-23
+  - claim: Only BPL/SC/ST women are covered for delivery in accredited private institutions, in all states
+    url: https://nhm.gov.in/index1.php?lang=1&level=3&lid=309&sublinkid=841
+    quote: "BPL/SC/ST women in accredited private institutions"
+    checked_on: 2026-11-23
+  - claim: Cash assistance is tied to delivery and post-delivery care
+    url: https://nhm.gov.in/index1.php?lang=1&level=3&lid=309&sublinkid=841
+    quote: "which integrates cash assistance with delivery and post-delivery care"
+    checked_on: 2026-11-23
+  - claim: In High Performing States only BPL, SC and ST women are eligible
+    url: https://nhm.gov.in/index1.php?lang=1&level=3&lid=309&sublinkid=841
+    quote: "All BPL/Scheduled Caste/Scheduled Tribe (SC/ST) women delivering in a government health centre"
+    checked_on: 2026-11-23
+  - claim: Mother's package LPS Rs 1,400 rural and Rs 1,000 urban; HPS Rs 700 rural and Rs 600 urban
+    url: https://nhm.gov.in/images/pdf/programmes/jsy/imp-govt-orders/JSY_removal_of_conditionalities_13.5.13.pdf
+    quote: "Low Performing States (LPS) Rs.1400 Rs.600 Rs.2000 Rs.1000 Rs.400 Rs.1400 ... High Performing States (HPS) Rs. 700 Rs.600 Rs.1300 Rs.600 Rs.400 Rs.1000"
+    checked_on: 2026-11-23
+  - claim: Same amounts on the current NHM page (last updated 18 November 2026)
+    url: https://nhm.gov.in/index1.php?lang=1&level=3&lid=309&sublinkid=841
+    quote: "LPS 1400 600 2000 1000 400 1400 HPS 700 600 1300 600 400 1000"
+    checked_on: 2026-11-23
+  - claim: Rs 500 for BPL women who deliver at home, in all states
+    url: https://nhm.gov.in/images/pdf/programmes/jsy/imp-govt-orders/JSY_removal_of_conditionalities_13.5.13.pdf
+    quote: "Available only to BPL women who prefer to deliver at home regardless of age and number of children"
+    checked_on: 2026-11-23
+  - claim: Age and parity conditions removed from 8 May 2013
+    url: https://nhm.gov.in/images/pdf/programmes/jsy/imp-govt-orders/JSY_removal_of_conditionalities_13.5.13.pdf
+    quote: "Removal of conditionalities associated with parity and minimum age of the mother for institutional deliveries in the High Performing States."
+    checked_on: 2026-11-23
+  - claim: Scheme still running in 2026, alongside JSSK free delivery
+    url: https://sansad.in/getFile/lsapps/loksabhaquestions/annex/188/AU2255_IXyPO7.pdf
+    quote: "Janani Suraksha Yojana (JSY) and Janani Shishu Suraksha Karyakaram (JSSK): Promote institutional deliveries and provide free, cashless delivery (including caesarean), diagnostics, drugs, diet, transport and blood transfusion in public health facilities"
+    checked_on: 2026-11-23

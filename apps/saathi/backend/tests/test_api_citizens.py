@@ -21,7 +21,9 @@ async def test_self_service_profile_and_eligibility(citizen_client):
 
     results = (await citizen_client.get(f"/api/citizens/{me['id']}/eligibility")).json()
     eligible = {r["scheme_id"] for r in results if r["status"] == "eligible"}
-    assert eligible == {"pm-kisan", "atal-pension-yojana", "pmjjby", "pmsby"}
+    assert eligible == {
+        "pm-kisan", "atal-pension-yojana", "pmjjby", "pmsby", "pmfby", "kisan-credit-card", "pm-kusum", "e-shram",
+    }
     assert results[0]["status"] == "eligible"  # eligible schemes first
 
 

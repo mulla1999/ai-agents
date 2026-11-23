@@ -28,7 +28,7 @@ Profile fields (about the person who is writing):
 "updates" may also contain "family_members": a list of family members the person mentions, each an
 object with "relation" (one of spouse, son, daughter, father, mother, other) and any of "age",
 "gender", "is_studying_post_matric", "is_widow", "is_pregnant_or_lactating", "disability_percent",
-"is_government_employee", "has_paid_income_tax".
+"is_government_employee", "has_paid_income_tax", "current_class" (0 = not in school), "is_pregnant".
 List only members mentioned in THIS message. To add facts about a known member, repeat their
 relation and age. Never include names. Known family members: {family}
 

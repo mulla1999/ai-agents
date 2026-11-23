@@ -19,7 +19,9 @@ const MEMBER_FIELDS: ProfileField[] = [
   { name: "gender", label: "Gender", question: "", type: "enum", options: ["male", "female", "transgender"] },
   { name: "is_studying_post_matric", label: "Studying in class 11 or above", question: "", type: "bool", options: [] },
   { name: "is_widow", label: "Is a widow", question: "", type: "bool", options: [] },
+  { name: "is_pregnant", label: "Pregnant now", question: "", type: "bool", options: [] },
   { name: "is_pregnant_or_lactating", label: "Pregnant or breastfeeding", question: "", type: "bool", options: [] },
+  { name: "current_class", label: "School class now (1 to 12)", question: "", type: "int", options: [] },
   { name: "is_government_employee", label: "Government employee or pensioner", question: "", type: "bool", options: [] },
   { name: "has_paid_income_tax", label: "Has ever paid income tax", question: "", type: "bool", options: [] },
   { name: "disability_percent", label: "Disability percentage", question: "", type: "int", options: [] },
@@ -32,7 +34,10 @@ const GROUPS: { id: string; icon: LucideIcon; fields: string[] }[] = [
   {
     id: "about",
     icon: UserRound,
-    fields: ["age", "social_category", "is_widow", "is_pregnant_or_lactating", "has_disability", "disability_percent"],
+    fields: [
+      "age", "social_category", "current_class", "is_widow", "is_pregnant", "is_pregnant_or_lactating", "has_disability",
+      "disability_percent",
+    ],
   },
   {
     id: "work",

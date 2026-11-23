@@ -1,9 +1,10 @@
 from .engine import Match, Status, evaluate, evaluate_all, next_field_to_ask
 from .loader import SchemeDataError, load_schemes
-from .models import Rule, Scheme
+from .models import Evidence, Rule, Scheme
 from .source import SchemeSource, StaticSchemeSource
 
 __all__ = [
+    "Evidence",
     "Match",
     "Rule",
     "Scheme",

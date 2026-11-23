@@ -12,7 +12,7 @@ from collections.abc import Iterable, Sequence
 from dataclasses import dataclass, replace
 from enum import StrEnum
 
-from ..profile import PROFILE_FIELDS, FamilyMember, UserProfile, member_profile
+from ..profile import PROFILE_FIELDS, FamilyMember, UserProfile, member_profile, with_inferred_facts
 from .models import Rule, Scheme
 
 _OPS = {
@@ -96,7 +96,7 @@ def evaluate_all(schemes: Iterable[Scheme], profile: UserProfile) -> list[Match]
     conversation asks about the person, and members' details are filled in on the profile page.
     """
     schemes = list(schemes)
-    matches = [evaluate(scheme, profile) for scheme in schemes]
+    matches = [evaluate(scheme, with_inferred_facts(profile)) for scheme in schemes]
     for index, member in enumerate(profile.family_members):
         their_profile = member_profile(profile, member)
         for scheme in schemes:

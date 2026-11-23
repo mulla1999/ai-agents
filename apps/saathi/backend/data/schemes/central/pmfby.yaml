@@ -1,0 +1,76 @@
+id: pmfby
+name: Pradhan Mantri Fasal Bima Yojana (PMFBY)
+level: central
+applies_to: household
+ministry: Ministry of Agriculture and Farmers Welfare
+tags: [farmer, insurance, crop-insurance]
+summary: Low-cost crop insurance for farmers, including tenant farmers and sharecroppers, against crop loss from drought, flood, pests, hailstorms and other natural risks.
+benefits: "The farmer pays at most 2% of the sum insured for Kharif crops, 1.5% for Rabi food grain and oilseed crops, and 5% for commercial and horticultural crops; the Central and State Governments pay the rest of the premium. Covers yield loss of standing crops, prevented sowing (claims up to 25% of the sum insured), losses to cut crops drying in the field for up to 14 days after harvest, and localised calamities on individual farms. Claims are paid directly into the bank account."
+eligibility:
+  - field: occupation
+    op: eq
+    value: farmer
+    reason: For farmers, including tenant farmers and sharecroppers, who grow notified crops in notified areas
+documents:
+  - Aadhaar number
+  - Land record (Record of Rights / Land Possession Certificate), or for tenant farmers and sharecroppers the tenancy or sharing agreement or other document notified by the State
+  - Declaration of the crop sown or intended to be sown (sowing certificate where the State asks for it)
+  - Bank account details
+notes:
+  - "Tenant farmers and sharecroppers are covered even if they do not own the land: they must show the tenancy/sharing agreement or other document the State has notified."
+  - Only notified crops in notified areas are covered; each State notifies its crops, areas and enrolment cut-off dates every season. Apply before the cut-off (usually within about two weeks of the start of sowing).
+  - "Enrolment is voluntary for all farmers. Farmers with a crop loan or Kisan Credit Card are enrolled by their bank automatically unless they give the bank an opt-out declaration at least 7 days before the season's cut-off date."
+  - "The scheme is run by each State. 25 States and UTs implemented it in Kharif 2026; West Bengal rejoined from Kharif 2026 and Bihar from Rabi 2026-27. Check whether your State runs PMFBY."
+  - In North-Eastern and Himalayan States the Centre and State share the government part of the premium 90:10; elsewhere 50:50.
+  - From Kharif 2026, crop loss from wild animal attack (where the State has notified it) and paddy inundation are covered as localised risks; such losses must be reported within 72 hours through the Crop Insurance App with geotagged photos.
+  - Not covered are losses from war, nuclear risks, riots, theft, malicious damage and other preventable risks, and losses already compensated from another source.
+  - "Helpline: Krishi Rakshak Portal & Helpline, toll-free 14447."
+how_to_apply: Farmers with a crop loan or KCC are enrolled through their bank. Others can enrol on the National Crop Insurance Portal (pmfby.gov.in), at a bank branch, a Primary Agricultural Credit Society, a Common Service Centre or through an insurance company agent, before the State's cut-off date for the season.
+apply_url: https://pmfby.gov.in
+source_url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/aug/doc_9735_20260829_18493301.pdf
+verified_on: 2026-11-23
+evidence:
+  - claim: Farmers including tenant farmers and sharecroppers growing notified crops in notified areas are eligible
+    url: https://pmfby.gov.in/pdf/Revamped%20OGs_Final.pdf
+    quote: "All farmers including sharecroppers and tenant farmers growing the notified crops in the notified areas are eligible for coverage."
+    checked_on: 2026-11-23
+  - claim: Tenant and sharecropper farmers are covered (current, 2026)
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/aug/doc_9735_20260829_18493301.pdf
+    quote: "Tenant and sharecropper farmers are included and covered under the scheme."
+    checked_on: 2026-11-23
+  - claim: Farmer premium at most 2% Kharif, 1.5% Rabi food grain and oilseed, 5% commercial and horticultural; rest shared 50:50, 90:10 in NE and Himalayan States
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/aug/doc_9735_20260829_18493301.pdf
+    quote: "Farmers pay a maximum premium of 2% for Kharif and 1.5% for Rabi foodgrain and oilseed crops. For commercial and horticultural crops, the maximum premium is 5%."
+    checked_on: 2026-11-23
+  - claim: Prevented sowing claims up to 25% of sum insured
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/aug/doc_9735_20260829_18493301.pdf
+    quote: "shall be eligible for claims up to a maximum of 25% of the sum insured"
+    checked_on: 2026-11-23
+  - claim: Post-harvest losses covered for up to 14 days after harvest
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/aug/doc_9735_20260829_18493301.pdf
+    quote: "Crops kept in \"cut-and-spread\" condition for drying in the field are covered for up to 14 days after harvesting"
+    checked_on: 2026-11-23
+  - claim: Voluntary for all farmers; loanee farmers can opt out at least 7 days before the cut-off
+    url: https://pmfby.gov.in/pdf/Revamped%20OGs_Final.pdf
+    quote: "The scheme is optional for all farmers including farmers who have been sanctioned short-term Seasonal Agricultural Operations (SAO) loans/Kisan Credit Card (KCC)"
+    checked_on: 2026-11-23
+  - claim: Opt-out declaration at least seven days before cut-off; otherwise covered
+    url: https://pmfby.gov.in/pdf/Revamped%20OGs_Final.pdf
+    quote: "at least seven days prior to the cut-off date for enrolment of farmers for the respective season. All those farmers who do not submit the declaration would be essentially covered."
+    checked_on: 2026-11-23
+  - claim: Documents for tenant farmers and sharecroppers, Aadhaar and crop declaration
+    url: https://pmfby.gov.in/pdf/Revamped%20OGs_Final.pdf
+    quote: "Such farmers are also required to essentially submit Aadhar Number and declaration about the crop sown/ crops intended to be sown."
+    checked_on: 2026-11-23
+  - claim: Implemented by 25 States/UTs in Kharif 2026; West Bengal rejoined Kharif 2026, Bihar from Rabi 2026-27
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/aug/doc_9735_20260829_18493301.pdf
+    quote: "PMFBY is currently being implemented by 25 States and Union Territories in Kharif 2026."
+    checked_on: 2026-11-23
+  - claim: Wild animal attack and paddy inundation covered from Kharif 2026, report within 72 hours
+    url: https://www.newsonair.gov.in/wild-animal-attacks-paddy-inundation-to-be-covered-under-pmfby-from-kharif-2026/
+    quote: "farmers will be required to report losses within 72 hours using the Crop Insurance App by uploading geotagged photographs."
+    checked_on: 2026-11-23
+  - claim: Helpline 14447
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/aug/doc_9735_20260829_18493301.pdf
+    quote: "provides a dedicated toll-free helpline (14447) for farmers"
+    checked_on: 2026-11-23

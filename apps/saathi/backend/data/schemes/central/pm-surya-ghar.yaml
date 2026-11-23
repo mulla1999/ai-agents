@@ -1,0 +1,64 @@
+id: pm-surya-ghar
+name: PM Surya Ghar Muft Bijli Yojana (rooftop solar)
+level: central
+applies_to: household
+ministry: Ministry of New and Renewable Energy
+tags: [solar, electricity, subsidy, housing]
+summary: A central subsidy for households that put up rooftop solar panels on their home, cutting or removing their electricity bill.
+benefits: "Central subsidy for a home rooftop solar system: Rs 30,000 per kW for the first 2 kW and Rs 18,000 for the third kW, up to Rs 78,000 in all; no extra subsidy beyond 3 kW. In special category states and UTs it is Rs 33,000 per kW for the first 2 kW and Rs 19,800 for the third kW. Housing societies and RWAs get Rs 18,000 per kW for common facilities. Collateral-free bank loans at low interest are available for systems up to 3 kW, and surplus power can be sold to the electricity company."
+eligibility:
+  - field: owns_house
+    op: eq
+    value: true
+    reason: The family must own the house where the rooftop solar is installed
+  - field: has_electricity_connection
+    op: eq
+    value: true
+    reason: Needs a residential electricity connection from the local power company (DISCOM)
+documents:
+  - Electricity consumer number
+  - Mobile number
+  - Bank account details and a cancelled cheque (for the subsidy)
+notes:
+  - The household needs its own grid-connected residential electricity connection with the local DISCOM. The profile cannot check this.
+  - The household must own the house, with a roof (or terrace, balcony or elevated structure) suitable for solar panels. The profile cannot check this.
+  - The household must not already have received another subsidy for rooftop solar. The subsidy is given only once per system.
+  - The system must be installed by a vendor registered on the national portal, and the subsidy is paid after net-metering and inspection by the DISCOM.
+  - The scheme runs until 2026-27 (target of one crore homes by 31 March 2027). Apply well before then; an extension had not been announced on 2026-11-23.
+how_to_apply: "Register on the national portal pmsuryaghar.gov.in with your state, electricity company and consumer number, apply for rooftop solar, and pick a registered vendor after DISCOM approval. After installation, submit plant details and apply for a net meter; once the DISCOM inspects it, the commissioning certificate is issued on the portal. Then submit bank details and a cancelled cheque to receive the subsidy."
+apply_url: https://pmsuryaghar.gov.in
+source_url: https://sansad.in/getFile/lsapps/loksabhaquestions/annex/188/AU580_5TGlZa.pdf
+verified_on: 2026-11-23
+evidence:
+  - claim: Subsidy Rs 30,000 per kWp for first 2 kWp and Rs 18,000 per kWp for the additional 1 kWp, capped at 3 kWp; RWA/GHS Rs 18,000 per kWp
+    url: https://sansad.in/getFile/lsapps/loksabhaquestions/annex/188/AU580_5TGlZa.pdf
+    quote: "For individual households, the CFA is Rs. 30,000/- per kWp for the first 2 kWp and Rs. 18,000/- per kWp for the additional one kWp."
+    checked_on: 2026-11-23
+  - claim: Open to all residential consumers with a grid-connected DISCOM connection; apply on the national portal
+    url: https://sansad.in/getFile/lsapps/loksabhaquestions/annex/188/AU580_5TGlZa.pdf
+    quote: "all residential consumers in the country, having a grid-connected electricity connection with the local DISCOM, can avail the benefits of the scheme"
+    checked_on: 2026-11-23
+  - claim: Target of one crore households by FY 2026-27
+    url: https://sansad.in/getFile/lsapps/loksabhaquestions/annex/188/AU580_5TGlZa.pdf
+    quote: "aiming to install rooftop solar (RTS) systems in one crore residential households across the country by FY 2026–27"
+    checked_on: 2026-11-23
+  - claim: Special category CFA Rs 33,000 and Rs 19,800 per kWp; no CFA beyond 3 kWp
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2024/aug/doc202487368301.pdf
+    quote: "Residential Sector (first 2 kWp of RTS capacity or part thereof) Rs 30,000/kWp Rs 33,000/kWp"
+    checked_on: 2026-11-23
+  - claim: Any consumer with a residential connection; panels on roof, terrace, balcony or elevated structure
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2024/aug/doc202487368301.pdf
+    quote: "Any consumer tagged to a particular residential power connection of the local DISCOM, is eligible to take benefit under the scheme"
+    checked_on: 2026-11-23
+  - claim: Must own the house with a suitable roof, have a valid connection, and not have availed another solar subsidy
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/mar/doc2025313520001.pdf
+    quote: "The household must not have availed any other subsidy for solar panels."
+    checked_on: 2026-11-23
+  - claim: Collateral-free loans for systems up to 3 kW
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/mar/doc2025313520001.pdf
+    quote: "Households will have access to collateral-free, low-interest loans at around 7% interest for the installation of residential rooftop solar (RTS) systems up to 3 kW."
+    checked_on: 2026-11-23
+  - claim: Application steps (registration, DISCOM approval, registered vendor, net meter, commissioning certificate, bank details)
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/mar/doc2025313520001.pdf
+    quote: "Submit bank details and a cancelled cheque. Receive subsidy within 30 days."
+    checked_on: 2026-11-23

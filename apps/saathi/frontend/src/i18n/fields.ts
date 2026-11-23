@@ -10,7 +10,9 @@ const fieldLabels: Record<string, Record<string, string>> = {
     disability_percent: "दिव्यांगता प्रतिशत (प्रमाणपत्र के अनुसार)", is_pregnant_or_lactating: "गर्भवती हैं या स्तनपान करा रही हैं",
     ration_card: "राशन कार्ड का प्रकार", has_pucca_house: "परिवार का अपना पक्का घर है", has_lpg_connection: "घर में LPG गैस कनेक्शन है",
     land_holding_hectares: "परिवार की खेती की ज़मीन (हेक्टेयर; 1 हेक्टेयर ≈ 2.5 एकड़)", has_epf_esic_or_nps: "काम से EPF/PF, ESIC या NPS है",
-    has_paid_income_tax: "आपने खुद कभी आयकर भरा है",
+    has_paid_income_tax: "आपने खुद कभी आयकर भरा है", current_class: "अभी किस कक्षा में पढ़ रहे हैं (1 से 12)",
+    is_pregnant: "अभी गर्भवती हैं", owns_house: "परिवार का अपना घर है", has_electricity_connection: "घर में अपना बिजली कनेक्शन (मीटर) है",
+    main_earner_died: "परिवार के मुख्य कमाने वाले सदस्य की हाल के वर्षों में मृत्यु हुई है",
   },
 };
 

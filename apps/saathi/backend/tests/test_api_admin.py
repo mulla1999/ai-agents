@@ -70,7 +70,7 @@ async def test_role_management(admin, citizen_client):
 async def test_stats(admin, citizen_client):
     stats = (await admin.get("/api/admin/stats")).json()
     assert stats["users_by_role"] == {"admin": 1, "citizen": 1}
-    assert stats["schemes_by_status"]["draft"] == 2
+    assert stats["schemes_by_status"]["draft"] == 11
 
 
 async def test_applies_to_is_kept_when_an_edit_leaves_it_out(admin):

@@ -1,0 +1,67 @@
+id: pmegp
+name: Prime Minister's Employment Generation Programme (PMEGP)
+level: central
+applies_to: household
+ministry: Ministry of Micro, Small and Medium Enterprises (implemented by KVIC, State KVIBs and District Industries Centres)
+tags: [loan, subsidy, business, self-employment, msme]
+summary: A bank loan with a government subsidy (margin money) of 15% to 35% of the project cost for setting up a new micro enterprise in manufacturing or services.
+benefits: For a new unit with a project cost of up to Rs 50 lakh (manufacturing) or Rs 20 lakh (business/service), the government pays a margin money subsidy of 15% to 35% of the project cost; the rest is a bank loan plus the applicant's own share. Special categories (SC, ST, OBC, women, minorities, transgender persons, ex-servicemen, persons with disabilities, and applicants in the North-East, hill and border areas) get 25% in urban and 35% in rural areas. Existing PMEGP/REGP/MUDRA units that have done well can apply for a second loan with subsidy to upgrade.
+eligibility:
+  - field: age
+    op: gte
+    value: 18
+    reason: Must be above 18 years of age
+  - field: plans_new_business
+    op: eq
+    value: true
+    reason: Only for setting up a new enterprise
+documents:
+  - Caste certificate (if applicable)
+  - Special category certificate, wherever required
+  - Rural area certificate (for rural units)
+  - Project report
+  - Education / EDP / skill development training certificate
+  - Any other applicable document
+notes:
+  - There is no income limit.
+  - For projects above Rs 10 lakh in manufacturing or above Rs 5 lakh in business/service, the applicant must have passed at least class VIII. This cannot be checked automatically.
+  - Existing units, and units that have already received a government subsidy under any other central or state scheme, are not eligible.
+  - The approved period of the scheme (15th Finance Commission cycle) was 2021-22 to 2025-26. Subsidy was still being released for new units in 2026-27 (Rs 1,000 crore released in October 2026), but an official decision continuing PMEGP to 2030-31 was not found on 2026-11-23. Check with KVIC or the District Industries Centre before applying.
+  - "Exact subsidy split for general category applicants (by urban/rural) and the applicant's own contribution (said to be 10% general, 5% special category) were not confirmed from an official source."
+how_to_apply: Apply online on the KVIC PMEGP e-portal ("Application For New Unit"), upload the documents, and the application is forwarded to a bank through KVIC, the State KVIB or the District Industries Centre. An offline form can also be given to the KVIC/KVIB/DIC/Coir Board office.
+apply_url: https://www.kviconline.gov.in/pmegpeportal/pmegphome/index.jsp
+source_url: https://msme1connect.up.gov.in/GovernmentScheme/GovernmentScheme638740881655062171.pdf
+verified_on: null
+evidence:
+  - claim: Age above 18
+    url: https://msme1connect.up.gov.in/GovernmentScheme/GovernmentScheme638740881655062171.pdf
+    quote: "Any individual, above 18 years of age."
+    checked_on: 2026-11-23
+  - claim: Only new projects; existing and already-subsidised units not eligible
+    url: https://msme1connect.up.gov.in/GovernmentScheme/GovernmentScheme638740881655062171.pdf
+    quote: "Assistance under the scheme is available only for new projects sanctioned specifically under the PMEGP."
+    checked_on: 2026-11-23
+  - claim: Max project cost Rs 50 lakh manufacturing, Rs 20 lakh service; subsidy 15% to 35%
+    url: https://msme1connect.up.gov.in/GovernmentScheme/GovernmentScheme638740881655062171.pdf
+    quote: "Subsidy: 15% to 35% on project cost. Maximum Project Cost: up to ₹50 Lakh."
+    checked_on: 2026-11-23
+  - claim: Special categories get 35% rural, 25% urban
+    url: https://msme1connect.up.gov.in/GovernmentScheme/GovernmentScheme638740881655062171.pdf
+    quote: "Special Categories: SC/ST/Women/Minorities/Transgenders, etc. Rural Areas: 35% subsidy. Urban Areas: 25% subsidy."
+    checked_on: 2026-11-23
+  - claim: Class VIII pass needed above Rs 10 lakh (manufacturing) / Rs 5 lakh (service)
+    url: https://msme1connect.up.gov.in/GovernmentScheme/GovernmentScheme638740881655062171.pdf
+    quote: "the beneficiaries should possess at least VIII standard pass educational qualification."
+    checked_on: 2026-11-23
+  - claim: No income ceiling
+    url: https://msme1connect.up.gov.in/GovernmentScheme/GovernmentScheme638740881655062171.pdf
+    quote: "There will be no income ceiling for assistance in setting up projects under PMEGP."
+    checked_on: 2026-11-23
+  - claim: Special category list (SC/ST/OBC/minorities/women, ex-servicemen, physically handicapped, NER, hill and border areas)
+    url: https://dic.py.gov.in/prime-ministers-employment-generation-programme-pmegp
+    quote: "SC / ST / OBC /Minorities/Women, Ex-servicemen, Physically handicapped, NER, Hill and Border areas etc."
+    checked_on: 2026-11-23
+  - claim: Subsidy still being released in 2026-27 (Rs 1,000 crore on 28 October 2026)
+    url: https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2329819&reg=1&lang=1
+    quote: "The release of ₹ 1,000 crore MM subsidy will facilitate support to 11,333 beneficiaries under PMEGP."
+    checked_on: 2026-11-23
