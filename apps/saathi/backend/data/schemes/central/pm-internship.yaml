@@ -1,0 +1,82 @@
+id: pm-internship
+name: Prime Minister Internship Scheme (PMIS)
+level: central
+ministry: Ministry of Corporate Affairs
+tags: [internship, youth, employment, skills]
+summary: Paid internships in leading companies for young people who are not in a full-time job or full-time study (final-year students may also apply).
+benefits: "Rs 9,000 a month (government plus company contribution, subject to attendance) and a one-time incidental grant of Rs 6,000. Interns are insured under PM Jeevan Jyoti Bima Yojana and PM Suraksha Bima Yojana, and get a certificate from MCA and the company."
+eligibility:
+  - field: age
+    op: gte
+    value: 18
+    reason: You must be at least 18 years old
+  - field: age
+    op: lte
+    value: 25
+    reason: You must be 25 years old or younger
+documents:
+  - Aadhaar card (bank account must be Aadhaar-seeded for payment)
+  - Educational certificates (class 10, 12, ITI, diploma or degree, as applicable)
+  - No Objection Certificate from your institution, if you are a final-year student
+  - Passport-size photograph
+notes:
+  - "Status on 2026-11-23: the scheme still runs as a pilot (Phase/Round III in 2026); no Cabinet approval of the full scheme was found in official sources."
+  - "You must be an Indian national and not in full-time employment or full-time education. Online or distance learners can apply. Since April 2026 final-year graduate and post-graduate students can also apply with a No Objection Certificate from their institution."
+  - "Minimum education: passed class 10 or 12, or an ITI certificate, a polytechnic diploma, or a degree such as BA, B.Sc, B.Com, BCA, BBA or B.Pharma."
+  - "Not eligible (pilot rules): graduates of IITs, IIMs, National Law Universities, IISERs, NIDs and IIITs; holders of CA, CMA, CS, MBBS, BDS, MBA or any master's degree; people currently in a government skilling, apprenticeship, internship or student-training scheme; people who completed NATS or NAPS apprenticeship."
+  - "Not eligible (pilot rules): if any one family member earned more than Rs 8 lakh in the year, or any family member is a permanent or regular government employee. The rules here cannot check either, because the profile holds only total family income and the applicant's own job."
+  - "The age band was 21 to 24 in the pilot's first rounds. 18 to 25 is confirmed officially for final-year students; news reports say it now applies to everyone, and that internships are shorter (6 to 9 months instead of 12). Check the portal for the current round's rules."
+  - You can apply for up to five internships per round; companies make the final selection, with priority for SC, ST, OBC and persons with disabilities in shortlisting.
+how_to_apply: Register on the PM Internship portal (or the PMIS mobile app) with Aadhaar, build your profile and apply for up to five internships while a round is open.
+apply_url: https://pminternship.mca.gov.in
+source_url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/jun/doc2026613891801.pdf
+verified_on: null
+evidence:
+  - claim: Phase III running in 2026 (PIB page title seen in search; the page itself refused automated access)
+    url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2250925
+    quote: "Prime Minister Internship Scheme Phase III"
+    checked_on: 2026-11-23
+  - claim: Rs 9,000 a month (government plus company)
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/jun/doc2026613891801.pdf
+    quote: "Monthly financial assistance of ₹9,000 (Government + Company contribution)"
+    checked_on: 2026-11-23
+  - claim: One-time grant of Rs 6,000
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/jun/doc2026613891801.pdf
+    quote: "One-time incidental grant of ₹6,000"
+    checked_on: 2026-11-23
+  - claim: Insurance under PMJJBY and PMSBY
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/jun/doc2026613891801.pdf
+    quote: "Interns insured under the Pradhan Mantri Jeevan Jyoti Bima Yojana and Pradhan Mantri Suraksha Bima Yojana."
+    checked_on: 2026-11-23
+  - claim: Age 18 to 25 (stated for final-year students in April 2026)
+    url: https://newsonair.gov.in/government-expands-eligibility-of-pm-internship-scheme-to-include-final-year-students/
+    quote: "between 18-25 years of age"
+    checked_on: 2026-11-23
+  - claim: Final-year students eligible with an NOC from their institution
+    url: https://newsonair.gov.in/government-expands-eligibility-of-pm-internship-scheme-to-include-final-year-students/
+    quote: "No Objection Certificate (NOC)"
+    checked_on: 2026-11-23
+  - claim: Pilot rule, age 21 to 24 and not in full-time job or full-time education; distance learners can apply
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2024/oct/doc20241012415201.pdf
+    quote: "designed for youth aged 21 to 24 years, specifically for Indian nationals who are not employed full-time or engaged in full-time education."
+    checked_on: 2026-11-23
+  - claim: Minimum education
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2024/oct/doc20241012415201.pdf
+    quote: "Candidates who have passed High School or Higher Secondary School, have a certificate from an ITI, have a diploma from a polytechnic institute."
+    checked_on: 2026-11-23
+  - claim: Excluded institutions and qualifications
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2024/oct/doc20241012415201.pdf
+    quote: "Holders of qualifications such as CA, CMA, CS, MBBS, BDS, MBA, or any master's or higher degree."
+    checked_on: 2026-11-23
+  - claim: Excluded if any family member earns over Rs 8 lakh (pilot)
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2024/oct/doc20241012415201.pdf
+    quote: "If the income of any of the family members of the candidate exceeds Rs 8 Lakh for FY 2023-24."
+    checked_on: 2026-11-23
+  - claim: Excluded if a family member is a permanent government employee (pilot)
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2024/oct/doc20241012415201.pdf
+    quote: "Family members of permanent or regular government employees."
+    checked_on: 2026-11-23
+  - claim: Apply for up to five internships; shortlisting prioritises SC, ST, OBC and PwD
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2024/oct/doc20241012415201.pdf
+    quote: "They can browse and apply for up to five internships"
+    checked_on: 2026-11-23

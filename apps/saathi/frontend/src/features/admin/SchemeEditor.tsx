@@ -12,6 +12,7 @@ interface FormState {
   name: string;
   level: "central" | "state";
   state: string;
+  applies_to: "person" | "household";
   ministry: string;
   tags: string;
   summary: string;
@@ -25,7 +26,7 @@ interface FormState {
 }
 
 const EMPTY: FormState = {
-  id: "", name: "", level: "central", state: "", ministry: "", tags: "", summary: "", benefits: "",
+  id: "", name: "", level: "central", state: "", applies_to: "person", ministry: "", tags: "", summary: "", benefits: "",
   eligibility: "[]", documents: "", notes: "", how_to_apply: "", apply_url: "", source_url: "",
 };
 
@@ -33,6 +34,7 @@ function toForm(s: SchemeInput): FormState {
   return {
     ...s,
     state: s.state ?? "",
+    applies_to: s.applies_to ?? "person", // revisions saved before this setting existed
     tags: s.tags.join(", "),
     eligibility: JSON.stringify(s.eligibility, null, 2),
     documents: s.documents.join("\n"),
@@ -53,6 +55,7 @@ function toInput(f: FormState): SchemeInput {
     name: f.name.trim(),
     level: f.level,
     state: f.level === "state" ? f.state.trim() || null : null,
+    applies_to: f.applies_to,
     ministry: f.ministry.trim(),
     tags: f.tags.split(",").map((s) => s.trim()).filter(Boolean),
     summary: f.summary.trim(),
@@ -137,6 +140,12 @@ export function SchemeEditor() {
                 <Input required value={form.state} onChange={set("state")} />
               </Field>
             )}
+            <Field label="Who it is checked for">
+              <Select value={form.applies_to} onChange={set("applies_to")}>
+                <option value="person">person: the person and each family member</option>
+                <option value="household">household: one per family, the person only</option>
+              </Select>
+            </Field>
             <Field label="Ministry / department">
               <Input required value={form.ministry} onChange={set("ministry")} />
             </Field>

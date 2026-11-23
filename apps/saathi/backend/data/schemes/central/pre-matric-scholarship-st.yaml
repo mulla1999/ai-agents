@@ -1,0 +1,84 @@
+id: pre-matric-scholarship-st
+name: Pre-Matric Scholarship for Scheduled Tribe Students (Classes 9 and 10)
+level: central
+ministry: Ministry of Tribal Affairs
+tags: [scholarship, education, st, school]
+summary: A monthly scholarship and a yearly books grant for ST students in class 9 or 10 whose family earns Rs 2.5 lakh a year or less.
+benefits: "Day scholars get Rs 225 a month for 10 months plus Rs 750 a year for books (Rs 3,000 a year). Hostellers get Rs 525 a month for 10 months plus Rs 1,000 a year (Rs 6,250 a year). Students with disabilities get an extra Rs 600 a month (day scholars) or Rs 800 a month (hostellers) for 12 months."
+eligibility:
+  - field: social_category
+    op: eq
+    value: st
+    reason: For Scheduled Tribe students
+  - field: current_class
+    op: in
+    value:
+      - 9
+      - 10
+    reason: Must be studying in class 9 or 10
+  - field: annual_family_income
+    op: lte
+    value: 250000
+    reason: Family income must be Rs 2.5 lakh per year or less
+documents:
+  - Aadhaar number
+  - Domicile certificate
+  - ST certificate issued by the state's competent authority
+  - Family income certificate (self-declarations are not accepted)
+  - Disability certificate, if claiming the disability allowance
+  - Passport-size photograph (scanned)
+  - Bank account in a scheduled bank linked with Aadhaar and mobile number
+notes:
+  - "Only for students in class 9 or 10. The rules here cannot check the class yet: they only know the student is not in class 11 or above."
+  - The school must be a Government school or one recognised by the Government or a Central or State Board of Secondary Education.
+  - Not available to students already getting any other scholarship.
+  - Apply to your state or UT of domicile, even if you study in another state.
+  - The income limit does not apply to orphans supported by a guardian. Only the parents' income counts, not that of siblings or other relatives.
+  - The disability allowance also covers students cured of leprosy and students with sickle cell anaemia or thalassaemia, with a certificate.
+  - A repeated class is not paid a second time; the award is renewed for class 10 after passing class 9.
+  - The current guidelines cover 2021-22 to 2025-26. Continuation for 2026-27 onward had not been confirmed from an official source on 2026-11-23; check your state scholarship portal or the National Scholarship Portal.
+how_to_apply: Apply online on your state's scholarship portal or the National Scholarship Portal (registration usually 1 April to 31 July), then follow up with your school for verification.
+apply_url: https://scholarships.gov.in
+source_url: https://scholarships.gov.in/public/schemeGuidelines/guidelines-Pre-matric-ST.pdf
+verified_on: null
+evidence:
+  - claim: For ST students
+    url: https://scholarships.gov.in/public/schemeGuidelines/guidelines-Pre-matric-ST.pdf
+    quote: "Applicant student should belong to the Scheduled Tribe, so specified in relation to the State/Union Territory to which he/she actually belongs (Domicile State)."
+    checked_on: 2026-11-23
+  - claim: For classes 9 and 10
+    url: https://scholarships.gov.in/public/schemeGuidelines/guidelines-Pre-matric-ST.pdf
+    quote: "to grant scholarship to eligible ST students for pursuing education in Classes IX and X."
+    checked_on: 2026-11-23
+  - claim: Income limit Rs 2.5 lakh a year
+    url: https://scholarships.gov.in/public/schemeGuidelines/guidelines-Pre-matric-ST.pdf
+    quote: "The family income of student from all sources should not exceed Rs. 2.5 lakh per annum."
+    checked_on: 2026-11-23
+  - claim: Day scholars Rs 225 a month (Rs 2,250 a year) plus Rs 750 books grant; hostellers Rs 525 a month (Rs 5,250) plus Rs 1,000
+    url: https://scholarships.gov.in/public/schemeGuidelines/guidelines-Pre-matric-ST.pdf
+    quote: "Scholarship for 10 months 225 2250 525 5250 | Books and ad hoc Grant 750 1000"
+    checked_on: 2026-11-23
+  - claim: Disability allowance Rs 800 a month for hostellers, Rs 600 a month for day scholars
+    url: https://scholarships.gov.in/public/schemeGuidelines/guidelines-Pre-matric-ST.pdf
+    quote: "an additional grant of Rs. 800/- monthly (Rs. 9600 annually) will be given to the Divyangjan student who is hosteler and Rs.600/monthly (Rs 7200 annually) to a day scholar."
+    checked_on: 2026-11-23
+  - claim: Not available with another scholarship
+    url: https://scholarships.gov.in/public/schemeGuidelines/guidelines-Pre-matric-ST.pdf
+    quote: "The student should not be getting any other scholarship."
+    checked_on: 2026-11-23
+  - claim: Orphans supported by a guardian are exempt from the income limit
+    url: https://scholarships.gov.in/public/schemeGuidelines/guidelines-Pre-matric-ST.pdf
+    quote: "In case of an orphan, supported by a guardian, income criteria shall not apply."
+    checked_on: 2026-11-23
+  - claim: Government or recognised school
+    url: https://scholarships.gov.in/public/schemeGuidelines/guidelines-Pre-matric-ST.pdf
+    quote: "The student should be studying in a Government School or in a School recognized by Government or a Central/State Board of Secondary Education."
+    checked_on: 2026-11-23
+  - claim: Bank account linked with Aadhaar and mobile
+    url: https://scholarships.gov.in/public/schemeGuidelines/guidelines-Pre-matric-ST.pdf
+    quote: "The student should have a valid account in a Scheduled Bank, linked with Aadhaar and mobile number."
+    checked_on: 2026-11-23
+  - claim: Guidelines period 2021-22 to 2025-26
+    url: https://scholarships.gov.in/public/schemeGuidelines/guidelines-Pre-matric-ST.pdf
+    quote: "PRE-MATRIC SCHOLARSHIP FOR SCHEDULED TRIBE STUDENTS STUDYING IN CLASSES IX &X [CENTRALLY SPONSORED SCHEME] 2021-22 to 2025-26"
+    checked_on: 2026-11-23

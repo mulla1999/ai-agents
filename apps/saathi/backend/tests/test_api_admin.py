@@ -70,4 +70,42 @@ async def test_role_management(admin, citizen_client):
 async def test_stats(admin, citizen_client):
     stats = (await admin.get("/api/admin/stats")).json()
     assert stats["users_by_role"] == {"admin": 1, "citizen": 1}
-    assert stats["schemes_by_status"]["draft"] == 9
+    assert stats["schemes_by_status"]["draft"] == 11
+
+
+async def test_applies_to_is_kept_when_an_edit_leaves_it_out(admin):
+    scheme = (await admin.get("/api/admin/schemes/pm-kisan")).json()
+    assert scheme["applies_to"] == "household"
+    body = {k: v for k, v in scheme.items() if k not in ("applies_to", "status", "verified_on", "version", "updated_at")}
+    assert (await admin.put("/api/admin/schemes/pm-kisan", json=body)).json()["applies_to"] == "household"
+
+    body["applies_to"] = "person"
+    assert (await admin.put("/api/admin/schemes/pm-kisan", json=body)).json()["applies_to"] == "person"
+
+
+async def test_sync_schemes_dry_run_then_apply(sessionmaker, settings, admin):
+    from saathi.db import SchemeRecord, SchemeRevision, SchemeStatus
+    from saathi.services.schemes import sync_schemes
+    from sqlalchemy import func, select
+
+    async with sessionmaker() as db:  # an old, wrong copy in the database, and an archived scheme
+        old = await db.get(SchemeRecord, "pmsby")
+        old.benefits, old.status = "outdated text", SchemeStatus.DRAFT
+        (await db.get(SchemeRecord, "pmjjby")).status = SchemeStatus.ARCHIVED
+        (await db.get(SchemeRecord, "pmjjby")).benefits = "outdated text"
+        await db.commit()
+
+    async with sessionmaker() as db:
+        planned = dict(await sync_schemes(db, settings.schemes_dir, apply=False))
+        assert planned["pmsby"] == "update" and planned["pmjjby"] == "skip (archived)"
+        assert (await db.get(SchemeRecord, "pmsby")).benefits == "outdated text"  # dry run changed nothing
+
+        await sync_schemes(db, settings.schemes_dir, apply=True)
+        record = await db.get(SchemeRecord, "pmsby")
+        assert record.benefits.startswith("Rs 2 lakh") and record.status is SchemeStatus.VERIFIED
+        assert record.version == 2
+        revisions = await db.scalar(select(func.count()).select_from(SchemeRevision).where(SchemeRevision.scheme_id == "pmsby"))
+        assert revisions == 2
+        assert (await db.get(SchemeRecord, "pmjjby")).status is SchemeStatus.ARCHIVED
+
+        assert await sync_schemes(db, settings.schemes_dir, apply=False) == [("pmjjby", "skip (archived)")]

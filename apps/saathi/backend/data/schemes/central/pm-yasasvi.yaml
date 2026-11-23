@@ -1,0 +1,118 @@
+id: pm-yasasvi
+name: PM YASASVI Scholarships for OBC, EBC and DNT Students
+level: central
+ministry: Ministry of Social Justice and Empowerment
+tags: [scholarship, education, obc, ebc, dnt]
+summary: Scholarships for OBC, EBC and DNT students from families earning Rs 2.5 lakh a year or less, from class 9 to college.
+benefits: "Pre-matric (class 9-10, government schools): Rs 4,000 a year. Post-matric (class 11 onward, including college): academic allowance plus tuition fee of Rs 5,000 to Rs 20,000 a year depending on the course group. Top Class School: up to Rs 1.25 lakh a year for selected students in identified top schools. Top Class College: tuition, living expenses and study material for students admitted to notified top institutions."
+eligibility:
+  - field: social_category
+    op: in
+    value:
+      - obc
+      - general
+    reason: For OBC students, and for EBC and Denotified/Nomadic Tribe (DNT) students who are not SC, ST or OBC
+  - field: annual_family_income
+    op: lte
+    value: 250000
+    reason: Parents' or guardian's income must be Rs 2.5 lakh per year or less
+  - any:
+      - field: current_class
+        op: in
+        value:
+          - 9
+          - 10
+        reason: Pre-matric scholarship for class 9 and 10 (government schools only)
+      - field: is_studying_post_matric
+        op: eq
+        value: true
+        reason: Post-matric scholarship for study after class 10
+    reason: Must be in class 9 or 10, or studying after class 10
+documents:
+  - Aadhaar number
+  - OBC, EBC or DNT certificate
+  - Parents' or guardian's income certificate from the competent authority
+  - Domicile certificate
+  - Previous marksheets / certificates of examinations passed
+  - Passport-size photograph
+  - Admission proof / bonafide certificate from the school or institution
+  - Bank account (preferably Aadhaar-linked)
+notes:
+  - "PM YASASVI is an umbrella of five sub-schemes. An individual student can apply for: (1) Pre-Matric Scholarship, class 9-10 in a Government school; (2) Post-Matric Scholarship, class 11 onward after passing class 10; (3) Top Class School Education, for students selected for identified top schools from class 9; (4) Top Class College Education, for students admitted to notified top institutions. The fifth sub-scheme builds OBC hostels and is not applied for by individuals."
+  - "The rules here cannot check the student's class or the type of school. Pre-matric needs class 9 or 10 in a Government school; post-matric needs class 11 or above (is_studying_post_matric)."
+  - "EBC here means economically backward students of the General category; DNT means Denotified, Nomadic or Semi-Nomadic Tribes. A DNT student who is SC, ST or OBC should use that category's scholarship. The rule cannot tell EBC or DNT apart from other General-category students."
+  - For post-matric, an employed student's own income is added to the parents' income; the total must still be Rs 2.5 lakh or less.
+  - Only two boys of the same parents can get the scholarship; there is no such limit for girls.
+  - You cannot hold another scholarship or stipend at the same time; if offered two, choose one.
+  - "Post-matric: seats filled by management quota, NRI quota or spot admission are not covered, and a second course at the same level (e.g. B.Sc. after B.A.) is not eligible."
+  - "Top Class School and Top Class College have their own rules on merit and selection, published each year on the National Scholarship Portal; the Rs 1.25 lakh figure is the maximum for class 11-12."
+  - The current guidelines cover 2021-22 to 2025-26. Continuation and the income limit for 2026-27 onward had not been confirmed from an official source on 2026-11-23.
+how_to_apply: Apply online on your state's scholarship portal (pre-matric and post-matric, given by your state of domicile) or on the National Scholarship Portal (Top Class School and Top Class College), within the yearly application window.
+apply_url: https://scholarships.gov.in
+source_url: https://scholarships.gov.in/public/schemeGuidelines/PRE_MATRIC_OBC_GUIDELINES.pdf
+verified_on: null
+evidence:
+  - claim: Five sub-schemes, for OBC, EBC and DNT students
+    url: https://scholarships.gov.in/public/schemeGuidelines/PRE_MATRIC_OBC_GUIDELINES.pdf
+    quote: "for OBC,EBC and DNT students has been formulated having following five sub-schemes"
+    checked_on: 2026-11-23
+  - claim: Pre-matric for OBC, EBC and DNT (DNT/EBC not covered under SC, ST or OBC)
+    url: https://scholarships.gov.in/public/schemeGuidelines/PRE_MATRIC_OBC_GUIDELINES.pdf
+    quote: "They should belong to either of OBC, EBC and DNT (who are not covered under SC, ST or OBC) categories through valid certificate."
+    checked_on: 2026-11-23
+  - claim: Pre-matric income limit Rs 2.5 lakh
+    url: https://scholarships.gov.in/public/schemeGuidelines/PRE_MATRIC_OBC_GUIDELINES.pdf
+    quote: "Scholarship award will be sanctioned in the case of students whose parents/guardians income from all sources does not exceed Rs.2,50,000/- per annum."
+    checked_on: 2026-11-23
+  - claim: Pre-matric only for class 9-10 in Government schools
+    url: https://scholarships.gov.in/public/schemeGuidelines/PRE_MATRIC_OBC_GUIDELINES.pdf
+    quote: "The students should be studying in class IX and X on a full-time basis in Government Schools only."
+    checked_on: 2026-11-23
+  - claim: Pre-matric Rs 4,000 a year
+    url: https://scholarships.gov.in/public/schemeGuidelines/PRE_MATRIC_OBC_GUIDELINES.pdf
+    quote: "The students shall be given a consolidated academic allowance of Rs. 4000/- per annum."
+    checked_on: 2026-11-23
+  - claim: Only two boys of the same parents
+    url: https://scholarships.gov.in/public/schemeGuidelines/PRE_MATRIC_OBC_GUIDELINES.pdf
+    quote: "Only two boys of the same parents/guardian will be entitled to receive scholarships. This restriction will, however, not apply to girls."
+    checked_on: 2026-11-23
+  - claim: Guidelines period 2021-22 to 2025-26
+    url: https://scholarships.gov.in/public/schemeGuidelines/PRE_MATRIC_OBC_GUIDELINES.pdf
+    quote: "FOR OBCs AND OTHERS (PM –YASASVI) (2021-2022 to 2025-26)"
+    checked_on: 2026-11-23
+  - claim: Post-matric income limit Rs 2.5 lakh (parents' income, plus own income if employed)
+    url: https://scholarships.gov.in/public/schemeGuidelines/HP_state_scheme/Centrally%20Sponsored%20Scheme%20of%20Post%20Matric%20Scholarship%20Scheme%20for%20OBC_scheme.pdf
+    quote: "Unemployed students whose parents/guardians income from all sources does not exceed Rs. 2.50 lakh per annum will be entitled for the scholarship under the scheme."
+    checked_on: 2026-11-23
+  - claim: Employed student's own income is added
+    url: https://scholarships.gov.in/public/schemeGuidelines/HP_state_scheme/Centrally%20Sponsored%20Scheme%20of%20Post%20Matric%20Scholarship%20Scheme%20for%20OBC_scheme.pdf
+    quote: "Employed students whose income combined with the income of their parents/ guardians does not exceed Rs. 2.50 lakh per annum shall be eligible for post -matric scholarship."
+    checked_on: 2026-11-23
+  - claim: Post-matric needs class 10 passed
+    url: https://scholarships.gov.in/public/schemeGuidelines/HP_state_scheme/Centrally%20Sponsored%20Scheme%20of%20Post%20Matric%20Scholarship%20Scheme%20for%20OBC_scheme.pdf
+    quote: "who have passed the Matriculation or Higher secondary or any higher examination of a recognized University or Board of Secondary Education will be eligible."
+    checked_on: 2026-11-23
+  - claim: Post-matric maximum Rs 20,000 a year (Group 1 professional degree courses; academic allowance Rs 10,000 plus tuition fee Rs 10,000)
+    url: https://scholarships.gov.in/public/schemeGuidelines/HP_state_scheme/Centrally%20Sponsored%20Scheme%20of%20Post%20Matric%20Scholarship%20Scheme%20for%20OBC_scheme.pdf
+    quote: "Group 1: Degree and Post Graduate level professional courses 10000 10000 20000"
+    checked_on: 2026-11-23
+  - claim: Post-matric minimum Rs 5,000 a year (Group 4 non-degree courses such as class 11-12, ITI)
+    url: https://scholarships.gov.in/public/schemeGuidelines/HP_state_scheme/Centrally%20Sponsored%20Scheme%20of%20Post%20Matric%20Scholarship%20Scheme%20for%20OBC_scheme.pdf
+    quote: "Group 4: All post-matriculation (Post Class X level) non-degree courses 5000 0 5000"
+    checked_on: 2026-11-23
+  - claim: Post-matric cannot be held with another scholarship or stipend
+    url: https://scholarships.gov.in/public/schemeGuidelines/HP_state_scheme/Centrally%20Sponsored%20Scheme%20of%20Post%20Matric%20Scholarship%20Scheme%20for%20OBC_scheme.pdf
+    quote: "A scholarship holder under this Scheme will not hold any other scholarship/ stipend."
+    checked_on: 2026-11-23
+  - claim: Management, NRI and spot admission seats are not covered
+    url: https://scholarships.gov.in/public/schemeGuidelines/HP_state_scheme/Centrally%20Sponsored%20Scheme%20of%20Post%20Matric%20Scholarship%20Scheme%20for%20OBC_scheme.pdf
+    quote: "All seats filled through arbitrary and non-transparent processes (including management quota, NRI quota, spot admissions etc.) without following the merit criteria as decided by the State Government are not eligible for these scholarships."
+    checked_on: 2026-11-23
+  - claim: Top Class School up to Rs 1.25 lakh a year for class 9-12; Top Class College full support
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2024/oct/doc20241023421901.pdf
+    quote: "with school students (Class 9-12) eligible for funding up to Rs. 1.25 lakh annually. College students at top institutions receive full financial support, including tuition, living expenses, and educational materials."
+    checked_on: 2026-11-23
+  - claim: Pre-matric for class 9-10 and post-matric for higher studies; top class schemes for students who excel
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2024/oct/doc20241023421901.pdf
+    quote: "Under this Scheme students can avail Pre-Matric Scholarship from Class 9 to 10 and Post Matric Scholarship for their higher studies at post-matriculation or post-secondary stage."
+    checked_on: 2026-11-23

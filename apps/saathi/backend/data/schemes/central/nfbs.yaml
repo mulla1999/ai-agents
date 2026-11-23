@@ -1,0 +1,75 @@
+id: nfbs
+name: Pradhan Mantri Parivar Labh Yojana (formerly National Family Benefit Scheme, NFBS)
+level: central
+applies_to: household
+ministry: Ministry of Rural Development (Pradhan Mantri Samajik Sahayata Yojana, formerly National Social Assistance Programme)
+tags: [bpl, bereavement, household, social-assistance]
+summary: A one-time payment to a poor family when its main earner dies between the ages of 18 and 59.
+benefits: A lump sum of Rs 20,000 (central share) paid to the family member who is found to be the head of the household after the death. Some states add their own money, so the amount received can be higher.
+eligibility:
+  - field: main_earner_died
+    op: eq
+    value: true
+    reason: Paid when the family's main earner (aged 18 to 59) has died
+  - field: is_bpl
+    op: eq
+    value: true
+    reason: Household must be on the Below Poverty Line list
+documents:
+  - Death certificate of the breadwinner
+  - Proof of the deceased's age (birth or school certificate, ration card or voter ID)
+  - BPL card or BPL list entry
+  - Aadhaar card of the applicant
+  - Bank or post office account passbook of the applicant
+notes:
+  - "Only for a family whose main earner (bread-winner) has died. The rule here cannot check this: the family qualifies only after such a death, and the person who died must have been older than 18 and younger than 60."
+  - Any death counts, natural or otherwise. A woman who is a homemaker also counts as a bread-winner.
+  - The money goes to the surviving member who, after a local inquiry, is found to be the head of the household. The household means the spouse, minor children, unmarried daughters and dependent parents (for an unmarried adult who died, minor brothers and sisters and dependent parents).
+  - The payment is made for every death of a bread-winner in the family, not just once.
+  - If an eligible family's name is missing from the BPL list, officials should still assess the application instead of turning it away (NSAP guidelines).
+  - Renamed from National Family Benefit Scheme in October 2026, when the National Social Assistance Programme became Pradhan Mantri Samajik Sahayata Yojana; the scheme continues in its existing form.
+how_to_apply: Apply at the gram panchayat or block office (rural) or the municipal office (urban), or through your state's social welfare portal or a CSC, with the death certificate and the other documents.
+apply_url: https://nsap.dord.gov.in
+source_url: https://nsap.dord.gov.in/Guidelines/nsap_guidelines_oct2014.pdf
+verified_on: 2026-11-23
+evidence:
+  - claim: NSAP sub-schemes are for BPL households
+    url: https://nsap.dord.gov.in/Guidelines/nsap_guidelines_oct2014.pdf
+    quote: "The assistance under the sub-schemes of NSAP are applicable for persons belonging to Below Poverty Line (BPL) category."
+    checked_on: 2026-11-23
+  - claim: Rs 20,000 lump sum on death of the bread-winner
+    url: https://nsap.dord.gov.in/Guidelines/nsap_guidelines_oct2014.pdf
+    quote: "Rs. 20000/- will be given as a lumpsum assistance to the bereaved household in the event of death of the bread-winner."
+    checked_on: 2026-11-23
+  - claim: Bread-winner must have died aged more than 18 and less than 60
+    url: https://nsap.dord.gov.in/Guidelines/nsap_guidelines_oct2014.pdf
+    quote: "The death of such a bread-winner should have occurred whilst he/she is more than 18 years of age and less than 60 years of age."
+    checked_on: 2026-11-23
+  - claim: Any death counts; a homemaker woman counts as bread-winner
+    url: https://nsap.dord.gov.in/Guidelines/nsap_guidelines_oct2014.pdf
+    quote: "A woman in the family, who is a home maker, is also considered as a ‘bread-winner’ for this purpose."
+    checked_on: 2026-11-23
+  - claim: Paid to the surviving head of household; definition of household
+    url: https://nsap.dord.gov.in/Guidelines/nsap_guidelines_oct2014.pdf
+    quote: "The family benefit will be paid to such surviving member of the household of the deceased poor, who after local inquiry, is found to be the head of the household."
+    checked_on: 2026-11-23
+  - claim: Paid for every death of a bread-winner
+    url: https://nsap.dord.gov.in/Guidelines/nsap_guidelines_oct2014.pdf
+    quote: "The assistance would be given to every case of death of breadwinner in a family."
+    checked_on: 2026-11-23
+  - claim: Eligible persons missing from the BPL list should not be left out
+    url: https://nsap.dord.gov.in/Guidelines/nsap_guidelines_oct2014.pdf
+    quote: "However if an eligible person's name does not figure in the BPL list, he/she should not be left out."
+    checked_on: 2026-11-23
+  - claim: Renamed Pradhan Mantri Parivar Labh Yojana on 14 October 2026; continues in existing form (government broadcaster report of the Cabinet decision; the PIB release could not be fetched)
+    url: https://newsonair.gov.in/cabinet-approves-53428-crore-rupees-for-social-security-net/
+    quote: "Pension schemes for old aged and widows and family benefit scheme will continue in its existing form."
+    checked_on: 2026-11-23
+  - claim: New name of the family benefit scheme
+    url: https://newsonair.gov.in/cabinet-approves-53428-crore-rupees-for-social-security-net/
+    quote: "will be called Pradhan Mantri Parivar Labh Yojana"
+    checked_on: 2026-11-23
+  - claim: NSAP renamed Pradhan Mantri Samajik Sahayata Yojana
+    url: https://newsonair.gov.in/cabinet-approves-53428-crore-rupees-for-social-security-net/
+    quote: "The National Social Assistance Programme has been renamed as Pradhan Mantri Samajik Sahayata Yojana."
+    checked_on: 2026-11-23

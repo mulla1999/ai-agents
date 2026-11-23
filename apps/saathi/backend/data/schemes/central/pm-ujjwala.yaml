@@ -1,0 +1,36 @@
+id: pm-ujjwala
+name: Pradhan Mantri Ujjwala Yojana (PMUY)
+level: central
+ministry: Ministry of Petroleum and Natural Gas
+tags: [women, lpg, household]
+summary: A free LPG gas connection in a woman's name for poor households that have no LPG connection, given on a signed declaration of the household's poverty.
+benefits: Deposit-free LPG connection, with the first refill and a stove free under Ujjwala 2.0, and a targeted subsidy on refills.
+eligibility:
+  - field: gender
+    op: eq
+    value: female
+    reason: The connection is given in a woman's name
+  - field: age
+    op: gte
+    value: 18
+    reason: Must be at least 18 years old
+  - field: has_lpg_connection
+    op: eq
+    value: false
+    reason: The household must not already have an LPG connection
+documents:
+  - KYC application form with a recent photograph of the applicant
+  - Aadhaar card of the woman applicant
+  - Ration card or other state document showing family members (or a self-declaration, for migrants)
+  - Aadhaar of all adult family members on that document
+  - Proof of address, if it differs from the address on Aadhaar
+  - Bank account details (passbook or cancelled cheque)
+  - Signed deprivation declaration (standard form)
+notes:
+  - Only one connection per household, in the name of an adult woman of the family.
+  - "The woman must be from a poor household, shown by signing a deprivation declaration. Listed groups include SC and ST households, PMAY-Gramin beneficiaries, Antyodaya (AAY) card holders, most backward classes, tea and ex-tea garden tribes, forest dwellers, island and river-island residents, and SECC-listed households; any other poor household can apply through the declaration."
+  - "Refill subsidy in 2026-27: Rs 300 per 14.2 kg cylinder for up to 4 refills a year (it was 9 in 2025-26). Further refills can be bought at the normal price. The government reviews this each year."
+how_to_apply: Apply online on the PMUY portal (free) or through a CSC (Rs 20 fee), or at any LPG distributor of Indane, Bharat Gas or HP Gas with the documents listed.
+apply_url: https://www.pmuy.gov.in/ujjwala2.html
+source_url: https://www.pmuy.gov.in/ujjwala2.html
+verified_on: 2026-11-20

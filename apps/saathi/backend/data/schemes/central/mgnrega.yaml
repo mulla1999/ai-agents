@@ -1,0 +1,73 @@
+id: mgnrega
+name: Viksit Bharat - Guarantee for Rozgar and Ajeevika Mission (Gramin) (VB-G RAM G), which replaced MGNREGA
+level: central
+applies_to: household
+ministry: Ministry of Rural Development
+tags: [employment, wages, rural, job-card]
+summary: Guaranteed paid manual work for rural households. Since 1 July 2026 this law (VB-G RAM G) has replaced MGNREGA and raised the guarantee from 100 to 125 days a year.
+benefits: Up to 125 days of paid unskilled manual work every financial year for each rural household whose adult members ask for work. Wages are paid at the rate notified by the Central Government, straight into the worker's bank or post office account, weekly or at most within 15 days of the muster roll closing, with compensation for late payment. If work is not given within the set time, an unemployment allowance is paid. Worksites must have drinking water, shade, first aid and childcare, and injured workers get free treatment.
+eligibility:
+  - field: residence
+    op: eq
+    value: rural
+    reason: Only for households living in rural areas
+  - field: age
+    op: gte
+    value: 18
+    reason: Work is for adult members of the household
+documents:
+  - Existing MGNREGA job card with completed e-KYC (valid until the new Gramin Rozgar Guarantee Card is issued)
+  - If the household has no job card, apply at the Gram Panchayat for registration and a new card
+notes:
+  - MGNREGA was repealed on 1 July 2026 and replaced by the VB-G RAM G Act, 2025. Ongoing MGNREGA works continue under the new Act.
+  - The guarantee is per household (125 days a year shared by the family), not per person.
+  - Existing job cards with completed e-KYC stay valid until new Gramin Rozgar Guarantee Cards are issued. Work cannot be refused only because e-KYC is pending.
+  - Work can be asked for orally, in writing (Form-6) or through digital platforms.
+  - "Unemployment allowance if work is not given in time: at least one-fourth of the notified wage rate for the first 30 days in the year, and at least half for the rest of the year."
+  - States can notify a pause of up to 60 days a year during peak sowing and harvesting, when no works are run; the full 125 days can still be given in the rest of the year.
+  - Wage rates are notified by the Central Government and differ by state; ask the Gram Panchayat for the current rate.
+  - Each state must notify its own scheme under the Act within six months of 1 July 2026, so local details may still change.
+how_to_apply: Ask for registration at your Gram Panchayat (any adult member can apply for the household). With a card, ask for work at the Gram Panchayat orally or in writing (Form-6), or through digital platforms. Attendance is taken at the worksite through the NMMS app and face authentication.
+apply_url: https://vbgramg.dord.gov.in
+source_url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/may/doc2026511867601.pdf
+verified_on: 2026-11-23
+evidence:
+  - claim: MGNREGA repealed and VB-G RAM G in force in all rural areas from 1 July 2026
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/may/doc2026511867601.pdf
+    quote: "With the coming into force of the VB – G RAM G Act, the Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA), 2005, stands repealed from the same date."
+    checked_on: 2026-11-23
+  - claim: Rural households only (residence rural); adult members (age 18+); 125 days per financial year per household
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/may/doc2026511867601.pdf
+    quote: "125 days of wage employment in every financial year to every rural household whose adult members volunteer to undertake unskilled manual work"
+    checked_on: 2026-11-23
+  - claim: Wage rates notified by the Central Government
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/may/doc2026511867601.pdf
+    quote: "Wage rates for unskilled manual work will be notified by the Central Government"
+    checked_on: 2026-11-23
+  - claim: Wages paid weekly or within 15 days, by DBT, with delay compensation
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/may/doc2026511867601.pdf
+    quote: "wages are to be paid weekly or, in any case, within fifteen days from the closure of the muster roll"
+    checked_on: 2026-11-23
+  - claim: Unemployment allowance at one-fourth (first 30 days) and one-half (rest of year) of the notified wage rate
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/may/doc2026511867601.pdf
+    quote: "at not less than one-fourth of the notified wage rate for the first thirty days of the financial year and at not less than one-half of the notified wage rate for the remaining period"
+    checked_on: 2026-11-23
+  - claim: Existing e-KYC job cards stay valid; new registrations at the Gram Panchayat; no denial for pending e-KYC
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/may/doc2026511867601.pdf
+    quote: "Existing e-KYC-verified Job Cards shall continue to remain valid until Gramin Rozgar Guarantee Cards are issued."
+    checked_on: 2026-11-23
+  - claim: Work can be demanded orally, by Form-6, or digitally
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/may/doc2026511867601.pdf
+    quote: "Workers may continue to demand employment orally, in writing through the existing Form-6 framework, or through digital platforms."
+    checked_on: 2026-11-23
+  - claim: States may notify a pause of up to 60 days a year in peak farm seasons
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/may/doc2026511867601.pdf
+    quote: "the Act empowers States to notify an aggregated pause period aggregating to sixty days in a financial year (Section 6)"
+    checked_on: 2026-11-23
+  - claim: States must notify their schemes within six months
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/may/doc2026511867601.pdf
+    quote: "Every State Government must notify its Scheme, as per the provisions of the Act, within six months of the Act's commencement."
+    checked_on: 2026-11-23
+  - claim: Official VB-G RAM G portal of the Ministry of Rural Development
+    url: https://vbgramg.dord.gov.in
+    checked_on: 2026-11-23

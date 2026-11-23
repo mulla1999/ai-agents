@@ -26,8 +26,11 @@ documents:
   - Aadhaar card
   - Bank account in the student's name (seeded with Aadhaar)
 notes:
-  - The government has proposed raising the family income limit to Rs 4.5 lakh from 2026-27; this was not confirmed as of October 2026. Check the current limit on the scholarship portal.
+  - The income limit is Rs 2.5 lakh a year (confirmed by the ministry in August 2026). A rise to Rs 4.5 lakh has been reported as proposed but not notified; check the scholarship portal for the current limit.
+  - You cannot hold another scholarship at the same time; if offered two, choose one.
+  - Apply in your state of domicile. Seats filled through management or NRI quota or spot admission are not covered.
+  - The income certificate is needed only once, at admission, for courses longer than one year.
 how_to_apply: Apply online on the National Scholarship Portal or your state's scholarship portal during the application window, then get the application verified by your institution.
 apply_url: https://scholarships.gov.in
-source_url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2209488
-verified_on: null
+source_url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2298357
+verified_on: 2026-11-20

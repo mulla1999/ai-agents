@@ -19,7 +19,7 @@ from ..schemes import Scheme, load_schemes
 log = logging.getLogger(__name__)
 
 _SCHEME_COLUMNS = (
-    "name", "level", "state", "ministry", "tags", "summary", "benefits", "eligibility",
+    "name", "level", "state", "applies_to", "ministry", "tags", "summary", "benefits", "eligibility",
     "documents", "notes", "how_to_apply", "apply_url", "source_url",
 )  # fmt: skip
 
@@ -115,6 +115,51 @@ def _revision(record: SchemeRecord, scheme: Scheme, actor: User | None) -> Schem
         data=scheme.model_dump(mode="json"),
         changed_by_user_id=actor.id if actor else None,
     )
+
+
+async def sync_schemes(db: AsyncSession, directory: Path, *, apply: bool) -> list[tuple[str, str]]:
+    """Bring the database in line with the YAML files, for corrections made after a database was seeded.
+
+    Returns (scheme id, action) for every record that differs: "add", "update" or "skip (archived)".
+    With ``apply`` the changes are made like an admin edit (version + 1, a revision row, so earlier
+    versions can be restored); the status follows the file (verified with its date, or draft).
+    Records that exist only in the database, and archived ones, are left alone.
+    """
+    changes: list[tuple[str, str]] = []
+    for scheme in load_schemes(directory):
+        record = await db.get(SchemeRecord, scheme.id)
+        if record is None:
+            changes.append((scheme.id, "add"))
+            if apply:
+                record = await create_scheme(db, scheme, None)
+                _set_status_from_file(record, scheme)
+            continue
+        wanted = scheme.model_dump(mode="json")
+        current = {column: getattr(record, column) for column in _SCHEME_COLUMNS}
+        status_differs = (record.status is SchemeStatus.VERIFIED) != (scheme.verified_on is not None) or (
+            scheme.verified_on is not None and record.verified_on != scheme.verified_on
+        )
+        if all(current[c] == wanted[c] for c in _SCHEME_COLUMNS) and not status_differs:
+            continue
+        if record.status is SchemeStatus.ARCHIVED:
+            changes.append((scheme.id, "skip (archived)"))
+            continue
+        changes.append((scheme.id, "update"))
+        if apply:
+            _apply_scheme(record, scheme)
+            record.version += 1
+            record.updated_by_user_id = None
+            _set_status_from_file(record, scheme)
+            db.add(_revision(record, scheme, None))
+    if apply:
+        await db.commit()
+    return changes
+
+
+def _set_status_from_file(record: SchemeRecord, scheme: Scheme) -> None:
+    record.status = SchemeStatus.VERIFIED if scheme.verified_on else SchemeStatus.DRAFT
+    record.verified_on = scheme.verified_on
+    record.verified_by_user_id = None
 
 
 async def seed_schemes(db: AsyncSession, directory: Path) -> int:

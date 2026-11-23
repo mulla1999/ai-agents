@@ -18,18 +18,19 @@ eligibility:
     op: eq
     value: true
     reason: Needs a savings bank or post office account
-  - field: is_income_tax_payer
+  - field: has_paid_income_tax
     op: eq
     value: false
-    reason: Income tax payers cannot join (since 1 October 2022)
+    reason: People who are or have ever been income tax payers cannot join (since 1 October 2022)
 documents:
   - Savings bank or post office account
   - Aadhaar card
-  - Mobile number
+  - Mobile number (optional, for account updates)
 notes:
   - The contribution depends on the age at joining and the pension chosen, and is auto-debited monthly, quarterly or half-yearly until age 60.
-  - If someone who joined on or after 1 October 2022 is later found to be an income tax payer, the account is closed and the savings returned.
-how_to_apply: Fill the APY form at the bank or post office where you have your savings account, or through your bank's net banking or mobile app.
-apply_url: https://www.pfrda.org.in
-source_url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2259251
-verified_on: null
+  - Only the applicant's own income-tax status counts. The husband or wife of a taxpayer can join if he or she has never paid income tax.
+  - If someone who joined on or after 1 October 2022 is found to have been an income tax payer on or before the date of applying, the account is closed and the savings returned. Becoming a taxpayer after joining does not close the account.
+how_to_apply: Fill the APY registration form at the bank branch or post office where you have your savings account, or join online through eAPY or your bank's net banking.
+apply_url: https://www.pfrda.org.in/schemes/atal-pension-yojana-apy
+source_url: https://www.pfrda.org.in/schemes/atal-pension-yojana-apy
+verified_on: 2026-11-20

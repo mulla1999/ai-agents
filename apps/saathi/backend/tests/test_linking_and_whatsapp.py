@@ -94,6 +94,7 @@ async def test_whatsapp_asks_consent_then_chats_on_the_shared_record(app, llm, s
 async def test_whatsapp_rejects_non_indian_numbers_and_handles_voice_notes(app):
     handler = app.state.whatsapp_handler
     assert await handler(wa("hi", sender="12025550100")) == UNSUPPORTED_NUMBER
+    await handler(wa("hi", sender="919876500007"))
     await handler(wa("yes", sender="919876500007"))
     assert await handler(wa(None, sender="919876500007", kind="audio", media="media-1")) == TEXT_ONLY_REPLY
 

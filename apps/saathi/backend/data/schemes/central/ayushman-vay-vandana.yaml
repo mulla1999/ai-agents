@@ -1,0 +1,22 @@
+id: ayushman-vay-vandana
+name: Ayushman Bharat PM-JAY for senior citizens aged 70+ (Ayushman Vay Vandana)
+level: central
+ministry: Ministry of Health and Family Welfare (National Health Authority)
+tags: [health, insurance, senior-citizen]
+summary: Free hospital treatment cover for every person aged 70 or older, whatever their income.
+benefits: Health cover of up to Rs 5 lakh a year for hospital treatment at empanelled public and private hospitals, cashless.
+eligibility:
+  - field: age
+    op: gte
+    value: 70
+    reason: Must be 70 years or older
+documents:
+  - Aadhaar card
+notes:
+  - The cover is per family and shared by all members aged 70 or older. Families already under PM-JAY get this as an extra top-up for their members aged 70+.
+  - People covered by CGHS, ECHS or CAPF health schemes can choose either their current scheme or this one.
+  - People with private health insurance or ESIS can still get this card.
+how_to_apply: Enrol through the Ayushman app or the beneficiary portal with Aadhaar e-KYC, or at an empanelled hospital or CSC, to get the Ayushman Vay Vandana card.
+apply_url: https://beneficiary.nha.gov.in
+source_url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2053883
+verified_on: 2026-11-20

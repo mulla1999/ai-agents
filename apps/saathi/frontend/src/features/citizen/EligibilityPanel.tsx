@@ -1,4 +1,4 @@
-import { AlertTriangle, CheckCircle2, ChevronDown, CircleHelp, ExternalLink, FileText, Info, Landmark, ListChecks, MapPin, Plus, XCircle } from "lucide-react";
+import { AlertTriangle, CheckCircle2, ChevronDown, CircleHelp, ExternalLink, FileText, Info, Landmark, ListChecks, MapPin, Plus, Users, XCircle } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
@@ -48,7 +48,7 @@ export function EligibilityPanel({ citizen }: { citizen: Citizen }) {
       {eligible.length > 0 && (
         <Section title={t("schemes.eligible")} count={eligible.length}>
           {eligible.map((m) => (
-            <MatchCard key={m.scheme_id} match={m}>
+            <MatchCard key={matchKey(m)} match={m}>
               {tracked.has(m.scheme_id) ? (
                 <Badge tone="brand" icon={ListChecks}>
                   {t("schemes.tracking")}
@@ -72,7 +72,7 @@ export function EligibilityPanel({ citizen }: { citizen: Citizen }) {
       {maybe.length > 0 && (
         <Section title={t("schemes.needsInfo")} count={maybe.length}>
           {maybe.map((m) => (
-            <MatchCard key={m.scheme_id} match={m} />
+            <MatchCard key={matchKey(m)} match={m} />
           ))}
         </Section>
       )}
@@ -94,6 +94,19 @@ export function EligibilityPanel({ citizen }: { citizen: Citizen }) {
         </details>
       )}
     </div>
+  );
+}
+
+const matchKey = (m: Match) => `${m.scheme_id}:${m.member?.index ?? "self"}`;
+
+function MemberBadge({ member }: { member: NonNullable<Match["member"]> }) {
+  const { t } = useTranslation();
+  const relation = t(`family.relations.${member.relation}`);
+  const who = member.age === null ? relation : t("family.who", { relation, age: member.age });
+  return (
+    <Badge tone="blue" icon={Users}>
+      {t("family.for", { who: who.toLowerCase() })}
+    </Badge>
   );
 }
 
@@ -140,7 +153,8 @@ function MatchCard({ match, children }: { match: Match; children?: ReactNode }) 
         </span>
         <div className="min-w-0 flex-1">
           <h3 className="font-semibold leading-snug text-brand-950">{match.scheme_name}</h3>
-          <div className="mt-1">
+          <div className="mt-1 flex flex-wrap gap-1.5">
+            {match.member && <MemberBadge member={match.member} />}
             {match.level === "state" && match.state ? (
               <Badge tone="amber" icon={MapPin}>
                 {t("schemes.stateScheme", { state: optionLabel(i18n.language, match.state) })}

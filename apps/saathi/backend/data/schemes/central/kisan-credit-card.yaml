@@ -1,0 +1,74 @@
+id: kisan-credit-card
+name: Kisan Credit Card (KCC) with Modified Interest Subvention Scheme
+level: central
+applies_to: household
+ministry: Ministry of Agriculture and Farmers Welfare / Department of Financial Services (implemented by banks under RBI directions)
+tags: [farmer, credit, loan, fisheries, animal-husbandry]
+summary: A revolving bank credit card for farmers, tenant farmers, sharecroppers, fishers and animal husbandry farmers to meet crop and allied-activity costs, with government-subsidised interest on short-term loans.
+benefits: "Short-term loans for crops and allied activities (dairy, animal husbandry, fisheries, bee keeping) through a KCC valid for six years. For loans in 2025-26, interest is 7% a year on up to Rs 3 lakh, falling to an effective 4% if repaid on time (3% prompt repayment incentive). Farmers only in animal husbandry, dairy or fisheries get this on up to Rs 2 lakh. No collateral is needed for loans up to Rs 2 lakh. Small and marginal farmers can keep the subsidised rate for up to six more months after harvest on loans against warehouse receipts."
+eligibility:
+  - field: occupation
+    op: in
+    value: [farmer, fisher]
+    reason: For farmers (owners, tenant farmers, oral lessees and sharecroppers), animal husbandry farmers, fishers and fish farmers
+documents:
+  - Filled KCC application form
+  - Land record, or tenancy certificate or equivalent certificate (one-time documentation)
+  - For sharecroppers and oral lessees, a certificate of crop cultivation from the local administration or panchayat
+  - Aadhaar (needed for the interest subvention benefit)
+notes:
+  - Tenant farmers, oral lessees and sharecroppers can get a KCC without owning land; the bank accepts a certificate from the local administration or panchayat, or an affidavit for loans up to Rs 50,000.
+  - "Fishers, fish farmers and animal husbandry or dairy farmers can get a KCC for working capital for those activities; the rule here counts fishers and farmers, but cannot tell an animal husbandry farmer who chose another occupation."
+  - "The interest rates above are from the RBI circular for loans in 2025-26. The Union Budget 2025-26 announced raising the subsidised KCC loan limit from Rs 3 lakh to Rs 5 lakh, but the latest official circular (13 January 2026) still uses Rs 3 lakh. The continuation and terms for 2026-27 had not been officially notified when this record was checked; confirm with the bank."
+  - The 3% prompt repayment benefit is lost if the loan is repaid after one year. Aadhaar seeding and e-KYC are mandatory for the interest subsidy.
+  - The amount of the card limit is set by the bank from the local Scale of Finance and the land or units farmed; collateral above Rs 2 lakh is at the bank's discretion.
+  - New RBI KCC Directions, 2026 apply to KCC loans sanctioned from 1 January 2027; earlier loans continue under the old rules until renewal.
+  - Processing and other charges are as per the bank's policy.
+how_to_apply: Apply at any commercial bank, regional rural bank, small finance bank or cooperative bank branch (or a Primary Agricultural Credit Society) with the application form and land or cultivation documents. Many banks also accept applications online.
+source_url: https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13522&Mode=0
+verified_on: null
+evidence:
+  - claim: Eligible - owner cultivators, tenant farmers, oral lessees, sharecroppers, SHGs and JLGs
+    url: https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13522&Mode=0
+    quote: "Tenant farmers, oral lessees, and sharecroppers; and"
+    checked_on: 2026-11-23
+  - claim: Eligible for allied activities - animal husbandry farmers, fishers, fish farmers
+    url: https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13522&Mode=0
+    quote: "Animal husbandry farmers, fishers, fish farmers and farmers (including tenant farmers and sharecroppers)"
+    checked_on: 2026-11-23
+  - claim: KCC is a composite facility with a six-year tenure
+    url: https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13522&Mode=0
+    quote: "in the form of a composite facility with a tenure of six years"
+    checked_on: 2026-11-23
+  - claim: No collateral up to Rs 2 lakh
+    url: https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13522&Mode=0
+    quote: "Banks shall waive collateral security and margin requirements for agricultural loans including loans for allied activities"
+    checked_on: 2026-11-23
+  - claim: Documents - land record or tenancy certificate; panchayat certificate for sharecroppers and oral lessees
+    url: https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13522&Mode=0
+    quote: "Banks shall obtain a one-time documentation including land record / tenancy certificate / equivalent certificate"
+    checked_on: 2026-11-23
+  - claim: Directions apply to loans sanctioned from 1 January 2027
+    url: https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13522&Mode=0
+    quote: "The Directions shall be applicable to loans sanctioned under the KCC Scheme with effect from January 01, 2027."
+    checked_on: 2026-11-23
+  - claim: 7% lending rate with 1.5% subvention to lenders for 2025-26
+    url: https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13270&Mode=0
+    quote: "The applicable lending rate to farmers and the rate of interest subvention for the financial year 2025-26 will be as follows"
+    checked_on: 2026-11-23
+  - claim: Additional 3% for prompt repayment, effective 4%
+    url: https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13270&Mode=0
+    quote: "An additional interest subvention of 3% per annum will be provided to such of those farmers repaying in time"
+    checked_on: 2026-11-23
+  - claim: Overall limit Rs 3 lakh; Rs 2 lakh sub-limit for animal husbandry, dairy, fisheries
+    url: https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13270&Mode=0
+    quote: "will be available on an overall limit of ₹3 lakh per annum subject to a maximum sub-limit of ₹2 lakh per farmer"
+    checked_on: 2026-11-23
+  - claim: Post-harvest benefit for small and marginal farmers against warehouse receipts
+    url: https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13270&Mode=0
+    quote: "will be available to small and marginal farmers for a further period of upto six months post the harvest"
+    checked_on: 2026-11-23
+  - claim: Aadhaar mandatory for subvention
+    url: https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13270&Mode=0
+    quote: "Aadhaar seeding and authentication are mandatory for availing benefits under the scheme."
+    checked_on: 2026-11-23

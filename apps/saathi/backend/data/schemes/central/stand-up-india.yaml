@@ -1,0 +1,69 @@
+id: stand-up-india
+name: Stand-Up India
+level: central
+applies_to: household
+ministry: Department of Financial Services, Ministry of Finance
+tags: [loan, business, women, sc, st, msme]
+summary: Bank loans for women, SC and ST entrepreneurs setting up a new business in manufacturing, services, trading or activities allied to agriculture. Continued by the Union Cabinet in November 2026 until 31 March 2031.
+benefits: A composite loan (term loan plus working capital) or term loan from a scheduled commercial bank of above Rs 10 lakh and up to Rs 1 crore, covering up to 85% of the project cost, for a new (greenfield) enterprise. The loans are backed by a government credit guarantee.
+eligibility:
+  - field: age
+    op: gte
+    value: 18
+    reason: Must be above 18 years of age
+  - field: plans_new_business
+    op: eq
+    value: true
+    reason: Only for setting up a new (greenfield) enterprise
+  - any:
+      - field: social_category
+        op: in
+        value: [sc, st]
+        reason: Applicant is SC or ST
+      - field: gender
+        op: eq
+        value: female
+        reason: Applicant is a woman
+    reason: For women, Scheduled Caste and Scheduled Tribe entrepreneurs
+documents:
+  - Identity and address proof
+  - Caste certificate (for SC/ST applicants)
+  - Project report / business plan
+  - Other documents as asked for by the bank
+notes:
+  - The earlier scheme ended on 31 March 2025. On 11 November 2026 the Union Cabinet approved its continuation for five years up to 31 March 2031; revised operational guidelines from the Department of Financial Services had not been seen on 2026-11-23, so confirm with the bank that it is taking applications.
+  - The applicant must put in at least 10% of the project cost as their own contribution (rules of the earlier scheme; check the revised guidelines).
+  - Repayment over up to 7 years with a moratorium of up to 18 months under the earlier guidelines.
+how_to_apply: Apply directly at a scheduled commercial bank branch, or online on the JanSamarth portal. The bank appraises the business plan before sanctioning the loan.
+apply_url: https://www.jansamarth.in
+source_url: https://www.pmindia.gov.in/en/news_updates/cabinet-approves-continuation-of-stand-up-india-scheme/
+verified_on: null
+evidence:
+  - claim: Cabinet approved continuation for 5 years up to 31.03.2031, for women, SC and ST entrepreneurs
+    url: https://www.pmindia.gov.in/en/news_updates/cabinet-approves-continuation-of-stand-up-india-scheme/
+    quote: "has approved the continuation of Stand-Up India Scheme for a period of 5 years upto 31.03.2031. The scheme aims to promote entrepreneurship among Women, Scheduled Castes (SCs) and Scheduled Tribes (STs)."
+    checked_on: 2026-11-23
+  - claim: Loans above Rs 10 lakh up to Rs 1 crore, up to 85% of project cost
+    url: https://www.pmindia.gov.in/en/news_updates/cabinet-approves-continuation-of-stand-up-india-scheme/
+    quote: "Composite (Working Capital and Term Loan) or Term loan for amounts above Rs.10.00 lakh and upto Rs.1.00 crore (upto 85% of the project cost)"
+    checked_on: 2026-11-23
+  - claim: Age above 18
+    url: https://financialservices.gov.in/stand-india-scheme-supi
+    quote: "entrepreneurs above 18 years of age"
+    checked_on: 2026-11-23
+  - claim: Greenfield projects in manufacturing, services, trading and agri-allied activities
+    url: https://financialservices.gov.in/stand-india-scheme-supi
+    quote: "greenfield projects in manufacturing, services or trading sector and activities allied to agriculture"
+    checked_on: 2026-11-23
+  - claim: Own contribution of at least 10% (earlier guidelines)
+    url: https://financialservices.gov.in/stand-india-scheme-supi
+    quote: "minimum of 10 % of the project cost as his/her own contribution"
+    checked_on: 2026-11-23
+  - claim: Repayment up to 7 years with 18-month moratorium (earlier guidelines)
+    url: https://financialservices.gov.in/stand-india-scheme-supi
+    quote: "upto seven years including moratorium period of 18 months"
+    checked_on: 2026-11-23
+  - claim: Applications via JanSamarth portal
+    url: https://financialservices.gov.in/stand-india-scheme-supi
+    quote: "www.jansamarth.in portal"
+    checked_on: 2026-11-23

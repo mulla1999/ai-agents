@@ -12,6 +12,7 @@ from ..db import Channel, ChatMessage, Conversation
 from ..errors import Unavailable
 from ..services.access import load_citizen, require_consent
 from ..services.conversations import profile_to_json
+from ..services.usage import check_chat_quota
 from .schemas import ChatIn, ChatOut, MessageOut
 
 router = APIRouter(prefix="/api/citizens/{citizen_id}", tags=["chat"])
@@ -40,6 +41,7 @@ async def chat(citizen_id: uuid.UUID, body: ChatIn, request: Request, user: Curr
         raise Unavailable("chat is not configured on this server (no LLM provider)")
     citizen = await load_citizen(db, user, citizen_id, action="chat")
     require_consent(citizen)
+    await check_chat_quota(db, citizen.id, request.app.state.settings)
     await db.commit()  # release the connection before the (slow) LLM calls
 
     key = str(citizen.id)

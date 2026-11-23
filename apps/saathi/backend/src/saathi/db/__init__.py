@@ -7,6 +7,7 @@ from .models import (
     AuthIdentity,
     AuthProvider,
     Channel,
+    ChatLock,
     ChatMessage,
     Citizen,
     Conversation,
@@ -17,6 +18,7 @@ from .models import (
     SchemeStatus,
     User,
     UserSession,
+    WhatsAppInbound,
     WhatsAppLogin,
 )
 
@@ -29,6 +31,7 @@ __all__ = [
     "AuthProvider",
     "Base",
     "Channel",
+    "ChatLock",
     "ChatMessage",
     "Citizen",
     "Conversation",
@@ -39,6 +42,7 @@ __all__ = [
     "SchemeStatus",
     "User",
     "UserSession",
+    "WhatsAppInbound",
     "WhatsAppLogin",
     "create_engine",
     "create_sessionmaker",

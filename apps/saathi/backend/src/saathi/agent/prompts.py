@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from collections.abc import Sequence
 
-from ..profile import field_spec, question_hint
+from ..profile import FamilyMember, field_spec, question_hint
 from ..schemes import Match, Scheme, Status
 
 MAX_SCHEMES_IN_PROMPT = 8
@@ -22,12 +22,21 @@ extract facts about them. Respond with a JSON object only, with exactly these ke
             "show_results" = they want to see their schemes now; "question" = they ask about a
             scheme or the process; "delete_data" = they want their information deleted.
 
-Profile fields:
+Profile fields (about the person who is writing):
 {fields}
+
+"updates" may also contain "family_members": a list of family members the person mentions, each an
+object with "relation" (one of spouse, son, daughter, father, mother, other) and any of "age",
+"gender", "is_studying_post_matric", "is_widow", "is_pregnant_or_lactating", "disability_percent",
+"is_government_employee", "has_paid_income_tax", "current_class" (0 = not in school), "is_pregnant".
+List only members mentioned in THIS message. To add facts about a known member, repeat their
+relation and age. Never include names. Known family members: {family}
 
 Rules:
 - Never guess. Leave a field out unless the message supports it.
 - Convert money to rupees per YEAR as an integer ("1.5 lakh" -> 150000, "10 hazaar mahina" -> 120000).
+- Convert land to hectares: 1 acre = 0.4047 hectare ("5 acre" -> 2.02). If a local unit such as bigha
+  or kanal is used, leave land_holding_hectares out (its size differs from state to state).
 - Use only the allowed values for fields with fixed choices; map clear synonyms ("kisan" -> "farmer").
 - A short reply such as "yes", "haan", "nahi", "illa" answers the last question asked, which was
   about: {last_field}.
@@ -57,8 +66,49 @@ TASK: The person asked to delete their data. Confirm in one or two sentences tha
 shared has been deleted, and that they can start again any time by sending a message."""
 
 
-def extraction_system(last_asked_field: str | None) -> str:
-    return EXTRACTION_SYSTEM.format(fields=field_spec(), last_field=last_asked_field or "nothing yet")
+DELETE_FALLBACK = (
+    "Everything you shared has been deleted. Send a message any time to start again.\n"
+    "आपकी दी हुई सारी जानकारी हटा दी गई है। फिर से शुरू करने के लिए कभी भी संदेश भेजें।"
+)
+
+_CHECK_OFFICIAL = (
+    "Please confirm the details on the official website or at a Common Service Centre (CSC) before applying.\n"
+    "आवेदन से पहले आधिकारिक वेबसाइट या नज़दीकी CSC पर जानकारी की पुष्टि ज़रूर करें।"
+)
+
+
+def correction(problems: Sequence[str]) -> str:
+    return (
+        "CORRECTION: your previous draft contained facts that are not in the SCHEME DATA or in what the "
+        f"person said: {'; '.join(problems)}. Write the reply again without them. Do not give any amount, "
+        "phone number, helpline or website that is not written in the SCHEME DATA."
+    )
+
+
+def question_fallback(field_name: str) -> str:
+    """Sent when the model keeps adding unsupported facts while asking a question."""
+    return question_hint(field_name)
+
+
+def answer_fallback(matches: Sequence[Match]) -> str:
+    """A plain reply built only from scheme data, used when the model keeps adding unsupported facts."""
+    eligible = _eligible_by_scheme(matches)[:MAX_SCHEMES_IN_PROMPT]
+    if not eligible:
+        return (
+            "I could not find a scheme you clearly qualify for yet. A Common Service Centre (CSC) can help you check.\n"
+            "अभी मुझे ऐसी कोई योजना नहीं मिली जिसके लिए आप साफ़ तौर पर पात्र हों। नज़दीकी CSC पर जाँच करवा सकते हैं।"
+        )
+    lines = ["Schemes you may qualify for / आप इन योजनाओं के लिए पात्र हो सकते हैं:"]
+    for scheme, who in eligible:
+        link = scheme.apply_url or scheme.source_url
+        lines.append(f"• {scheme.name} (for {', '.join(who)}): {scheme.benefits} ({link})")
+    lines.append(_CHECK_OFFICIAL)
+    return "\n".join(lines)
+
+
+def extraction_system(last_asked_field: str | None, family: Sequence[FamilyMember] = ()) -> str:
+    known = json.dumps([m.model_dump(mode="json", exclude_none=True) for m in family]) if family else "none yet"
+    return EXTRACTION_SYSTEM.format(fields=field_spec(), last_field=last_asked_field or "nothing yet", family=known)
 
 
 def persona(language: str | None) -> str:
@@ -74,13 +124,29 @@ def ask_task(field_name: str, *, first_turn: bool) -> str:
     )
 
 
+def _eligible_by_scheme(matches: Sequence[Match]) -> list[tuple[Scheme, list[str]]]:
+    """Eligible schemes, each with who qualifies ("you", "daughter, age 6", ...), in first-seen order."""
+    grouped: dict[str, tuple[Scheme, list[str]]] = {}
+    for match in matches:
+        if match.status is Status.ELIGIBLE:
+            who = "you" if match.member is None else f"your {match.member.label()}"
+            grouped.setdefault(match.scheme.id, (match.scheme, []))[1].append(who)
+    return list(grouped.values())
+
+
 def answer_task(matches: Sequence[Match], *, results_already_shown: bool) -> str:
-    eligible = [m.scheme for m in matches if m.status is Status.ELIGIBLE]
-    possible = [m.scheme.name for m in matches if m.status is Status.NEEDS_INFO]
+    eligible = _eligible_by_scheme(matches)
+    possible = [m.scheme.name for m in matches if m.status is Status.NEEDS_INFO and m.member is None]
+    family_possible = [
+        {"scheme": m.scheme.name, "for": f"your {m.member.label()}", "need_to_know": sorted(m.missing_fields)}
+        for m in matches
+        if m.status is Status.NEEDS_INFO and m.member is not None
+    ][:MAX_SCHEMES_IN_PROMPT]
     data = {
-        "eligible": [_scheme_facts(s) for s in eligible[:MAX_SCHEMES_IN_PROMPT]],
+        "eligible": [{**_scheme_facts(s), "for": who} for s, who in eligible[:MAX_SCHEMES_IN_PROMPT]],
         "more_eligible_not_shown": max(0, len(eligible) - MAX_SCHEMES_IN_PROMPT),
         "possibly_eligible_need_more_info": possible,
+        "family_members_may_qualify": family_possible,
     }
     if results_already_shown:
         instructions = (
@@ -90,10 +156,12 @@ def answer_task(matches: Sequence[Match], *, results_already_shown: bool) -> str
         )
     else:
         instructions = (
-            "Tell the person which schemes they qualify for: for each, its name and the main benefit "
-            "in one line. If 'eligible' is empty, say so kindly and suggest visiting the nearest "
-            "Common Service Centre (CSC). Mention 'possibly_eligible_need_more_info' briefly if not "
-            "empty. Then ask which scheme they want the document checklist and application steps for."
+            "Tell the person which schemes they qualify for: for each, its name, who it is for (the "
+            "'for' list: the person and/or named family members) and the main benefit in one line. "
+            "If 'eligible' is empty, say so kindly and suggest visiting the nearest Common Service "
+            "Centre (CSC). Mention 'possibly_eligible_need_more_info' and 'family_members_may_qualify' "
+            "briefly if not empty. Then ask which scheme they want the document checklist and "
+            "application steps for."
         )
     return (
         f"TASK: {instructions} Always remind them to confirm details on the official website or "

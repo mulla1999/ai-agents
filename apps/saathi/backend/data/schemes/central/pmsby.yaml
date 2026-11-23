@@ -4,16 +4,16 @@ level: central
 ministry: Ministry of Finance
 tags: [insurance, accident-cover]
 summary: Very low-cost accident insurance, renewed every year through your bank account.
-benefits: Rs 2 lakh for accidental death or total disability and Rs 1 lakh for partial disability, for a premium of Rs 20 per year.
+benefits: Rs 2 lakh for accidental death or permanent total disability (loss of both eyes, both hands or both feet, or one eye and one hand or foot) and Rs 1 lakh for permanent partial disability (loss of one eye, one hand or one foot), for a premium of Rs 20 per year.
 eligibility:
   - field: age
     op: gte
     value: 18
     reason: Must be at least 18 years old
   - field: age
-    op: lte
+    op: lt
     value: 70
-    reason: Must be 70 or younger
+    reason: Must be under 70 (cover ends at age 70)
   - field: has_bank_account
     op: eq
     value: true
@@ -21,10 +21,10 @@ eligibility:
 documents:
   - Savings bank or post office account
   - Aadhaar card
-  - Nominee details
 notes:
   - A person can be covered through one bank account only.
+  - Cover runs from 1 June to 31 May. Joining later in the year still costs the full Rs 20, and cover starts from the date the premium is debited.
 how_to_apply: Fill the enrolment form at your bank branch or post office, or enrol through net banking or the bank's mobile app.
 apply_url: https://www.jansuraksha.gov.in
-source_url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2259251
-verified_on: null
+source_url: https://www.jansuraksha.gov.in/Files/PMSBY/ENGLISH/Rules.pdf
+verified_on: 2026-11-20

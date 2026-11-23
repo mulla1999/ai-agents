@@ -1,0 +1,83 @@
+id: nmmss
+name: National Means-cum-Merit Scholarship Scheme (NMMSS)
+level: central
+ministry: Ministry of Education (Department of School Education and Literacy)
+tags: [scholarship, education, school, merit]
+summary: Rs 12,000 a year from class 9 to class 12 for students of government, government-aided and local body schools who pass a state selection test in class 8 and whose family earns Rs 3.5 lakh a year or less.
+benefits: "Rs 12,000 a year (Rs 1,000 a month), paid from class 9 and renewed each year up to class 12, for up to four years."
+eligibility:
+  - all:
+      - field: current_class
+        op: gte
+        value: 8
+        reason: The selection test is taken in class 8
+      - field: current_class
+        op: lte
+        value: 12
+        reason: The scholarship runs from class 9 to class 12
+    reason: Must be in class 8 (to take the selection test) or a scholar in classes 9 to 12
+  - field: annual_family_income
+    op: lte
+    value: 350000
+    reason: Parents' income from all sources must be Rs 3.5 lakh per year or less
+documents:
+  - Parent's or guardian's income certificate issued by the competent authority of the State/UT
+  - Caste certificate (if applying in a reserved category)
+  - Aadhaar number (seeded with the bank account)
+  - Bank account in a scheduled bank with core banking
+notes:
+  - "Open to students of any community, but only those who pass the NMMSS selection test (Mental Ability Test and Scholastic Aptitude Test) held by the state in class 8. The rules here cannot check the class, marks or test result."
+  - "To sit the test you need at least 55% marks (or equivalent grade) in class 7 (50% for SC/ST). The 2026-27 announcement from All India Radio mentions class 8 marks instead; follow your state's NMMSS notice."
+  - "You must be a regular student in a Government, Government-aided or local body school. Students of Kendriya Vidyalayas, Jawahar Navodaya Vidyalayas, government residential schools (with free boarding and lodging) and private schools are not eligible."
+  - "To keep the scholarship in classes 11 and 12 you need at least 60% marks in class 10 (55% for SC/ST), and you must pass class 9 and class 11 at the first attempt."
+  - About 1 lakh new scholarships are given each year, divided among states by quota; states apply their own reservation rules.
+  - "For 2026-27, the last date on the National Scholarship Portal was extended to 15 November 2026 (as reported). Check the portal for later extensions."
+how_to_apply: Register for your state's NMMSS selection exam through your school in class 8. If selected, apply (and renew each year) on the National Scholarship Portal; the school and then the district verify the application.
+apply_url: https://scholarships.gov.in
+source_url: https://scholarships.gov.in/public/schemeGuidelines/NMMSSGuidelines.pdf
+verified_on: null
+evidence:
+  - claim: Income limit Rs 3.5 lakh a year
+    url: https://scholarships.gov.in/public/schemeGuidelines/NMMSSGuidelines.pdf
+    quote: "to the gifted or meritorious students whose parental income is not more than ₹ 3,50,000/- per annum from all sources"
+    checked_on: 2026-11-23
+  - claim: Rs 12,000 a year
+    url: https://scholarships.gov.in/public/schemeGuidelines/NMMSSGuidelines.pdf
+    quote: "The amount of scholarship is ₹ 12000/- per annum @ ₹1000 per month."
+    checked_on: 2026-11-23
+  - claim: From class 9, for students of government, aided and local body schools, up to four years
+    url: https://scholarships.gov.in/public/schemeGuidelines/NMMSSGuidelines.pdf
+    quote: "This scholarship will be provided on yearly basis to the students studying as regular students and entering in class IX in a Government, Government-aided, local body schools. Thus the scholarship will be for a maximum period of four years."
+    checked_on: 2026-11-23
+  - claim: KV, JNV, residential government schools and private schools excluded
+    url: https://scholarships.gov.in/public/schemeGuidelines/NMMSSGuidelines.pdf
+    quote: "The students studying in \"Kendriya Vidyalayas and Jawahar Navodaya Vidyalayas\" are not entitled to get scholarship under this scheme."
+    checked_on: 2026-11-23
+  - claim: 55% in class 7 to sit the test (5% relaxation for SC/ST)
+    url: https://scholarships.gov.in/public/schemeGuidelines/NMMSSGuidelines.pdf
+    quote: "The students shall have minimum of 55 % marks or equivalent grade in Class VII examination for appearing in selection test conducted during class VIII for award of scholarship (relaxable by 5% for SC/ST students)."
+    checked_on: 2026-11-23
+  - claim: Renewal needs 60% in class 10 (5% relaxation for SC/ST) and first-attempt promotion
+    url: https://scholarships.gov.in/public/schemeGuidelines/NMMSSGuidelines.pdf
+    quote: "minimum of 60% marks in Class X only for continuation of scholarship (relaxable by 5% for SC/ST candidates) in next higher classes while getting clear promotion from class IX to class X and from class XI to class XII in the first attempt."
+    checked_on: 2026-11-23
+  - claim: Scheme approved till 2025-26 (15th Finance Commission cycle)
+    url: https://scholarships.gov.in/public/schemeGuidelines/NMMSSGuidelines.pdf
+    quote: "The scheme has been approved for continuation for another 5 years during the period of 15th Finance Commission cycle from 2021-22 to 2025-26."
+    checked_on: 2026-11-23
+  - claim: Running in 2026-27 with the same income limit and amount
+    url: https://newsonair.gov.in/last-date-for-nmmss-extended-till-30th-september/
+    quote: "The scholarship amount is 12 thousand rupees per annum per student."
+    checked_on: 2026-11-23
+  - claim: 2026-27 announcement states the income limit and a class 8 marks condition
+    url: https://newsonair.gov.in/last-date-for-nmmss-extended-till-30th-september/
+    quote: "a minimum of 55 per cent marks or equivalent grade in the Class 8 examination"
+    checked_on: 2026-11-23
+  - claim: 2026-27 application deadline extended to 15 November 2026 (PIB page title seen in search; the page itself refused automated access)
+    url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2330936
+    quote: "Last date for submission of applications under the National Means-cum-Merit Scholarship Scheme for academic year 2026-27 extended till November 15, 2026"
+    checked_on: 2026-11-23
+  - claim: Documents for verification (income and caste certificates)
+    url: https://scholarships.gov.in/public/schemeGuidelines/NMMSS_FAQ.pdf
+    quote: "Income Certificate of Parent/Guardian issued by the Competent Authority in the State/UT."
+    checked_on: 2026-11-23

@@ -18,7 +18,25 @@ export interface AuthConfig {
   whatsapp_login_enabled: boolean;
 }
 
-export type Profile = Record<string, string | number | boolean>;
+export type Relation = "spouse" | "son" | "daughter" | "father" | "mother" | "other";
+
+// A household member schemes are also checked for. No names or ID numbers.
+export interface FamilyMember {
+  relation: Relation;
+  age?: number;
+  gender?: string;
+  is_studying_post_matric?: boolean;
+  is_widow?: boolean;
+  is_pregnant_or_lactating?: boolean;
+  disability_percent?: number;
+  is_government_employee?: boolean;
+  has_paid_income_tax?: boolean;
+  current_class?: number;
+  is_pregnant?: boolean;
+}
+
+export type ProfileValue = string | number | boolean;
+export type Profile = { [field: string]: ProfileValue | FamilyMember[] | undefined; family_members?: FamilyMember[] };
 
 export interface Citizen {
   id: string;
@@ -55,7 +73,7 @@ export interface ProfileField {
   name: string;
   label: string;
   question: string;
-  type: "enum" | "bool" | "int" | "state" | "text";
+  type: "enum" | "bool" | "int" | "number" | "state" | "text";
   options: string[];
 }
 
@@ -72,6 +90,7 @@ export interface Match {
   status: MatchStatus;
   missing_fields: string[];
   failed_reasons: string[];
+  member: { index: number; relation: Relation; age: number | null } | null;
 }
 
 export interface ChatMessage {
@@ -86,6 +105,7 @@ export interface Rule {
   op?: string | null;
   value?: unknown;
   any?: Rule[] | null;
+  all?: Rule[] | null;
 }
 
 export type SchemeStatus = "draft" | "verified" | "archived";
@@ -95,6 +115,8 @@ export interface SchemeInput {
   name: string;
   level: "central" | "state";
   state: string | null;
+  // "household": one benefit per family, checked only for the person; "person": also for family members.
+  applies_to: "person" | "household";
   ministry: string;
   tags: string[];
   summary: string;

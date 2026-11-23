@@ -1,0 +1,71 @@
+id: pm-mudra
+name: Pradhan Mantri MUDRA Yojana (PMMY)
+level: central
+applies_to: household
+ministry: Department of Financial Services, Ministry of Finance
+tags: [loan, business, self-employed, msme]
+summary: Collateral-free bank loans of up to Rs 20 lakh for starting or growing a small non-farm business in manufacturing, trading, services or activities allied to agriculture.
+benefits: "Collateral-free loans in four categories: Shishu up to Rs 50,000; Kishor above Rs 50,000 and up to Rs 5 lakh; Tarun above Rs 5 lakh and up to Rs 10 lakh; Tarun Plus above Rs 10 lakh and up to Rs 20 lakh (only for borrowers who have repaid an earlier Tarun loan). Loans can be for working capital (including a MUDRA card), machinery and equipment, or commercial vehicles such as auto-rickshaws and e-rickshaws."
+eligibility:
+  - any:
+      - field: plans_new_business
+        op: eq
+        value: true
+        reason: Wants to start a new small business
+      - field: occupation
+        op: in
+        value: [self_employed, street_vendor, artisan, fisher]
+        reason: Already runs a small business, trade, craft or fishery activity
+    reason: For people starting or running a small non-farm business
+documents:
+  - Identity and address proof, and business details or quotations, as asked for by the lending bank or institution
+notes:
+  - Only for non-corporate, non-farm micro and small enterprises. Crop farming itself is not covered, but activities allied to agriculture such as dairy, poultry, fishery, beekeeping and food processing are.
+  - Tarun Plus (above Rs 10 lakh up to Rs 20 lakh) is not for first-time borrowers; it is only for those who have fully repaid an earlier Tarun loan.
+  - Interest rate and repayment period are set by the lender within RBI rules.
+  - Loans are given by banks, regional rural banks, small finance banks, NBFCs and microfinance institutions. The Union Cabinet has approved continuing the Credit Guarantee Fund for Micro Units, which guarantees these loans, until March 2031.
+how_to_apply: Apply at any bank, regional rural bank, small finance bank, NBFC or microfinance institution branch, or online on the JanSamarth portal (MUDRA loans for business activity).
+apply_url: https://www.jansamarth.in
+source_url: https://financialservices.gov.in/pradhan-mantri-mudra-yojana-pmmy
+verified_on: 2026-11-23
+evidence:
+  - claim: Four categories with limits (Shishu, Kishor, Tarun, Tarun Plus)
+    url: https://financialservices.gov.in/pradhan-mantri-mudra-yojana-pmmy
+    quote: "Shishu – upto Rs.50,000; ... Above Rs.50,000 and upto Rs.5 lakh; ... Above Rs.5 lakh and upto Rs.10 lakh ... Above Rs.10 lakh and upto Rs.20 lakh."
+    checked_on: 2026-11-23
+  - claim: Tarun Plus only for borrowers who repaid a Tarun loan
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/apr/doc202648842601.pdf
+    quote: "extends loans above ₹10 lakh and up to ₹20 lakh to borrowers who have successfully repaid previous loans under the Tarun category"
+    checked_on: 2026-11-23
+  - claim: Collateral-free loans up to Rs 20 lakh for manufacturing, trading, services and allied agriculture
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/apr/doc202648842601.pdf
+    quote: "Collateral-free loans up to ₹20 lakh for activities covering manufacturing, trading, services & allied agricultural activities."
+    checked_on: 2026-11-23
+  - claim: Borrowers are non-corporate, non-farm micro and small enterprises
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/apr/doc202648842601.pdf
+    quote: "Borrowers include non-corporate, non-farm micro and small enterprises across manufacturing, trading, services, and allied agricultural activities."
+    checked_on: 2026-11-23
+  - claim: For new as well as existing enterprises (plans_new_business or existing business occupation)
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/apr/doc202648842601.pdf
+    quote: "This category is designed for new as well as enterprises that have already commenced operations"
+    checked_on: 2026-11-23
+  - claim: Covers vendors, traders, shopkeepers, service activities, and agri-allied activities including fishery (occupation list self_employed, street_vendor, artisan, fisher)
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/apr/doc202648842601.pdf
+    quote: "Business loan for vendors, traders, shopkeepers and other service sector activities"
+    checked_on: 2026-11-23
+  - claim: Agri-allied non-farm activities covered (pisciculture, bee keeping, poultry, dairy, fishery)
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/apr/doc202648842601.pdf
+    quote: "Loans for agri-allied non-farm income generating activities such as pisciculture, bee keeping, poultry, livestock-rearing"
+    checked_on: 2026-11-23
+  - claim: Collateral not required
+    url: https://financialservices.gov.in/pradhan-mantri-mudra-yojana-pmmy
+    quote: "Collateral not required."
+    checked_on: 2026-11-23
+  - claim: JanSamarth portal covers MUDRA loans
+    url: https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/apr/doc202648842601.pdf
+    quote: "JanSamarth portal enables multiple integrations including Mudra loans"
+    checked_on: 2026-11-23
+  - claim: Cabinet approved continuation of the Credit Guarantee Fund for Micro Units (to March 2031)
+    url: https://www.pmindia.gov.in/en/news_updates/cabinet-approves-continuation-of-credit-guarantee-fund-for-micro-units/
+    quote: "Cabinet approves continuation of Credit Guarantee Fund for Micro Units"
+    checked_on: 2026-11-23

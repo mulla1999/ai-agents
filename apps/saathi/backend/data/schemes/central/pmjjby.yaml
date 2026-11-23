@@ -21,12 +21,12 @@ eligibility:
 documents:
   - Savings bank or post office account
   - Aadhaar card
-  - Nominee details
 notes:
   - Cover runs from 1 June to 31 May. People joining later in the year pay a lower pro-rata premium (Rs 342, 228 or 114).
-  - Claims for death from illness are not paid in the first 30 days after joining.
+  - For the first 30 days after joining, death from any cause other than an accident is not covered.
+  - Cover can be renewed every year up to age 55, but new members can only join up to age 50.
   - A person can be covered through one bank account only.
 how_to_apply: Fill the enrolment and consent-for-auto-debit form at your bank branch or post office, or enrol through net banking or the bank's mobile app.
 apply_url: https://www.jansuraksha.gov.in
-source_url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2259251
-verified_on: null
+source_url: https://www.jansuraksha.gov.in/Files/PMJJBY/ENGLISH/Rules.pdf
+verified_on: 2026-11-20

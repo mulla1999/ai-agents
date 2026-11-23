@@ -62,6 +62,7 @@ def build(settings, sessionmaker, llm, sms, speech):
 async def test_voice_note_is_transcribed_answered_and_spoken(settings, sessionmaker, llm, sms):
     speech = FakeSpeech()
     handler, client = build(settings, sessionmaker, llm, sms, speech)
+    await handler(text("hi"))  # consent notice
     await handler(text("haan"))  # consent
 
     llm.json_replies = [{"language": "Tamil", "updates": {"age": 62}}]
@@ -86,6 +87,7 @@ async def test_voice_before_consent_gets_the_consent_notice(settings, sessionmak
 
 async def test_unclear_or_failed_transcription(settings, sessionmaker, llm, sms):
     handler, _ = build(settings, sessionmaker, llm, sms, FakeSpeech(transcript="  "))
+    await handler(text("hi"))
     await handler(text("yes"))
     assert await handler(voice()) == NOT_HEARD
 

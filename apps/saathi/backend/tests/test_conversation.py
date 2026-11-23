@@ -1,3 +1,4 @@
+from saathi.testing import FARMER, answered
 from agents_core.llm import LLMProvider
 from agents_core.llm.testing import ScriptedLLM
 
@@ -33,12 +34,7 @@ async def test_shows_results_once_nothing_left_to_ask():
         [
             {
                 "language": "English",
-                "updates": {
-                    "age": 32, "gender": "male", "occupation": "farmer", "has_bank_account": True,
-                    "owns_cultivable_land": True, "is_income_tax_payer": False,
-                    "is_government_employee": False, "plans_new_business": False,
-                    "is_studying_post_matric": False, "is_bpl": False,
-                },
+                "updates": answered(**FARMER),
             }
         ]
     )  # fmt: skip

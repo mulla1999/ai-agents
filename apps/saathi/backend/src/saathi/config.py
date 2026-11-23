@@ -37,6 +37,13 @@ class Settings(BaseSettings):
     max_questions: int = 10
     session_ttl_seconds: int = 24 * 60 * 60
 
+    # Chat limits, counted over web and WhatsApp together. Each message costs two LLM calls (and
+    # speech for voice notes), and anyone can message the WhatsApp bot, so these cap the spend.
+    chat_limit_per_10_minutes: int = 20
+    chat_limit_per_day: int = 150
+    # All citizens together, per rolling 24 hours. 0 turns the global cap off.
+    chat_global_limit_per_day: int = 20_000
+
     # Web sign-in
     login_session_days: int = 7
     cookie_secure: bool = True

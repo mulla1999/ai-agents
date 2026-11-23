@@ -14,7 +14,7 @@ import hashlib
 import hmac
 import logging
 from collections import OrderedDict
-from collections.abc import Awaitable, Callable
+from collections.abc import Awaitable, Callable, Sequence
 from dataclasses import dataclass
 from typing import Any, Protocol
 
@@ -43,9 +43,14 @@ class IncomingMessage:
     text: str | None
     media_id: str | None = None  # set for audio / voice notes
     mime_type: str | None = None
+    # Set when the person tapped a reply button or list row; ``text`` then holds its title.
+    reply_id: str | None = None
 
 
 MessageCallback = Callable[[IncomingMessage], Awaitable[str | None]]
+# Returns False if the message id was already accepted (by this or any other worker).
+DedupCallback = Callable[[str], Awaitable[bool]]
+MAX_BUTTONS, MAX_BUTTON_TITLE, MAX_INTERACTIVE_BODY = 3, 20, 1024
 
 
 def verify_signature(app_secret: str, body: bytes, header: str | None) -> bool:
@@ -65,8 +70,15 @@ def parse_messages(payload: dict[str, Any]) -> list[IncomingMessage]:
                 kind = msg.get("type", "")
                 text = (msg.get("text") or {}).get("body") if kind == "text" else None
                 media = (msg.get("audio") or {}) if kind == "audio" else {}
+                reply_id = None
+                if kind == "interactive":
+                    interactive = msg.get("interactive") or {}
+                    choice = interactive.get("button_reply") or interactive.get("list_reply") or {}
+                    reply_id, text = choice.get("id"), choice.get("title")
                 messages.append(
-                    IncomingMessage(msg["id"], msg["from"], kind, text, media.get("id"), media.get("mime_type"))
+                    IncomingMessage(
+                        msg["id"], msg["from"], kind, text, media.get("id"), media.get("mime_type"), reply_id
+                    )
                 )
     return messages
 
@@ -99,6 +111,31 @@ class WhatsAppClient:
                 "to": to,
                 "type": "text",
                 "text": {"body": body[:MAX_WHATSAPP_TEXT]},
+            },
+        )
+        response.raise_for_status()
+
+    async def send_buttons(self, to: str, body: str, buttons: Sequence[tuple[str, str]]) -> None:
+        """Send up to three reply buttons as (id, title); the tap arrives as ``reply_id``."""
+        if not 1 <= len(buttons) <= MAX_BUTTONS:
+            raise ValueError(f"WhatsApp allows 1 to {MAX_BUTTONS} reply buttons")
+        response = await self._http.post(
+            f"{self._graph}/{self._phone_number_id}/messages",
+            headers=self._headers,
+            json={
+                "messaging_product": "whatsapp",
+                "to": to,
+                "type": "interactive",
+                "interactive": {
+                    "type": "button",
+                    "body": {"text": body[:MAX_INTERACTIVE_BODY]},
+                    "action": {
+                        "buttons": [
+                            {"type": "reply", "reply": {"id": bid, "title": title[:MAX_BUTTON_TITLE]}}
+                            for bid, title in buttons
+                        ]
+                    },
+                },
             },
         )
         response.raise_for_status()
@@ -150,8 +187,15 @@ class _RecentIds:
 
 
 def build_router(
-    *, verify_token: str, app_secret: str, on_message: MessageCallback, client: WhatsAppClient
+    *,
+    verify_token: str,
+    app_secret: str,
+    on_message: MessageCallback,
+    client: WhatsAppClient,
+    is_new_message: DedupCallback | None = None,
 ) -> APIRouter:
+    """``is_new_message`` adds a shared (e.g. database) duplicate check for multi-worker deployments;
+    without it, duplicates are only caught within this process."""
     router = APIRouter(prefix="/webhooks/whatsapp")
     recent = _RecentIds()
 
@@ -184,7 +228,9 @@ def build_router(
             raise HTTPException(status_code=400) from None
         # Reply after returning 200: Meta expects a fast acknowledgement.
         for message in parse_messages(payload):
-            if not recent.seen(message.message_id):
+            if recent.seen(message.message_id):
+                continue
+            if is_new_message is None or await is_new_message(message.message_id):
                 background.add_task(process, message)
         return {"status": "ok"}
 

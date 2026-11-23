@@ -1,0 +1,64 @@
+# Saathi CI: lint, backend tests (SQLite, fake LLM/SMS/speech; no keys needed), migrations checked
+# against PostgreSQL, and the web app's type-check and build. It never deploys.
+name: saathi-ci
+
+on:
+  push:
+    paths: ["apps/saathi/**", "libs/**", ".github/workflows/saathi-ci.yml", "requirements-dev.txt"]
+  pull_request:
+    paths: ["apps/saathi/**", "libs/**", ".github/workflows/saathi-ci.yml", "requirements-dev.txt"]
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: saathi
+          POSTGRES_USER: saathi
+          POSTGRES_PASSWORD: ci-only-not-a-secret
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U saathi" --health-interval 5s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: make install
+      - name: Lint
+        run: make lint
+      - name: Tests (Saathi and the shared library)
+        run: .venv/bin/pytest apps/saathi/backend libs/agents-core
+      - name: Scheme YAML is valid
+        run: .venv/bin/saathi validate
+      - name: Migrations apply, match the models, and roll back
+        working-directory: apps/saathi/backend
+        env:
+          SAATHI_ENVIRONMENT: test
+          SAATHI_DATABASE_URL: postgresql+asyncpg://saathi:ci-only-not-a-secret@localhost:5432/saathi
+        run: |
+          ../../../.venv/bin/alembic upgrade head
+          ../../../.venv/bin/alembic check
+          ../../../.venv/bin/alembic downgrade -1
+          ../../../.venv/bin/alembic upgrade head
+
+  frontend:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: apps/saathi/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/saathi/frontend/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - name: Type-check and build
+        run: npm run build

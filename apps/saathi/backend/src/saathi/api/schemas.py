@@ -163,6 +163,7 @@ class SchemeOut(BaseModel):
     name: str
     level: str
     state: str | None
+    applies_to: str
     ministry: str
     tags: list[str]
     summary: str
@@ -201,6 +202,8 @@ class MatchOut(BaseModel):
     status: str
     missing_fields: list[str]
     failed_reasons: list[str]
+    # Set when this match is for a family member: {"index", "relation", "age"}.
+    member: dict[str, Any] | None = None
 
     @classmethod
     def of(cls, match: Match) -> MatchOut:
@@ -215,6 +218,9 @@ class MatchOut(BaseModel):
             status=match.status.value,
             missing_fields=sorted(match.missing_fields),
             failed_reasons=list(match.failed_reasons),
+            member=None
+            if match.member is None
+            else {"index": match.member_index, "relation": match.member.relation.value, "age": match.member.age},
         )
 
 

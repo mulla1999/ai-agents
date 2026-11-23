@@ -1,0 +1,51 @@
+id: kanya-sumangala
+name: Mukhyamantri Kanya Sumangala Yojana (Uttar Pradesh)
+level: state
+state: uttar_pradesh
+ministry: Women Welfare Department (Directorate of Women Welfare), Government of Uttar Pradesh
+tags: [girl-child, education]
+summary: Money paid in stages from a girl's birth to her college admission, for families in Uttar Pradesh.
+benefits: Rs 25,000 in total, paid in six stages - Rs 5,000 at birth, Rs 2,000 after full vaccination, Rs 3,000 at admission to class 1, Rs 3,000 at class 6, Rs 5,000 at class 9, and Rs 7,000 at admission to a degree or a diploma of 2 years or more.
+eligibility:
+  - field: gender
+    op: eq
+    value: female
+    reason: For girls only
+  - any:
+      - {field: age, op: lte, value: 2, reason: Birth stage (within 1 year) or full-vaccination stage (age 1 to 2)}
+      - all:
+          - {field: age, op: gte, value: 5, reason: Class 1 stage is for girls aged 5 to 8}
+          - {field: age, op: lte, value: 8, reason: Class 1 stage is for girls aged 5 to 8}
+        reason: Class 1 admission stage (age 5 to 8)
+      - all:
+          - {field: age, op: gte, value: 10, reason: Class 6 and class 9 stages start at age 10}
+          - {field: age, op: lte, value: 15, reason: Class 9 stage ends before age 16}
+        reason: Class 6 (age 10 to 13) or class 9 (age 14 to 15) admission stage
+      - all:
+          - {field: age, op: gte, value: 16, reason: Degree or diploma stage starts at age 16}
+          - {field: age, op: lte, value: 20, reason: Degree or diploma stage ends at age 20}
+          - {field: is_studying_post_matric, op: eq, value: true, reason: Must have joined a degree or a diploma of 2 years or more}
+        reason: Degree or diploma admission stage (age 16 to 20)
+    reason: Must be in the age band of one of the six stages
+  - field: annual_family_income
+    op: lte
+    value: 300000
+    reason: Family income must be up to Rs 3 lakh a year
+documents:
+  - Girl's birth registration number (from the civil birth register)
+  - Aadhaar of the father, the mother and the applicant (and of the girl from the class 1 stage onward)
+  - Income certificate number (mandatory since February 2026)
+  - Residence proof of Uttar Pradesh (ration card, Aadhaar, voter ID, or an electricity or telephone bill)
+  - Mother's bank account linked to Aadhaar (NPCI-mapped)
+  - Proof for the stage (vaccination record, school admission record, degree or diploma admission)
+notes:
+  - "The family can have at most two children, and at most two girls can benefit; a third girl is allowed only if the second delivery is twins. An adopted orphan girl counts toward the two."
+  - The family must be residents of Uttar Pradesh.
+  - "Each stage has its own age band: birth within 1 year, full vaccination at 1 to 2, class 1 at 5 to 8, class 6 at 10 to 13, class 9 at 14 to 15, and degree or diploma admission at 16 (diploma after class 10) or 18 to 20 (degree after class 12). The admission must be in the current school or college year."
+  - The birth stage is only for girls born on or after 1 April 2019.
+  - At age 16 or 17 only a diploma admission counts; a girl in class 11 or 12 does not qualify for the last stage (the rule here cannot tell them apart).
+  - The money goes to the mother's Aadhaar-linked account (the father's if hers is not linked). A girl who is an adult can apply herself only for the degree or diploma stage.
+how_to_apply: Apply online on the Kanya Sumangala portal or the e-District portal (through a CSC or Jan Seva Kendra), or through the Anganwadi worker. The block office (rural areas) or the SDM office (urban areas) verifies the application.
+apply_url: https://mksy.up.gov.in/women_welfare/citizen/guest_login.php
+source_url: https://mksy.up.gov.in/women_welfare/index.php
+verified_on: 2026-11-20

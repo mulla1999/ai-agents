@@ -121,20 +121,29 @@ A signed-in user can add a mobile number (`POST /api/auth/link/phone`, OTP-verif
 ```
 POST /api/citizens/{id}/chat {message}
   access check (owner | managing helper | admin) → consent required
-  Agent.handle(citizen_id, text):
+  chat quota (per citizen over web + WhatsApp, and a global daily cap) → 429 when exceeded
+  Agent.handle(citizen_id, text), holding the citizen's chat lease (chat_locks row):
     redact IDs → LLM extracts profile facts → rules engine evaluates verified schemes
     → ask the most useful next question, or list eligible schemes / answer
+    → reply guard: every rupee amount, 5+ digit number and web host must appear in the scheme
+      data, the person's own messages or their profile; else one corrected retry, then a fixed
+      reply built only from scheme data
   DbSessionStore persists: citizen.profile, conversation.state, new messages (redacted text)
   ← {reply, profile}
 ```
+The chat lease is a row with an expiry, keyed by citizen (not channel), so web and WhatsApp turns
+for the same person never run at once on any worker, and a crashed worker's lease simply expires.
 
 ### 3.3b WhatsApp and voice notes
 
 ```
-signed webhook → WhatsAppCitizenHandler
+signed webhook → message id recorded in whatsapp_inbound (Meta retries are answered once, by any worker)
+  → WhatsAppCitizenHandler
   "LOGIN <code>"?            → confirm web sign-in (see 3.2b)
   number → user + citizen (same account as a web sign-in with that number)
-  no consent yet             → consent notice; "YES"/"हाँ" records consent
+  no consent yet             → consent notice with "I agree" / "No" buttons (text if buttons fail);
+                               consent counts only after the notice was shown (consent_prompted_at)
+  over the chat quota        → "please try later" (checked before speech-to-text)
   voice note                 → download → ffmpeg → 16 kHz WAV → SpeechProvider.transcribe(language)
   text / transcript          → Agent (DbSessionStore, channel=whatsapp) → reply
   voice note in, voice out   → SpeechProvider.synthesize → OGG/Opus → WhatsApp audio message (+ text)
@@ -152,6 +161,15 @@ birth. So:
 - a rule `{field: district, op: in, value: [lucknow, barabanki]}` targets specific districts
   (district names are stored lowercase);
 - scheme cards show "Central scheme" or "<State> scheme".
+
+### 3.3d Family members
+
+`citizen.profile.family_members` lists household members by relation and age, with a few personal
+facts (studying, widow, pregnant or breastfeeding, disability %, government employee); no names.
+For each member, every `applies_to: person` scheme is checked with the household facts copied from
+the person's profile. Results carry `member` ({index, relation, age}) and show as "For your
+daughter (6)". `household` schemes (PM-KISAN, PMAY-G) are checked once, for the person. Members can
+be added on the profile page or in chat ("my mother is 72").
 
 ### 3.4 Scheme data lifecycle
 
@@ -186,13 +204,15 @@ erDiagram
 | `user_sessions` | `id`, `user_id FK`, `token_hash` (unique), `created_at`, `expires_at`, `last_seen_at`, `user_agent` | Only the SHA-256 of the cookie token is stored; deleted on logout |
 | `whatsapp_logins` | `id`, `code`, `browser_token_hash` (unique), `phone_e164`, `confirmed_at`, `used_at`, `expires_at`, `ip`, `created_at` | "Sign in with WhatsApp" challenges |
 | `otp_challenges` | `id`, `phone_e164`, `code_hash`, `attempts`, `expires_at`, `consumed_at`, `ip`, `created_at` | HMAC of the code; rows older than a day are purged |
-| `citizens` | `id`, `user_id FK unique nullable` (self-service), `managed_by_user_id FK nullable` (helper), `display_name`, `profile jsonb`, `language`, `date_of_birth`, `contact_email` (unverified, never used to sign in), `pincode`, `locality`, `address_line`, `consent_version`, `consent_at`, `created_at`, `updated_at` | `profile` = the eligibility profile (age, occupation, …). **No Aadhaar/PAN/bank numbers** |
+| `citizens` | `id`, `user_id FK unique nullable` (self-service), `managed_by_user_id FK nullable` (helper), `display_name`, `profile jsonb`, `language`, `date_of_birth`, `contact_email` (unverified, never used to sign in), `pincode`, `locality`, `address_line`, `consent_version`, `consent_at`, `consent_prompted_at`, `created_at`, `updated_at` | `profile` = the eligibility profile (age, occupation, …). **No Aadhaar/PAN/bank numbers** |
 | `conversations` | `id`, `citizen_id FK`, `channel` (web/whatsapp), `state jsonb`, `created_at`, `updated_at` | `state` = declined fields, questions asked, … |
 | `messages` | `id`, `conversation_id FK`, `role` (user/assistant), `content` (PII-redacted), `created_at` | |
-| `schemes` | `id text PK` (slug), `name`, `level`, `state`, `ministry`, `tags jsonb`, `summary`, `benefits`, `eligibility jsonb`, `documents jsonb`, `notes jsonb` (conditions the rules cannot express), `how_to_apply`, `apply_url`, `source_url`, `status` (draft/verified/archived), `verified_on`, `verified_by_user_id`, `version`, `updated_at`, `updated_by_user_id` | `eligibility` validated by the same Pydantic rule model as the YAML |
+| `schemes` | `id text PK` (slug), `name`, `level`, `state`, `applies_to` (person/household), `ministry`, `tags jsonb`, `summary`, `benefits`, `eligibility jsonb`, `documents jsonb`, `notes jsonb` (conditions the rules cannot express), `how_to_apply`, `apply_url`, `source_url`, `status` (draft/verified/archived), `verified_on`, `verified_by_user_id`, `version`, `updated_at`, `updated_by_user_id` | `eligibility` validated by the same Pydantic rule model as the YAML |
 | `scheme_revisions` | `id`, `scheme_id FK`, `version`, `data jsonb`, `changed_by_user_id`, `changed_at` | Full snapshot per edit; supports review and rollback |
 | `applications` | `id`, `citizen_id FK`, `scheme_id FK`, `status`, `portal_reference`, `checklist jsonb`, `notes`, `created_by_user_id`, `created_at`, `updated_at`; unique(citizen_id, scheme_id) | `checklist` = {document: ready?} |
 | `application_events` | `id`, `application_id FK`, `from_status`, `to_status`, `note`, `actor_user_id`, `created_at` | Status history |
+| `chat_locks` | `key` (PK, `chat:<citizen id>`), `token`, `expires_at` | Per-citizen chat lease across workers and channels |
+| `whatsapp_inbound` | `message_id` (PK), `received_at` | WhatsApp message ids already accepted; kept 7 days |
 | `audit_log` | `id`, `actor_user_id`, `action`, `entity_type`, `entity_id`, `details jsonb`, `created_at` | Who touched whose data; holds IDs, never profile contents |
 
 Deleting a citizen cascades to their conversations, messages, applications and events. Audit
@@ -217,7 +237,8 @@ interested → documents_ready → submitted → approved → benefit_received
 | Auditing | Helper and admin access to citizen records is written to `audit_log` |
 | Secrets | Environment / secrets manager only; `.env` is never committed |
 | SQL | SQLAlchemy ORM and bound parameters only; no string-built SQL |
-| LLM safety | Eligibility decided by rules, not the LLM; prompts forbid inventing schemes or asking for OTPs, money or ID numbers |
+| LLM safety | Eligibility decided by rules, not the LLM; prompts forbid inventing schemes or asking for OTPs, money or ID numbers; every reply's amounts, long numbers and links are checked against the facts given (`agent/guard.py`) |
+| Abuse / cost | Per-citizen chat limits (10 minutes, 24 hours) and a global 24-hour cap, counted in the database so all workers agree |
 
 Before a public launch: DPDP Act review (notice, consent, retention, grievance officer contact),
 HTTPS everywhere, an SMS DLT registration, and backups for PostgreSQL.
@@ -264,4 +285,5 @@ anything public.
 ## 8. Not yet built
 
 - Pre-filled application PDFs, DigiLocker, reminders
-- Shared rate limiting (Redis) for multi-instance deployments
+- Shared rate limiting for sign-in endpoints across instances (chat limits, chat locks and WhatsApp
+  de-duplication are already database-backed)

@@ -4,7 +4,7 @@ from saathi.db import AuditLog, Citizen, Role
 
 FARMER = {
     "age": 32, "gender": "male", "occupation": "farmer", "has_bank_account": True,
-    "owns_cultivable_land": True, "is_income_tax_payer": False, "is_government_employee": False,
+    "owns_cultivable_land": True, "is_income_tax_payer": False, "has_paid_income_tax": False, "is_government_employee": False,
     "plans_new_business": False, "is_studying_post_matric": False, "is_bpl": False,
 }  # fmt: skip
 
@@ -21,7 +21,9 @@ async def test_self_service_profile_and_eligibility(citizen_client):
 
     results = (await citizen_client.get(f"/api/citizens/{me['id']}/eligibility")).json()
     eligible = {r["scheme_id"] for r in results if r["status"] == "eligible"}
-    assert eligible == {"pm-kisan", "atal-pension-yojana", "pmjjby", "pmsby"}
+    assert eligible == {
+        "pm-kisan", "atal-pension-yojana", "pmjjby", "pmsby", "pmfby", "kisan-credit-card", "pm-kusum", "e-shram",
+    }
     assert results[0]["status"] == "eligible"  # eligible schemes first
 
 

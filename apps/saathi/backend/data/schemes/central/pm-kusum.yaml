@@ -1,0 +1,79 @@
+id: pm-kusum
+name: PM-KUSUM (Pradhan Mantri Kisan Urja Suraksha evam Utthaan Mahabhiyaan) - solar pumps for farmers
+level: central
+applies_to: household
+ministry: Ministry of New and Renewable Energy
+tags: [farmer, solar, irrigation, subsidy, energy]
+summary: Subsidy for farmers to install a standalone solar irrigation pump (or replace a diesel pump), or to put solar panels on an existing grid-connected farm pump and sell the surplus power.
+benefits: "Standalone solar pump (Component B): the Centre pays 30% of the benchmark or tender cost (whichever is lower), the State at least 30%, and the farmer the remaining up to 40%, which a bank loan can cover so the farmer pays about 10% upfront. In the North-East, Sikkim, Jammu and Kashmir, Himachal Pradesh, Uttarakhand, Lakshadweep and Andaman and Nicobar Islands the Centre pays 50% and the farmer at most 20%. If the State gives no share, the farmer can still get the central 30% (50% in those areas) and pay the rest. Solarising a grid-connected pump (Component C, individual pump): central help up to 30% (50% in those areas) for solar capacity up to twice the pump's kW, and the farmer can sell surplus power to the electricity company."
+eligibility:
+  - field: occupation
+    op: eq
+    value: farmer
+    reason: For individual farmers (groups of farmers, water user associations, FPOs and PACS can also apply)
+documents:
+  - Aadhaar card
+  - Land record of the farm where the pump will be installed (as asked by the State implementing agency)
+  - Bank account details
+  - Details of existing pump or electricity connection (for solarising a grid-connected pump)
+notes:
+  - "Status: the scheme's implementation period has been extended to 31 March 2027 for all components. New pump allocations depend on each State's remaining quota; a successor scheme (PM-KUSUM 2.0) has been announced in news reports but had not been officially approved when this record was checked. Ask your State implementing agency whether applications are open."
+  - Component B (standalone pumps) is for off-grid areas where grid supply is not available. Priority goes to small and marginal farmers and farmers using micro irrigation.
+  - Central subsidy is calculated for pumps up to 7.5 HP; bigger pumps are allowed but get the 7.5 HP subsidy. In the North-East, hill States/UTs and islands subsidy is available up to 15 HP, but only for 10% of installations.
+  - New standalone solar pumps are not given in dark (over-exploited groundwater) zones, except to replace existing diesel pumps for farmers using micro irrigation.
+  - Each State sets its own top-up subsidy, application process and land-document requirements; some States give more than 30%. The rule here does not check land ownership or tenancy because the central guidelines do not set it.
+  - The vendor must provide 5 years of maintenance and insurance against natural calamities and theft.
+  - Component A (solar plants of 500 kW to 2 MW on a farmer's own land) is also part of PM-KUSUM but is meant for farmers or groups leasing land or setting up plants, not for this pump subsidy.
+how_to_apply: Apply through your State Implementing Agency (usually the State agriculture, horticulture, renewable energy or electricity department) on its PM-KUSUM portal or office. The national portal pmkusum.mnre.gov.in lists the State agencies.
+apply_url: https://pmkusum.mnre.gov.in
+source_url: https://cdnbbsr.s3waas.gov.in/s3716e1b8c6cd17b771da77391355749f3/uploads/2024/01/20240118413909461.pdf
+verified_on: 2026-11-23
+evidence:
+  - claim: Component B supports individual farmers in off-grid areas; priority to small and marginal farmers
+    url: https://cdnbbsr.s3waas.gov.in/s3716e1b8c6cd17b771da77391355749f3/uploads/2024/01/20240118413909461.pdf
+    quote: "Under this Component, individual farmers will be supported to install standalone Solar Agriculture pumps or replacement of existing diesel Agriculture pumps / irrigation systems in off-grid areas, where grid supply is not available."
+    checked_on: 2026-11-23
+  - claim: Central 30% (50% in NE, hill States, islands), State at least 30%, farmer up to 40%
+    url: https://cdnbbsr.s3waas.gov.in/s3716e1b8c6cd17b771da77391355749f3/uploads/2024/01/20240118413909461.pdf
+    quote: "The Central Government will provide financial assistance of 30% (or 50% for North Eastern Region/Hilly region/Islands) of the Benchmark Cost or the Tender Cost, whichever is lower"
+    checked_on: 2026-11-23
+  - claim: In NE States, Sikkim, J&K, HP, Uttarakhand, Lakshadweep and A&N Islands farmer pays at most 20%
+    url: https://cdnbbsr.s3waas.gov.in/s3716e1b8c6cd17b771da77391355749f3/uploads/2024/01/20240118413909461.pdf
+    quote: "The State Government will give a subsidy of at-least 30%; and the remaining at most 20% will be provided by the farmer."
+    checked_on: 2026-11-23
+  - claim: Without State share, farmer can get central share only and pays 70% (50% in special areas)
+    url: https://cdnbbsr.s3waas.gov.in/s3716e1b8c6cd17b771da77391355749f3/uploads/2024/01/20240118413909461.pdf
+    quote: "Central share will continue to remain 30% (or 50% for NER/Hilly region/Islands), with the remaining 70% in General category states and 50% in Hilly region/NER/Islands being borne by the farmer."
+    checked_on: 2026-11-23
+  - claim: Bank loan so farmer pays only 10% upfront
+    url: https://cdnbbsr.s3waas.gov.in/s3716e1b8c6cd17b771da77391355749f3/uploads/2024/01/20240118413909461.pdf
+    quote: "Bank finance may be made available for farmer's contribution, so that farmer has to initially pay only 10% of the cost"
+    checked_on: 2026-11-23
+  - claim: Subsidy limited to 7.5 HP; up to 15 HP in NE/hill/islands for 10% of installations
+    url: https://cdnbbsr.s3waas.gov.in/s3716e1b8c6cd17b771da77391355749f3/uploads/2024/01/20240118413909461.pdf
+    quote: "Pumps of capacity higher than 7.5 HP may be allowed, but the CFA will be limited to the CFA applicable for pump of 7.5 HP."
+    checked_on: 2026-11-23
+  - claim: No new pumps in dark zones except diesel replacement with micro irrigation
+    url: https://cdnbbsr.s3waas.gov.in/s3716e1b8c6cd17b771da77391355749f3/uploads/2024/01/20240118413909461.pdf
+    quote: "New Solar Agriculture pumps would not be covered under this component in Dark zones/black zones."
+    checked_on: 2026-11-23
+  - claim: Groups (WUA, FPO, PACS) can get solar pumps
+    url: https://cdnbbsr.s3waas.gov.in/s3716e1b8c6cd17b771da77391355749f3/uploads/2024/01/20240118413909461.pdf
+    quote: "For solar pumps to be set up and used by Water User Associations (WUA)/Farmer Producer Organizations (FPO)/Primary Agriculture Credit Societies (PACS)"
+    checked_on: 2026-11-23
+  - claim: Component C IPS - solar up to twice pump kW, sell surplus
+    url: https://cdnbbsr.s3waas.gov.in/s3716e1b8c6cd17b771da77391355749f3/uploads/2024/01/20240118413909461.pdf
+    quote: "Under Individual Pump Solarization (IPS), solar PV capacity up to two times of pump capacity in kW is allowed"
+    checked_on: 2026-11-23
+  - claim: Component C IPS central help up to 30% (50% NE/hill/islands)
+    url: https://cdnbbsr.s3waas.gov.in/s3716e1b8c6cd17b771da77391355749f3/uploads/2024/01/20240118413909461.pdf
+    quote: "CFA up to 30% (upto 50% of NER/Hilly/Islands) of the cost of solarisation will be provided for solar PV component"
+    checked_on: 2026-11-23
+  - claim: Five-year maintenance and insurance by vendor
+    url: https://cdnbbsr.s3waas.gov.in/s3716e1b8c6cd17b771da77391355749f3/uploads/2024/01/20240118413909461.pdf
+    quote: "Vendors will mandatorily provide AMC for a period of 5 years from the date of commissioning of the systems including insurance coverage"
+    checked_on: 2026-11-23
+  - claim: Scheme timeline extended to 31 March 2027 for all components
+    url: https://sansad.in/getFile/lsapps/loksabhaquestions/annex/188/AU1613_pL4wQI.pdf
+    quote: "The implementation timeline of PM KUSUM scheme is extended till 31.03.2027 for all components of the scheme."
+    checked_on: 2026-11-23

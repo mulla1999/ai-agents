@@ -1,5 +1,5 @@
 id: ignoaps
-name: Indira Gandhi National Old Age Pension Scheme (IGNOAPS)
+name: Pradhan Mantri Vridhavastha Pension Yojana (formerly IGNOAPS)
 level: central
 ministry: Ministry of Rural Development (National Social Assistance Programme)
 tags: [pension, senior-citizen, bpl]
@@ -19,8 +19,10 @@ documents:
   - BPL card or BPL list entry
   - Aadhaar card
   - Bank or post office account passbook
-  - Passport-size photograph
+notes:
+  - Renamed from Indira Gandhi National Old Age Pension Scheme in October 2026; rules and amounts are unchanged.
+  - If an eligible person's name is missing from the BPL list, officials should still assess the application instead of turning it away (NSAP guidelines).
 how_to_apply: Apply at the gram panchayat or block office (rural) or the municipal office (urban), or through your state's social welfare / pension portal or a CSC.
 apply_url: https://nsap.dord.gov.in
-source_url: https://nsap.dord.gov.in/circular.do?method=aboutus
-verified_on: null
+source_url: https://nsap.dord.gov.in/Guidelines/nsap_guidelines_oct2014.pdf
+verified_on: 2026-11-20

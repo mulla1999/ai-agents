@@ -1,0 +1,81 @@
+id: pre-matric-scholarship-sc
+name: Pre-Matric Scholarship for Scheduled Caste Students (Classes 9 and 10)
+level: central
+ministry: Ministry of Social Justice and Empowerment
+tags: [scholarship, education, sc, school]
+summary: A yearly allowance for SC students studying full-time in class 9 or 10 whose family earns Rs 2.5 lakh a year or less.
+benefits: "A yearly academic allowance paid into the bank account by DBT: Rs 3,500 for day scholars and Rs 7,000 for hostellers. Students with disabilities get 10% more."
+eligibility:
+  - field: social_category
+    op: eq
+    value: sc
+    reason: For Scheduled Caste students
+  - field: current_class
+    op: in
+    value:
+      - 9
+      - 10
+    reason: Must be studying in class 9 or 10
+  - field: annual_family_income
+    op: lte
+    value: 250000
+    reason: Parents' or guardian's income must be Rs 2.5 lakh per year or less
+documents:
+  - Aadhaar number (or another identity proof if Aadhaar authentication fails)
+  - Caste certificate (SC)
+  - Parents' or guardian's income certificate
+  - Domicile certificate
+  - Disability certificate, if claiming the extra disability allowance
+  - Bank account of the student or parent (preferably Aadhaar-linked)
+notes:
+  - "Only for students studying full-time in class 9 or 10. The rules here cannot check the class yet: they only know the student is not in class 11 or above."
+  - The school must be a Government school or a private school recognised by the State, UT or a Central Board with a valid UDISE code.
+  - "Since 2021-22 this is Component 1 of the merged 'Pre-Matric Scholarship Scheme for SC and Others'. Component 2 (classes 1 to 10, any caste, no income limit) is for children of parents who are manual scavengers, tanners and flayers, waste pickers or in hazardous cleaning work."
+  - You cannot hold another educational scholarship for classes 1 to 10 at the same time; if offered two, choose one and tell the school.
+  - The scholarship is given by your state or UT of domicile. It continues until class 10 with satisfactory results and 75% attendance; a repeated class is not paid a second time.
+  - The current guidelines cover 2021-22 to 2025-26. Continuation for 2026-27 onward, and any change to the income limit, had not been confirmed from an official source on 2026-11-23; check your state scholarship portal or the National Scholarship Portal.
+how_to_apply: Apply online on your state's scholarship portal or the National Scholarship Portal when the school admits you (states are asked to open the portal from 1 April); the school verifies the application on the portal.
+apply_url: https://scholarships.gov.in
+source_url: https://scholarships.gov.in/public/schemeGuidelines/Assam_PRE_Matric_Scholarship_Guideline_updated.pdf
+verified_on: null
+evidence:
+  - claim: For SC students
+    url: https://scholarships.gov.in/public/schemeGuidelines/Assam_PRE_Matric_Scholarship_Guideline_updated.pdf
+    quote: "They should belong to a Scheduled Caste."
+    checked_on: 2026-11-23
+  - claim: Only for students in class 9 and 10, full-time
+    url: https://scholarships.gov.in/public/schemeGuidelines/Assam_PRE_Matric_Scholarship_Guideline_updated.pdf
+    quote: "The students should be studying in class IX and X on a full time basis."
+    checked_on: 2026-11-23
+  - claim: Income limit Rs 2.5 lakh a year
+    url: https://scholarships.gov.in/public/schemeGuidelines/Assam_PRE_Matric_Scholarship_Guideline_updated.pdf
+    quote: "Their Parent/Guardian's income should not exceed Rs. 2.50 lakh per annum."
+    checked_on: 2026-11-23
+  - claim: Rs 3,500 a year for day scholars, Rs 7,000 for hostellers (Component 1)
+    url: https://scholarships.gov.in/public/schemeGuidelines/Assam_PRE_Matric_Scholarship_Guideline_updated.pdf
+    quote: "Day Scholar- Rs. 3500 per annum Hosteller - Component 1- Rs. 7000 per annum"
+    checked_on: 2026-11-23
+  - claim: 10% extra for students with disabilities
+    url: https://scholarships.gov.in/public/schemeGuidelines/Assam_PRE_Matric_Scholarship_Guideline_updated.pdf
+    quote: "a 10% extra allowance shall be given to Divyang (Disabled) students"
+    checked_on: 2026-11-23
+  - claim: Merged in 2021-22 with the scheme for children of parents in unclean and hazardous occupations
+    url: https://scholarships.gov.in/public/schemeGuidelines/Assam_PRE_Matric_Scholarship_Guideline_updated.pdf
+    quote: "it has been decided to merge them into single scheme namely, 'Pre-matric Scholarship Scheme for SC Students & Others' w.e.f 2021-22"
+    checked_on: 2026-11-23
+  - claim: Government or recognised private schools with a UDISE code
+    url: https://scholarships.gov.in/public/schemeGuidelines/Assam_PRE_Matric_Scholarship_Guideline_updated.pdf
+    quote: "students studying in Government School and private schools which have been duly recognized by the concerned State Government/ Union Territory Administration/ Central Board having valid UDISE code"
+    checked_on: 2026-11-23
+  - claim: Cannot hold another scholarship for classes 1 to 10
+    url: https://scholarships.gov.in/public/schemeGuidelines/Assam_PRE_Matric_Scholarship_Guideline_updated.pdf
+    quote: "A scholarship holder under this scheme will not hold any other educational scholarship for the purpose of studying in class I to X."
+    checked_on: 2026-11-23
+  - claim: Paid until class 10 subject to results and 75% attendance
+    url: https://scholarships.gov.in/public/schemeGuidelines/Assam_PRE_Matric_Scholarship_Guideline_updated.pdf
+    quote: "The award once made will be payable until the student passes Class X, subject to satisfactory academic performance and attendance of 75% in every academic year."
+    checked_on: 2026-11-23
+  - claim: Guidelines period 2021-22 to 2025-26
+    url: https://scholarships.gov.in/public/schemeGuidelines/Assam_PRE_Matric_Scholarship_Guideline_updated.pdf
+    quote: "PRE- MATRIC SCHOLARSHIPS SCHEME FOR SCHEDULED CASTES & OTHERS (2021-2022 to 2025-26)"
+    checked_on: 2026-11-23

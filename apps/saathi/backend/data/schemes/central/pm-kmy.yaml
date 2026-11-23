@@ -1,0 +1,47 @@
+id: pm-kmy
+name: Pradhan Mantri Kisan Maan-dhan Yojana (PM-KMY)
+level: central
+applies_to: household
+ministry: Ministry of Agriculture and Farmers Welfare
+tags: [pension, farmer]
+summary: A voluntary pension scheme for small and marginal farmers; the government matches the farmer's contribution.
+benefits: Assured pension of Rs 3,000 per month from age 60. The farmer pays Rs 55 to Rs 200 a month depending on age at joining, and the government pays the same amount.
+eligibility:
+  - field: owns_cultivable_land
+    op: eq
+    value: true
+    reason: Must own cultivable land in their own name
+  - field: land_holding_hectares
+    op: lte
+    value: 2
+    reason: Land must be 2 hectares (about 5 acres) or less
+  - field: age
+    op: gte
+    value: 18
+    reason: Must be at least 18 years old to join
+  - field: age
+    op: lte
+    value: 40
+    reason: Must join before turning 41
+  - field: has_epf_esic_or_nps
+    op: eq
+    value: false
+    reason: Members of EPF, ESIC or NPS cannot join
+  - field: has_paid_income_tax
+    op: eq
+    value: false
+    reason: People who paid income tax are excluded
+documents:
+  - Aadhaar card
+  - Savings bank account with IFSC (passbook, cheque or bank statement)
+  - Mobile number for OTP
+notes:
+  - The land must be in the farmer's own name and appear in the state land records as on 1 August 2019; the 2-hectare limit is for the farmer's own land.
+  - Not for people already in PM-SYM or the traders' pension scheme (PM-LVM / NPS-Traders).
+  - Serving or retired government, PSU and local-body employees are excluded, except Multi-Tasking Staff, Class IV and Group D employees.
+  - Also excluded are institutional landholders, current and former constitutional post holders, ministers, MPs, MLAs and MLCs, mayors and district panchayat chairpersons, people who paid income tax in the last assessment year, and practising doctors, engineers, lawyers, chartered accountants and architects.
+  - PM-KISAN beneficiaries can choose to pay the contribution from their PM-KISAN instalments.
+how_to_apply: Enrol free at a Common Service Centre (CSC) with Aadhaar, bank details and your mobile phone, or through the State Nodal Officer for PM-KISAN in your district.
+apply_url: https://pmkmy.gov.in/scheme/pmkmy
+source_url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2309204
+verified_on: 2026-11-20

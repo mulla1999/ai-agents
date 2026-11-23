@@ -1,0 +1,77 @@
+id: e-shram
+name: e-Shram registration for unorganised workers
+level: central
+ministry: Ministry of Labour and Employment
+tags: [registration, unorganised-sector, social-security]
+summary: A free national registration for unorganised workers. Registered workers get a lifelong 12-digit Universal Account Number (UAN) / e-Shram card and one place to find and join social security schemes.
+benefits: A permanent e-Shram card with a 12-digit UAN that never expires and needs no renewal. Registration is free. Through the e-Shram portal workers can find and apply for linked welfare schemes such as PM-SYM pension, PMJJBY and PMSBY insurance, PDS ration, PMAY-G housing, NSAP old-age pension, Ayushman Bharat PM-JAY and PM Kisan Maandhan.
+eligibility:
+  - field: occupation
+    op: in
+    value: [unorganised_worker, agricultural_labourer, farmer, artisan, street_vendor, construction_worker, domestic_worker, fisher, self_employed]
+    reason: For home-based, self-employed or wage workers in the unorganised sector
+  - field: age
+    op: gte
+    value: 16
+    reason: Must be at least 16 years old
+documents:
+  - Aadhaar number
+  - Mobile number linked to Aadhaar
+notes:
+  - Members of EPFO (provident fund) or ESIC cannot register. Being in NPS alone does not stop registration, so this is not checked automatically.
+  - There is no income limit and no upper age limit for registering.
+  - Agricultural labourers and landless farmers can register. Gig and platform workers have a separate registration option on the portal.
+  - Registering does not by itself pay money; it gives access to the linked schemes, each with its own rules.
+  - Helpline 14434 or 1800-889-6811 (9 am to 6 pm, every day).
+how_to_apply: Self-register on the e-Shram portal with Aadhaar and the Aadhaar-linked mobile (OTP), or get registered free at the nearest Common Service Centre (CSC). Registered workers should keep their profile and occupation updated.
+apply_url: https://register.eshram.gov.in/#/user/self
+source_url: https://eshram.gov.in/faqs
+verified_on: 2026-11-23
+evidence:
+  - claim: Unorganised worker means home-based, self-employed or wage worker in the unorganised sector, not in ESIC or EPFO
+    url: https://eshram.gov.in/faqs
+    quote: "Any worker who is a home-based worker, self-employed worker or a wage worker working in the unorganised sector"
+    checked_on: 2026-11-23
+  - claim: Members of ESIC or EPFO are excluded
+    url: https://eshram.gov.in/faqs
+    quote: "and not a member of ESIC or EPFO"
+    checked_on: 2026-11-23
+  - claim: Age 16 and above
+    url: https://eshram.gov.in/faqs
+    quote: "any individual engaged in unorganised work and aged 16 years and above is eligible to register"
+    checked_on: 2026-11-23
+  - claim: No income criteria
+    url: https://eshram.gov.in/faqs
+    quote: "There are no income criteria for registering on eShram as unorganised worker."
+    checked_on: 2026-11-23
+  - claim: Agricultural labourers and landless farmers can register
+    url: https://eshram.gov.in/faqs
+    quote: "Agriculture labours and landless farmers are eligible for registration in the eShram portal."
+    checked_on: 2026-11-23
+  - claim: 12-digit UAN
+    url: https://eshram.gov.in/faqs
+    quote: "UAN or Universal Account Number is a 12-digit number uniquely assigned to each unorganised worker"
+    checked_on: 2026-11-23
+  - claim: Card never expires
+    url: https://eshram.gov.in/faqs
+    quote: "The eShram card never expires."
+    checked_on: 2026-11-23
+  - claim: Registration is free
+    url: https://eshram.gov.in/faqs
+    quote: "Registration on eShram portal is totally free."
+    checked_on: 2026-11-23
+  - claim: Documents are Aadhaar number and Aadhaar-linked mobile
+    url: https://eshram.gov.in/faqs
+    quote: "Aadhaar linked Mobile number."
+    checked_on: 2026-11-23
+  - claim: Self-registration on the portal or assisted at a CSC
+    url: https://eshram.gov.in/faqs
+    quote: "through assisted approach by visiting nearest CSC."
+    checked_on: 2026-11-23
+  - claim: Schemes listed on the e-Shram Schemes page (PM-SYM, NPS-Traders, PMJJBY, PMSBY, PDS, PMAY-G, NSAP, AB-PMJAY, PM-KMY, NSKFDC)
+    url: https://eshram.gov.in/Schemes
+    checked_on: 2026-11-23
+  - claim: Helpline numbers and hours
+    url: https://eshram.gov.in/indexmain
+    quote: "Helpdesk No. 14434/18008896811"
+    checked_on: 2026-11-23
